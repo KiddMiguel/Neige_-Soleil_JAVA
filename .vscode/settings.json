@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "c:\\Users\\Admin\\eclipse-workspace\\Neige_-Soleil_JAVA\\NeigeSoleil\\src\\Extensions\\mysql-connector-java-8.0.30.jar"
+        ]
+    }
+}
