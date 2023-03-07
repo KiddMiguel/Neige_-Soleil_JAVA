@@ -32,8 +32,13 @@ public class VueGenerale extends JFrame implements ActionListener{
 	
 	private JLabel txtidentifiant = new JLabel();
 
-	
-	
+	private PanelProfil unPanelProfil = new PanelProfil();	
+	private PanelAppartement unPanelAppartement = new PanelAppartement();	
+	private PanelContrat unPanelContrat = new PanelContrat();	
+	private PanelLocataire unPanelLocataire = new PanelLocataire();	
+	private PanelReservation unPanelReservation = new PanelReservation();	
+	private PanelProprietaire unPanelProprietaire = new PanelProprietaire();	
+
 	public VueGenerale() {
 	    this.setTitle("Neige et Soliel");
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,9 +108,11 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.btReservation.addActionListener(this);
 	    this.btDeconnecter.addActionListener(this);
 	    
+	    this.add(unPanelAppartement);
+	    this.add(unPanelProprietaire);
+	    
 	    this.setVisible(false);
 	}
-
 
 
 	
@@ -133,7 +140,24 @@ public class VueGenerale extends JFrame implements ActionListener{
 	            NeigeSoleil.rendreVisibleVueConnexion(true);
 	            NeigeSoleil.rendreVisibleVueGenerale(false);
 	        }
+	    }else if (e.getSource() == this.btAppartement) {
+	    	this.affichePanel(1);
+	    }else if (e.getSource() == this.btProrietaire) {
+	    	this.affichePanel(2);
 	    }
 	}
 
+
+	public void affichePanel( int numero) {
+		this.unPanelProprietaire.setVisible(false);
+		this.unPanelAppartement.setVisible(false);
+		
+		switch (numero) {
+		case 1: 
+			this.unPanelAppartement.setVisible(true);
+		case 2:
+			this.unPanelProprietaire.setVisible(true);
+		
+		}
+	}
 }
