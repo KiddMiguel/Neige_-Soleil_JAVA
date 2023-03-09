@@ -28,6 +28,8 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private JButton btProrietaire = new JButton("Proprietaires     ",  new ImageIcon("src/Images/logos/prorietaire.png"));
 	private JButton btLocataire = new JButton("Locataires  ", new ImageIcon("src/Images/logos/locataire.png"));
 	private JButton btReservation = new JButton("Réservations   ", new ImageIcon("src/Images/logos/reservation.png"));
+	private JButton btProfil = new JButton("Profil");
+
 	private JButton btDeconnecter = new JButton("Deconnecter    ", new ImageIcon("src/Images/logos/parametres.png"));
 	
 	private JLabel txtidentifiant = new JLabel();
@@ -35,9 +37,9 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private PanelProfil unPanelProfil = new PanelProfil();	
 	private PanelAppartement unPanelAppartement = new PanelAppartement();	
 	private PanelContrat unPanelContrat = new PanelContrat();	
+	private PanelProprietaire unPanelProprietaire = new PanelProprietaire();	
 	private PanelLocataire unPanelLocataire = new PanelLocataire();	
 	private PanelReservation unPanelReservation = new PanelReservation();	
-	private PanelProprietaire unPanelProprietaire = new PanelProprietaire();	
 
 	public VueGenerale() {
 	    this.setTitle("Neige et Soliel");
@@ -63,11 +65,11 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    Labelprofil.setBounds(75, 120, 100, 200);
 	    this.add(Labelprofil);
 
-	 
+	    this.btProfil.setBounds(75,280,100, 20);
+	
 	    
 
 	    this.panelMenu.setBounds(40, 380, 170, 200);
-	    this.panelMenu.setBackground(new Color (234, 255, 255));
 	    this.panelMenu.setLayout(new GridLayout(6,4));
 	   
 	    
@@ -85,6 +87,9 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.btLocataire.setBorder(matteborder);
 	    this.btReservation.setBorder(matteborder);
 	    this.btDeconnecter.setBorder(matteborder);
+	    this.btProfil.setBorder(matteborder);
+	    
+	    this.btProfil.setBackground(new Color(42, 165, 246));
 	    this.btDeconnecter.setBackground(new Color(222, 28, 28));
 	    this.btDeconnecter.setForeground(new Color(255, 255, 255)); //couleur de text White
 
@@ -107,9 +112,16 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.btLocataire.addActionListener(this);
 	    this.btReservation.addActionListener(this);
 	    this.btDeconnecter.addActionListener(this);
+	    this.btProfil.addActionListener(this);
 	    
-	    this.add(unPanelAppartement);
-	    this.add(unPanelProprietaire);
+	    this.add(this.unPanelProfil);
+	    this.add(this.unPanelAppartement);
+	    this.add(this.unPanelContrat);
+	    this.add(this.unPanelProprietaire);
+	    this.add(this.unPanelLocataire);
+	    this.add(this.unPanelReservation);
+	    
+	    this.add(btProfil);
 	    
 	    this.setVisible(false);
 	}
@@ -140,24 +152,45 @@ public class VueGenerale extends JFrame implements ActionListener{
 	            NeigeSoleil.rendreVisibleVueConnexion(true);
 	            NeigeSoleil.rendreVisibleVueGenerale(false);
 	        }
-	    }else if (e.getSource() == this.btAppartement) {
+	    }else if (e.getSource() == this.btProfil) {
 	    	this.affichePanel(1);
-	    }else if (e.getSource() == this.btProrietaire) {
+	    }else if (e.getSource() == this.btAppartement) {
 	    	this.affichePanel(2);
+	    }else if (e.getSource() == this.btContrat) {
+	    	this.affichePanel(3);
+	    }else if (e.getSource() == this.btProrietaire) {
+	    	this.affichePanel(4);
+	    }else if (e.getSource() == this.btLocataire) {
+	    	this.affichePanel(5);
+	    }else if (e.getSource() == this.btReservation) {
+	    	this.affichePanel(6);
 	    }
 	}
 
 
 	public void affichePanel( int numero) {
-		this.unPanelProprietaire.setVisible(false);
+		this.unPanelProfil.setVisible(false);
 		this.unPanelAppartement.setVisible(false);
+		this.unPanelContrat.setVisible(false);
+		this.unPanelProprietaire.setVisible(false);
+		this.unPanelLocataire.setVisible(false);
+		this.unPanelReservation.setVisible(false);
 		
 		switch (numero) {
 		case 1: 
-			this.unPanelAppartement.setVisible(true);
+			this.unPanelProfil.setVisible(true);
 		case 2:
+			this.unPanelAppartement.setVisible(true);
+		case 3:
+			this.unPanelContrat.setVisible(true);
+		case 4:
 			this.unPanelProprietaire.setVisible(true);
-		
+		case 5:
+			this.unPanelLocataire.setVisible(true);
+		case 6:
+			this.unPanelReservation.setVisible(true);
+
+
 		}
 	}
 }
