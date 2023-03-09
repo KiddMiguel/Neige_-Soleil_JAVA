@@ -2,6 +2,8 @@ package view;
 
 import controller.Admin;
 import controller.C_Admin;
+import controller.NeigeSoleil;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -119,10 +121,13 @@ public class VueConnexion
         JOptionPane.WARNING_MESSAGE
       );
     } else {
-      JOptionPane.showMessageDialog(
+     /* JOptionPane.showMessageDialog(
         this,
         "Bienvenue ! " + unAdmin.getNom() + " " + unAdmin.getPrenom()
-      );
+      );*/
+      
+      NeigeSoleil.rendreVisibleVueConnexion(false);
+      NeigeSoleil.rendreVisibleVueGenerale(true);
     }
   }
 
