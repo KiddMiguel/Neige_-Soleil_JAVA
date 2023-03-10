@@ -167,7 +167,6 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    }
 	}
 
-
 	public void affichePanel( int numero) {
 		this.unPanelProfil.setVisible(false);
 		this.unPanelAppartement.setVisible(false);
