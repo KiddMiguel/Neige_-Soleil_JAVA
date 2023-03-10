@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PanelProfil extends PanelPrincipal{
-	private JPanel panelForm = new JPanel();
+	JPanel panelForm = new JPanel();
 
 	public PanelProfil() {
         super();
@@ -12,7 +12,15 @@ public class PanelProfil extends PanelPrincipal{
 	    this.setLayout(null);
 	    
 	    
-	    
+	    this.panelForm.setVisible(false);
 	    this.setVisible(false);
+	}
+
+	public JPanel getPanelForm() {
+		return panelForm;
+	}
+
+	public void setPanelForm(JPanel panelForm) {
+		this.panelForm = panelForm;
 	}
 }

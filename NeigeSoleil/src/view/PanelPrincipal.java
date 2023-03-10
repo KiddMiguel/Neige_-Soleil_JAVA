@@ -11,7 +11,8 @@ public class PanelPrincipal extends JPanel {
 	
 	protected JLabel titre = new JLabel("");
 	protected JButton btAjout = new JButton("Ajouter");
-	
+	protected JPanel panelForm = new JPanel();
+
 	public PanelPrincipal(){
 	    this.setBounds(240, 150, 1300, 800);
 	    this.setLayout(null);
@@ -21,7 +22,7 @@ public class PanelPrincipal extends JPanel {
 		this.add(this.titre);
 
 	    
-	    this.setVisible(false);
+		this.panelForm.setVisible(false);
 		
 	    
 	}

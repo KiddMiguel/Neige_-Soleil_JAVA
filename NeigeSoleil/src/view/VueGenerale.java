@@ -41,6 +41,7 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private PanelLocataire unPanelLocataire = new PanelLocataire();	
 	private PanelReservation unPanelReservation = new PanelReservation();	
 
+	
 	public VueGenerale() {
 	    this.setTitle("Neige et Soliel");
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,7 +175,6 @@ public class VueGenerale extends JFrame implements ActionListener{
 		this.unPanelProprietaire.setVisible(false);
 		this.unPanelLocataire.setVisible(false);
 		this.unPanelReservation.setVisible(false);
-		
 		switch (numero) {
 		case 1: 
 			this.unPanelProfil.setVisible(true);
