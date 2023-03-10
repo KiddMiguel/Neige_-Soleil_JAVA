@@ -8,7 +8,7 @@ public class PanelProprietaire extends PanelPrincipal {
     {
         super();
         this.titre.setText("Proprietaire");
-        this.setBounds(15, 70, 1500, 800);
+        this.setBounds(500, 150, 800, 200);
         this.setBackground(new Color(232, 41, 41));
 	    this.setLayout(null);
 	    
