@@ -7,19 +7,20 @@ import java.util.ArrayList;
 
 import controller.Appartement;
 
+
 public class modeleAppartement {
 	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
 	public static void insertAppartement(Appartement unAppartement) {
         String requete = "insert into appartement values(null, '"
                 + unAppartement.getStatut_appart()+"','" + unAppartement.getPrix_appart()+"','"
                 + unAppartement.getIntitule_appart()+"','" + unAppartement.getVille_appart()+"','"
-                + unAppartement.getCp_appart()+"','"+unAppartement.getAdresse_appart()+"','" 
-                +unAppartement.getCp_appart()+"','"+ unAppartement.getDescription_appart()+"','" 
-                +unAppartement.getType_appart()+"','"+unAppartement.getSuperficie_appart()+"','"
-                +unAppartement.getNb_chambres()+"','"+unAppartement.getNb_lits()+"','"
-                +unAppartement.getNb_salles_bain()+"','" + unAppartement.getCapacite_appart()+"', null, null, null, null, null, null, null, null,'"
-                +unAppartement.getId_reservation()+"','" + unAppartement.getId_contrat()+"','" 
-                + unAppartement.getId_user()+"', null');";
+                + unAppartement.getCp_appart()+"','"+unAppartement.getAdresse_appart()+"',null,'"
+                +unAppartement.getType_appart()+"','"+unAppartement.getSuperficie_appart()+"',null,'"
+                +unAppartement.getNb_chambre()+"','"+unAppartement.getNb_cuisine()+"','"
+                +unAppartement.getNb_salon()+"','"+ unAppartement.getNb_salle_bain()+"','"
+                +unAppartement.getNb_piece()+"','"+unAppartement.getId_locataire()+"','"
+                + unAppartement.getId_proprietaire()+"',null);";
+        
         try {
             uneBDD.seConnecter();
             Statement unStat = uneBDD.getMaConnexion().createStatement();
@@ -40,13 +41,13 @@ public class modeleAppartement {
         		"',description_appart = '" + unAppartement.getDescription_appart() + 
         		"', type_appart = '" + unAppartement.getType_appart() +
         		"', superficie_appart = '" + unAppartement.getSuperficie_appart() +
-        		"', nb_chambres = '" + unAppartement.getNb_chambres() + 
-        		"', nb_lits = '" + unAppartement.getNb_lits() + 
-        		"', nb_salles_bain = '" + unAppartement.getNb_salles_bain() + 
-        		"', capacite_appart = '" + unAppartement.getCapacite_appart() + 
-        		"', id_reservation = '" + unAppartement.getId_reservation() + 
-        		"', id_contrat = '" + unAppartement.getId_contrat() +
-        		"', id_user = '" + unAppartement.getId_user() + "';' ";
+        		"', nb_chambre = " + unAppartement.getNb_chambre() + 
+        		", nb_cuisine = " + unAppartement.getNb_cuisine() + 
+        		", nb_salon = " + unAppartement.getNb_salon() + 
+        		", nb_salle_bain = " + unAppartement.getNb_salle_bain() + 
+        		", nb_piece = " + unAppartement.getNb_piece() + 
+        		", id_locataire = " + unAppartement.getId_locataire() +
+        		", id_proprietaire = " + unAppartement.getId_proprietaire() + ";";
         try {
             uneBDD.seConnecter();
             Statement unStat = uneBDD.getMaConnexion().createStatement();
@@ -72,7 +73,7 @@ public class modeleAppartement {
     public static ArrayList<Appartement > selectAllAppartement  ()
     {
         String requete ="select * from Appartement  ;";
-        ArrayList<Appartement > lesAppartements = new ArrayList<Appartement >(); 
+        ArrayList<Appartement > lesAppartements = new ArrayList<Appartement>(); 
         try {
             uneBDD.seConnecter();
             Statement unStat = uneBDD.getMaConnexion().createStatement();
@@ -83,13 +84,16 @@ public class modeleAppartement {
             while (desResultats.next())
             {
                 Appartement  unAppartement  = new Appartement  (
-                            desResultats.getInt("id_appart"),desResultats.getInt("id_user"),
-                            desResultats.getInt("id_reservation"),desResultats.getInt("id_reservation"),
-                            desResultats.getInt("nb_chambres "),desResultats.getInt("nb_salles_bain "),
-                            desResultats.getInt("capacite_appart "),desResultats.getFloat("prix_appart "),
-                            desResultats.getString("statut_appart "),desResultats.getString("intitule_appart "),
-                            desResultats.getString("ville_appart "),desResultats.getString("cp_appart "),
-                            desResultats.getString("adresse_appart "),desResultats.getString("type_appart ")
+                            desResultats.getInt("id_appart"),desResultats.getInt("nb_chambre"),desResultats.getInt("nb_cuisine"),
+                            desResultats.getInt("nb_salon"),desResultats.getInt("nb_salle_bain"),
+                            desResultats.getInt("nb_piece"),desResultats.getInt("id_locataire"),
+                            desResultats.getInt("id_proprietaire"),
+                            desResultats.getFloat("prix_appart"),desResultats.getString("statut_appart"),
+                            desResultats.getString("intitule_appart"),desResultats.getString("ville_appart"),
+                            desResultats.getString("cp_appart"),desResultats.getString("adresse_appart"),
+                            desResultats.getString("description_appart"),desResultats.getString("type_appart"),
+                            desResultats.getString("superficie_appart")
+                            
                         );
                 //on ajoute le Appartement  dans l'ArrayList
                 lesAppartements.add(unAppartement );
@@ -115,13 +119,48 @@ public class modeleAppartement {
             if (unResultat.next())
             {
                 unAppartement  = new Appartement  (
-                		unResultat.getInt("id_appart"),unResultat.getInt("id_user"),
-                		unResultat.getInt("id_reservation"),unResultat.getInt("id_reservation"),
-                		unResultat.getInt("nb_chambres "),unResultat.getInt("nb_salles_bain "),
-                		unResultat.getInt("capacite_appart "),unResultat.getFloat("prix_appart "),
-                		unResultat.getString("statut_appart "),unResultat.getString("intitule_appart "),
-                		unResultat.getString("ville_appart "),unResultat.getString("cp_appart "),
-                		unResultat.getString("adresse_appart "),unResultat.getString("type_appart ")
+                		unResultat.getInt("id_appart"),unResultat.getInt("nb_chambre"),unResultat.getInt("nb_cuisine"),
+                		unResultat.getInt("nb_salon"),unResultat.getInt("nb_salle_bain"),
+                		unResultat.getInt("nb_piece"),unResultat.getInt("id_locataire"),
+                		unResultat.getInt("id_proprietaire"),
+                		unResultat.getFloat("prix_appart"),unResultat.getString("statut_appart"),
+                        unResultat.getString("intitule_appart"),unResultat.getString("ville_appart"),
+                        unResultat.getString("cp_appart"),unResultat.getString("adresse_appart"),
+                        unResultat.getString("description_appart"),unResultat.getString("type_appart"),
+                        unResultat.getString("superficie_appart")
+                        );
+            }
+            unStat.close();
+            uneBDD.seDeconnecter();
+        }
+        catch (SQLException exp) {
+            System.out.println("Erreur d'execution : " +requete);
+        }
+        return unAppartement ; 
+    }
+    
+    public static Appartement selectWhereAppartement  (String statut)
+    {
+        String requete =" select * from Appartement  where statut_appart= '"+statut+"';";
+        Appartement  unAppartement  = null; 
+        try {
+            uneBDD.seConnecter();
+            Statement unStat = uneBDD.getMaConnexion().createStatement();
+            //recuperation un seul Appartement  resultat 
+            ResultSet unResultat = unStat.executeQuery(requete); 
+            //on teste si on a un seul rÃ©sultat
+            if (unResultat.next())
+            {
+                unAppartement  = new Appartement  (
+                		unResultat.getInt("id_appart"),unResultat.getInt("nb_chambre"),unResultat.getInt("nb_cuisine"),
+                		unResultat.getInt("nb_salon"),unResultat.getInt("nb_salle_bain"),
+                		unResultat.getInt("nb_piece"),unResultat.getInt("id_locataire"),
+                		unResultat.getInt("id_proprietaire"),
+                		unResultat.getFloat("prix_appart"),unResultat.getString("statut_appart"),
+                        unResultat.getString("intitule_appart"),unResultat.getString("ville_appart"),
+                        unResultat.getString("cp_appart"),unResultat.getString("adresse_appart"),
+                        unResultat.getString("description_appart"),unResultat.getString("type_appart"),
+                        unResultat.getString("superficie_appart")
                         );
             }
             unStat.close();
