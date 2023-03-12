@@ -40,6 +40,12 @@ public class VueConnexion
   private JPanel panelConnexion = new JPanel();
   private JButton btConnexion = new JButton("Connexion");
 
+  //Get ADMIN
+  private static Admin unAdminConnecte = null;
+  
+  public static Admin getAdmin() {
+	  return unAdminConnecte;
+  }
   public VueConnexion() {
     this.setTitle("Neige et Soliel");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -111,9 +117,9 @@ public class VueConnexion
   public void verifConnexion() {
     String email = this.txtEmail.getText();
     String mdp = new String(this.txtMdp.getPassword());
-    Admin unAdmin = C_Admin.selectWhereAdmin(email, mdp);
+    unAdminConnecte = C_Admin.selectWhereAdmin(email, mdp);
 
-    if (unAdmin == null) {
+    if (unAdminConnecte == null) {
       JOptionPane.showMessageDialog(
         this,
         "Mot de passe incorrect !\n Vérifier vos informations",
@@ -121,11 +127,6 @@ public class VueConnexion
         JOptionPane.WARNING_MESSAGE
       );
     } else {
-     /* JOptionPane.showMessageDialog(
-        this,
-        "Bienvenue ! " + unAdmin.getNom() + " " + unAdmin.getPrenom()
-      );*/
-      
       NeigeSoleil.rendreVisibleVueConnexion(false);
       NeigeSoleil.rendreVisibleVueGenerale(true);
     }

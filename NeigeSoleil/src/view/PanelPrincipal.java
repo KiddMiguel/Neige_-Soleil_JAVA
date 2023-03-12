@@ -7,11 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.Admin;
+
 public class PanelPrincipal extends JPanel {
 	
 	protected JLabel titre = new JLabel("");
-	protected JButton btAjout = new JButton("Ajouter");
-	
+
+	protected JPanel panelForm = new JPanel();
+
+
 	public PanelPrincipal(){
 
 	    this.setBounds(50, 80, 550, 200);
@@ -25,9 +29,9 @@ public class PanelPrincipal extends JPanel {
 		this.add(this.titre);
 
 	    
-	    this.setVisible(false);
+		this.panelForm.setVisible(false);
 		
-	    
+
 	}
 	
 
