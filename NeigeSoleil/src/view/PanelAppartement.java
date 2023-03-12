@@ -82,16 +82,16 @@ public class PanelAppartement extends PanelPrincipal {
 	    this.panelForm.add(new JLabel("Nb Salons"));
 		this.panelForm.add(this.txt_nb_salon); 
 		
-	    this.panelForm.add(new JLabel("Nb Chambres"));
+	    this.panelForm.add(new JLabel("N∞ Chambres"));
 		this.panelForm.add(this.txt_nb_chambre); 
 		
-	    this.panelForm.add(new JLabel("Nb Cuisine"));
+	    this.panelForm.add(new JLabel("N∞ Cuisine"));
 		this.panelForm.add(this.txt_nb_cuisine); 
 		
-	    this.panelForm.add(new JLabel("Nb Salle de Bain"));
+	    this.panelForm.add(new JLabel("N∞ Salle de Bain"));
 		this.panelForm.add(this.txt_nb_salle_bain); 
 		
-		this.panelForm.add(new JLabel("Nb Pi√®ces"));
+		this.panelForm.add(new JLabel("N∞ Pieces"));
 		this.panelForm.add(this.txt_nb_piece); 
 		
 		this.panelForm.add(this.cbx_id_locataire);

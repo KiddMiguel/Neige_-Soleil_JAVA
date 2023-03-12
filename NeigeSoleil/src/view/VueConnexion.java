@@ -31,8 +31,8 @@ public class VueConnexion
   implements ActionListener, KeyListener {
 
   private JTextField txtEmail = new JTextField("miguel@gmail.com");
-  private JLabel txtTitre = new JLabel("S’identifier", SwingConstants.CENTER);
-  private JLabel txtInfo = new JLabel("Mot de passe oublié ?");
+  private JLabel txtTitre = new JLabel("S'identifier", SwingConstants.CENTER);
+  private JLabel txtInfo = new JLabel("Mot de passe oublier ?");
   private JLabel txtMessage = new JLabel(
     "Connectez-vous pour gérer votre compte !"
   );
