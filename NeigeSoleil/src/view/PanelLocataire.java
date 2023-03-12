@@ -47,7 +47,7 @@ public class PanelLocataire extends PanelPrincipal{
 	        
 			this.panelForm.setBounds(935, 20, 300, 580);
 			this.panelForm.setBackground(new Color (142, 197, 243));
-			this.panelForm.setLayout(new GridLayout(32,500));
+			this.panelForm.setLayout(new GridLayout(28,1));
 			
 			//Affichage des inputs et des texts 
 		    this.panelForm.add(new JLabel("civilité"));
@@ -73,10 +73,6 @@ public class PanelLocataire extends PanelPrincipal{
 			
 		    this.panelForm.add(new JLabel("cp"));
 			this.panelForm.add(this.cp_locataire); 
-			
-		    this.panelForm.add(new JLabel("nombre"));
-			this.panelForm.add(this.nb_reservation); 
-			
  
 			this.panelForm.add(new JLabel("Appartement"));
 			this.panelForm.add(this.cbx_id_appart);
@@ -86,8 +82,11 @@ public class PanelLocataire extends PanelPrincipal{
 			this.panelForm.add(this.cbx_id_user);
 			
 			this.panelForm.add(new JLabel(""));
-			this.panelForm.add(this.btAnnuler); 
-			this.panelForm.add(this.btAjouter);
+	        this.btAnnuler.setBounds(935, 532, 300, 30);
+	        this.add(this.btAnnuler);
+	        
+	        this.btAjouter.setBounds(935, 568, 300, 30);
+	        this.add(this.btAjouter);
 			
 			
 		    this.add(panelForm);

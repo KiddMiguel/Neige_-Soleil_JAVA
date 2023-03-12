@@ -13,7 +13,9 @@ public class PanelReservation extends PanelPrincipal {
     private JPanel panelForm = new JPanel();
 
     // Variables
-    private JTextField txt_statut_reserv = new JTextField();
+	String[] choix_statut_reserv = {"En cours", "Réservé"};
+	private JComboBox <String>cbx_statut_reserv = new JComboBox<String>(choix_statut_reserv);
+	
     private JTextField txt_date_debut_reserv = new JTextField();
     private JTextField txt_date_fin_reserv = new JTextField();
     private JTextField txt_prix_reserv = new JTextField();
@@ -36,11 +38,11 @@ public class PanelReservation extends PanelPrincipal {
 
         this.panelForm.setBounds(935, 20, 300, 580);
         this.panelForm.setBackground(new Color(142, 197, 243));
-        this.panelForm.setLayout(new GridLayout(20, 6));
+        this.panelForm.setLayout(new GridLayout(18, 6));
 
         // Affichage des inputs et des texts
         this.panelForm.add(new JLabel("Statut"));
-        this.panelForm.add(this.txt_statut_reserv);
+        this.panelForm.add(this.cbx_statut_reserv);
 
         this.panelForm.add(new JLabel("Date début"));
         this.panelForm.add(this.txt_date_debut_reserv);
@@ -54,18 +56,17 @@ public class PanelReservation extends PanelPrincipal {
         this.panelForm.add(new JLabel("Nb personnes"));
         this.panelForm.add(this.txt_nb_personnes_reserv);
 
-        this.panelForm.add(new JLabel("ID User"));
+        this.panelForm.add(new JLabel("Utilisateur"));
         this.panelForm.add(this.cbx_id_user);
 
-        this.panelForm.add(new JLabel("ID Appartement"));
+        this.panelForm.add(new JLabel("Appartement"));
         this.panelForm.add(this.cbx_id_appart);
 
-        this.panelForm.add(new JLabel("ID Matériel Propriétaire"));
-        this.panelForm.add(this.cbx_id_materiel_proprio);
-
-        this.panelForm.add(new JLabel(""));
-        this.panelForm.add(this.btAnnuler);
-        this.panelForm.add(this.btAjouter);
+        this.btAnnuler.setBounds(935, 532, 300, 30);
+        this.add(this.btAnnuler);
+        
+        this.btAjouter.setBounds(935, 568, 300, 30);
+        this.add(this.btAjouter);
 
         this.add(panelForm);
 

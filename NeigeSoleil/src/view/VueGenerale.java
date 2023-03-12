@@ -40,6 +40,12 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private PanelProprietaire unPanelProprietaire = new PanelProprietaire();	
 	private PanelLocataire unPanelLocataire = new PanelLocataire();	
 	private PanelReservation unPanelReservation = new PanelReservation();	
+	
+	//Profil 
+	private JLabel txt_nom_prenom = new JLabel("");
+	private JLabel txt_email = new JLabel("");
+	private Admin Admin;
+
 
 	
 	public VueGenerale() {
@@ -49,12 +55,6 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.setBounds(15, 20, 1500, 800);
 	    this.getContentPane().setBackground(new Color(255, 255, 255));
 	    this.setLayout(null);
-	    
-	    /*Icon icon = new ImageIcon("src/Images/logo/meuble.png");
-	    JButton btsetting = new JButton(icon);
-	    btsetting.setBounds(20,400,200,200);
-	    this.add(btsetting);*/
-	    
 	    
 	    ImageIcon fond_top = new ImageIcon("src/Images/bar.png"); //Image blue du top
 	    JLabel Labelfond_top = new JLabel(fond_top);
@@ -66,11 +66,22 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    Labelprofil.setBounds(75, 120, 100, 200);
 	    this.add(Labelprofil);
 
-	    this.btProfil.setBounds(75,280,100, 20);
 	
+		this.txt_nom_prenom.setBounds(95, 260, 100, 50);
+		this.txt_email.setBounds(75, 280, 150, 50);
+
+	    this.Admin = VueConnexion.getAdmin();
+	    this.txt_nom_prenom.setText(Admin.getNom()+" "+Admin.getPrenom());
 	    
+	    this.txt_email.setText(Admin.getEmail());
+	    
+	    this.add(this.txt_nom_prenom);
+	    this.add(this.txt_email);
+	    
+	    this.btProfil.setBounds(75,320,100, 20);
 
 	    this.panelMenu.setBounds(40, 380, 170, 200);
+		this.panelMenu.setBackground(new Color (255, 255, 255));
 	    this.panelMenu.setLayout(new GridLayout(6,4));
 	   
 	    
@@ -96,6 +107,13 @@ public class VueGenerale extends JFrame implements ActionListener{
 
 
 	    
+	    this.btAppartement.addActionListener(this);
+	    this.btContrat.addActionListener(this);
+	    this.btProrietaire.addActionListener(this);
+	    this.btLocataire.addActionListener(this);
+	    this.btReservation.addActionListener(this);
+	    this.btDeconnecter.addActionListener(this);
+	    this.btProfil.addActionListener(this);
 
 	   this.panelMenu.add(this.btAppartement);
        this.panelMenu.add(this.btContrat);
@@ -104,16 +122,8 @@ public class VueGenerale extends JFrame implements ActionListener{
        this.panelMenu.add(this.btReservation);
        this.panelMenu.add(this.btDeconnecter);
 	    	    	    
-
 	    this.add(this.panelMenu);
-	    
-	    this.btAppartement.addActionListener(this);
-	    this.btContrat.addActionListener(this);
-	    this.btProrietaire.addActionListener(this);
-	    this.btLocataire.addActionListener(this);
-	    this.btReservation.addActionListener(this);
-	    this.btDeconnecter.addActionListener(this);
-	    this.btProfil.addActionListener(this);
+
 	    
 	    this.add(this.unPanelProfil);
 	    this.add(this.unPanelAppartement);
@@ -123,6 +133,8 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.add(this.unPanelReservation);
 	    
 	    this.add(btProfil);
+	    
+
 	    
 	    this.setVisible(false);
 	}
@@ -150,8 +162,8 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    if (e.getSource() == this.btDeconnecter) {
 	        int retour = JOptionPane.showConfirmDialog(this, "Se déconnecter !", "Quitter l'application", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
-	            NeigeSoleil.rendreVisibleVueConnexion(true);
 	            NeigeSoleil.rendreVisibleVueGenerale(false);
+	            NeigeSoleil.rendreVisibleVueConnexion(true);
 	        }
 	    }else if (e.getSource() == this.btProfil) {
 	    	this.affichePanel(1);
@@ -175,20 +187,26 @@ public class VueGenerale extends JFrame implements ActionListener{
 		this.unPanelProprietaire.setVisible(false);
 		this.unPanelLocataire.setVisible(false);
 		this.unPanelReservation.setVisible(false);
+		
 		switch (numero) {
 		case 1: 
 			this.unPanelProfil.setVisible(true);
+			break;
 		case 2:
 			this.unPanelAppartement.setVisible(true);
+			break;
 		case 3:
 			this.unPanelContrat.setVisible(true);
+			break;
 		case 4:
 			this.unPanelProprietaire.setVisible(true);
+			break;
 		case 5:
 			this.unPanelLocataire.setVisible(true);
+			break;
 		case 6:
 			this.unPanelReservation.setVisible(true);
-
+			break;
 
 		}
 	}
