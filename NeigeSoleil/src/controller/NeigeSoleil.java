@@ -9,13 +9,16 @@ public class NeigeSoleil {
 	
 	public static void main (String[] args) {
 		uneVueConnexion = new VueConnexion();
-		uneVueGenerale = new VueGenerale();
+
 	}
 	
 	public static void rendreVisibleVueConnexion(boolean action) {
 		uneVueConnexion.setVisible(action);
 	}
 	public static void rendreVisibleVueGenerale(boolean action) {
-		uneVueGenerale.setVisible(action);
-	}
+		if (uneVueGenerale == null)
+		{
+			uneVueGenerale = new VueGenerale();
+		}
+		uneVueGenerale.setVisible(action);	}
 }

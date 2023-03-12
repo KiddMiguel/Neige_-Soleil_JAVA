@@ -27,7 +27,7 @@ CREATE table appartement (
     description_appart VARCHAR(500),
     type_appart VARCHAR (50),
     superficie_appart VARCHAR (50),
-    image VARCHAR (50),
+    image VARCHAR (50) NULL,
     nb_chambre int (5),
     nb_cuisine int(5),
     nb_salon int(5),
@@ -307,7 +307,7 @@ VALUES
 
 INSERT INTO reservation (statut_reservation, date_debut_reservation, date_fin_reservation, prix_reservation, nb_personnes, id_user, id_appart, id_materiel_proprio)
 VALUES 
-('En cours réservation', '2023-03-01', '2023-03-07', '600 euros', 2, 1, 2, 1),
+('En cours', '2023-03-01', '2023-03-07', '600 euros', 2, 1, 2, 1),
 ('Réservé', '2023-04-15', '2023-04-22', '800 euros', 4, 3, 4, 2),
 ('En cours réservation', '2023-05-01', '2023-05-15', '1200 euros', 3, 2, 1, 3),
 ('Réservé', '2023-06-10', '2023-06-15', '500 euros', 2, 4, 5, 4),
