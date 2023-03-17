@@ -16,7 +16,7 @@ public class Locataire {
 		this.adresse_locataire = adresse_locataire;
 		this.cp_locataire = cp_locataire;
 	}
-	public Locataire(String nom_locataire, String prenom_locataire, String email_locataire, String mdp_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
+	public Locataire(int id_appart, int nb_reservations , int id_proprietaire,int id_user,String nom_locataire, String prenom_locataire, String email_locataire, String mdp_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
 	 	this.id_user = 0;
 	 	this.id_locataire = 0;
 		this.id_proprietaire = 0;
