@@ -33,7 +33,7 @@ public class PanelProprietaire extends PanelPrincipal {
 	private JComboBox<String> id_appart = new JComboBox<String>();
 	private JComboBox<String> civilite_proprio = new JComboBox<String>();
 	
-	private JButton btAjout = new JButton("Ajout");
+	private JButton btAjouter = new JButton("Ajout");
 	private JButton btAnnuler = new JButton ("Annuler");
 	
     public PanelProprietaire ()
@@ -88,6 +88,14 @@ public class PanelProprietaire extends PanelPrincipal {
 		this.panelForm.add(this.id_contrat);
 		this.panelForm.add(new JLabel ("Appartement"));
 		this.panelForm.add(this.id_appart);
+		
+	
+		
+        this.btAnnuler.setBounds(935, 532, 300, 30);
+        this.add(this.btAnnuler);
+        
+        this.btAjouter.setBounds(935, 568, 300, 30);
+        this.add(this.btAjouter);
 		
 		
 		
