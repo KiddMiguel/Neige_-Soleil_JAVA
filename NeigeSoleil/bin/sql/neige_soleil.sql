@@ -27,7 +27,7 @@ CREATE table appartement (
     description_appart VARCHAR(500),
     type_appart VARCHAR (50),
     superficie_appart VARCHAR (50),
-    image VARCHAR (50),
+    image VARCHAR (50) NULL,
     nb_chambre int (5),
     nb_cuisine int(5),
     nb_salon int(5),
