@@ -9,6 +9,7 @@ public class Locataire {
 		this.id_appart = id_appart;
 	 	this.id_proprietaire = id_proprietaire;
 		this.nb_reservations = nb_reservations;
+		this.nom_locataire = nom_locataire;
 		this.prenom_locataire = prenom_locataire;
 		this.email_locataire = email_locataire;
 		this.tel_locataire = tel_locataire;

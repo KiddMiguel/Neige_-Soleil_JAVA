@@ -98,16 +98,16 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	    this.panelForm.add(new JLabel("Nb Salons"));
 		this.panelForm.add(this.txt_nb_salon); 
 		
-	    this.panelForm.add(new JLabel("N° Chambres"));
+	    this.panelForm.add(new JLabel("Nï¿½ Chambres"));
 		this.panelForm.add(this.txt_nb_chambre); 
 		
-	    this.panelForm.add(new JLabel("N° Cuisine"));
+	    this.panelForm.add(new JLabel("Nï¿½ Cuisine"));
 		this.panelForm.add(this.txt_nb_cuisine); 
 		
-	    this.panelForm.add(new JLabel("N° Salle de Bain"));
+	    this.panelForm.add(new JLabel("Nï¿½ Salle de Bain"));
 		this.panelForm.add(this.txt_nb_salle_bain); 
 		
-		this.panelForm.add(new JLabel("N° Pieces"));
+		this.panelForm.add(new JLabel("Nï¿½ Pieces"));
 		this.panelForm.add(this.txt_nb_piece); 
 		
 		this.panelForm.add(new JLabel("Locataire"));
@@ -145,7 +145,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		//parcourir lesClients et remplir le CBX 
 		for(Locataire unLocataire : lesLocataires)
 		{
-			this.cbx_id_locataire.addItem(unLocataire.getId_locataire()+"-"+unLocataire.getEmail_locataire());
+			this.cbx_id_locataire.addItem(unLocataire.getId_locataire()+"-"+unLocataire.getNom_locataire());
 		}
 		
 		//supprimer ou vider le CBX idProprietaire
