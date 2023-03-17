@@ -12,6 +12,7 @@ public class Locataire {
 		this.nom_locataire = nom_locataire;
 		this.prenom_locataire = prenom_locataire;
 		this.email_locataire = email_locataire;
+		this.mdp_locataire = mdp_locataire;
 		this.tel_locataire = tel_locataire;
 		this.civilite_locataire = civilite_locataire;
 		this.adresse_locataire = adresse_locataire;
@@ -26,6 +27,7 @@ public class Locataire {
 		this.nom_locataire = nom_locataire;
 		this.prenom_locataire = prenom_locataire;
 		this.email_locataire = email_locataire;
+		this.mdp_locataire = mdp_locataire;
 		this.tel_locataire = tel_locataire;
 		this.adresse_locataire = adresse_locataire;
 		this.cp_locataire = cp_locataire;
@@ -41,6 +43,7 @@ public class Locataire {
 		this.nom_locataire = "";
 		this.prenom_locataire = "";
 		this.email_locataire = "";
+		this.mdp_locataire = "";
 		this.tel_locataire = "";
 		this.adresse_locataire = "";
 		this.cp_locataire = "";
