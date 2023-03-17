@@ -16,7 +16,9 @@ import javax.swing.JTextField;
 
 import controller.Appartement;
 import controller.C_Appartement;
+import controller.C_Locataire;
 import controller.C_Proprietaire;
+import controller.Locataire;
 import controller.Proprietaire;
 
 public class PanelLocataire extends PanelPrincipal implements ActionListener{
@@ -30,10 +32,14 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	private JTextField txt_nom_locataire = new JTextField();
 	private JTextField txt_prenom_locataire = new JTextField();
 	private JTextField txt_email_locataire = new JTextField();
-	private JPasswordField txt_mdp_locataire = new JPasswordField();
+	private JPasswordField txt_mdp_locataire = new JPasswordField("");
+	
 	private JTextField txt_tel_locataire = new JTextField();
 	private JTextField txt_adresse_locataire = new JTextField();
 	private JTextField txt_cp_locataire = new JTextField(); 
+	
+	
+	private JTextField txt_nb_reservations = new JTextField();
 	
 	
 	
@@ -91,6 +97,8 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			this.panelForm.add(this.cbx_id_proprietaire);
 			this.panelForm.add(new JLabel("utilisateur"));
 			this.panelForm.add(this.cbx_id_user);
+			this.panelForm.add(new JLabel("N� Reservations"));
+			this.panelForm.add(this.txt_nb_reservations); 
 			
 			this.panelForm.add(new JLabel(""));
 	        this.btAnnuler.setBounds(935, 532, 300, 30);
@@ -165,9 +173,10 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	        	String prenom_locataire = this.txt_prenom_locataire.getText();
 	        	
 	        	String email_locataire = this.txt_email_locataire.getText();
-	        	 String mdp_locataire = new String(this.txt_mdp_locataire.getPassword());
+	        	String mdp_locataire = new String(this.txt_mdp_locataire.getPassword());
 				
-	        	int tel_locataire = Integer.parseInt(this.txt_tel_locataire.getText());
+	        	int nb_reservations = Integer.parseInt(this.txt_nb_reservations.getText());
+	        	String tel_locataire = this.txt_tel_locataire.getText();
 	        	String adresse_locataire = this.txt_adresse_locataire.getText();
 	        	
 	        	String cp_locataire = this.txt_cp_locataire.getText();
@@ -175,18 +184,21 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			
 				String chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
 				String tab [] = chaine.split("-"); 
-				int id_locataire = Integer.parseInt(tab[0]);
+				
 				
 				
 				chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
 				tab = chaine.split("-");
+				int id_proprietaire = Integer.parseInt(tab[0]);
+				int id_appart = Integer.parseInt(tab[0]);
+				int id_user = Integer.parseInt(tab[0]);
 				
 				
 				//instancier  
-				Locataire unLocataire = new Locataire(id_appart, nb_reservations, id_proprietaire, id_user
-						,nom_locataire,prenom_locataire,email_locataire,mdp_locataire,tel_locataire,adresse_locataire,cp_locataire);
+				Locataire unLocataire = new Locataire(id_appart, nb_reservations, id_proprietaire, id_user,
+						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,mdp_locataire,tel_locataire,adresse_locataire,cp_locataire);
 				//on l'enregistre dans la base de données 
-				C_locataire.insertLocataire(unLocataire);
+				C_Locataire.insertLocataire(unLocataire);
 				
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    

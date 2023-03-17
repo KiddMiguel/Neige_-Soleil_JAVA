@@ -2,10 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.modeleAppartement;
 import model.modeleLocataire;
 
 
 public class C_Locataire {
+	public static void insertLocataire(Locataire unLocataire)
+	{
+		modeleLocataire.insertLocataire(unLocataire);
+	}
 
 	public static ArrayList<Locataire> selectAllLocataire ()
 	{

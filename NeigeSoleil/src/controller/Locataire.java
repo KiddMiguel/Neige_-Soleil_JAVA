@@ -3,7 +3,7 @@ package controller;
 public class Locataire {
 	private int id_locataire, id_user, nb_reservations, id_appart, id_proprietaire;
 	private String civilite_locataire, nom_locataire,prenom_locataire,email_locataire,mdp_locataire, tel_locataire, adresse_locataire,cp_locataire ;
-	public Locataire(int id_locataire, int id_appart, int nb_reservations , int id_proprietaire,int id_user, String nom_locataire, String prenom_locataire, String email_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
+	public Locataire(int id_locataire, int id_appart, int nb_reservations , int id_proprietaire,int id_user,String civilite_locataire, String nom_locataire, String prenom_locataire, String email_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
 	 	this.id_user = id_user;
 	 	this.id_locataire = id_locataire;
 		this.id_appart = id_appart;
@@ -13,21 +13,23 @@ public class Locataire {
 		this.prenom_locataire = prenom_locataire;
 		this.email_locataire = email_locataire;
 		this.tel_locataire = tel_locataire;
+		this.civilite_locataire = civilite_locataire;
 		this.adresse_locataire = adresse_locataire;
 		this.cp_locataire = cp_locataire;
 	}
-	public Locataire(int id_appart, int nb_reservations , int id_proprietaire,int id_user,String nom_locataire, String prenom_locataire, String email_locataire, String mdp_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
+	public Locataire(int id_appart, int nb_reservations , int id_proprietaire,int id_user,String civilite_locataire,String nom_locataire, String prenom_locataire, String email_locataire, String mdp_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
 	 	this.id_user = 0;
 	 	this.id_locataire = 0;
-		this.id_proprietaire = 0;
-		this.id_appart = 0;
-		this.nb_reservations = 0;
+		this.id_proprietaire = id_proprietaire;
+		this.id_appart = id_appart;
+		this.civilite_locataire = civilite_locataire;
 		this.nom_locataire = nom_locataire;
 		this.prenom_locataire = prenom_locataire;
 		this.email_locataire = email_locataire;
 		this.tel_locataire = tel_locataire;
 		this.adresse_locataire = adresse_locataire;
 		this.cp_locataire = cp_locataire;
+		this.nb_reservations = nb_reservations;
 	}
 	public Locataire(int i) {
 	 	this.id_user = 0;
@@ -35,6 +37,7 @@ public class Locataire {
 		this.id_proprietaire = 0;
 		this.id_appart = 0;
 		this.nb_reservations = 0;
+		this.civilite_locataire = "";
 		this.nom_locataire = "";
 		this.prenom_locataire = "";
 		this.email_locataire = "";
@@ -120,5 +123,6 @@ public class Locataire {
 	public void setCp_locataire(String cp_locataire) {
 		this.cp_locataire = cp_locataire;
 	}
+
 	
 }
