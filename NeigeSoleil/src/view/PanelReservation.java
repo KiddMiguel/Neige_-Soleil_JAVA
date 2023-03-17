@@ -2,11 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controller.Appartement;
+import controller.C_Appartement;
 
 public class PanelReservation extends PanelPrincipal {
 
@@ -69,7 +74,30 @@ public class PanelReservation extends PanelPrincipal {
         this.add(this.btAjouter);
 
         this.add(panelForm);
+        this.remplirCBX();
 
         this.setVisible(false);
     }
+    
+ // remplire les combos Box
+    public void remplirCBX ()
+    {
+    	//supprimer ou vider le CBX id_contrat 
+    	this.cbx_id_appart.removeAllItems();
+    	//récupérer de la base de données tous les reservations
+    	ArrayList<Appartement> lesAppartements= C_Appartement.selectAllAppartements(); 
+    	//parcourir les contrats et remplir le CBX 
+    	for(Appartement unAppartement : lesAppartements)
+    	{
+    		this.cbx_id_appart.addItem(unAppartement.getId_appart()+"-"+unAppartement.getIntitule_appart());
+    	}
+    }
+    
+    public void viderChamps ()
+	{
+		this.txt_date_debut_reserv.setText("");
+		this.txt_date_fin_reserv.setText("");
+		this.txt_prix_reserv.setText("");
+		this.txt_nb_personnes_reserv.setText("");
+	}
 }
