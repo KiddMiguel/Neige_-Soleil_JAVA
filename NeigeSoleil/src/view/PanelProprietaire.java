@@ -28,10 +28,10 @@ public class PanelProprietaire extends PanelPrincipal {
 	
 	
 	// Variable listes déroulant 
-	private JComboBox<String> id_user = new JComboBox<String>();
-	private JComboBox<String> id_contrat = new JComboBox<String>();
-	private JComboBox<String> id_appart = new JComboBox<String>();
-	private JComboBox<String> civilite_proprio = new JComboBox<String>();
+	private JComboBox<String> cbx_id_user = new JComboBox<String>();
+	private JComboBox<String> cbx_id_contrat = new JComboBox<String>();
+	private JComboBox<String> cbx_id_appart = new JComboBox<String>();
+	private JComboBox<String> cbx_civilite_proprio = new JComboBox<String>();
 	
 	private JButton btAjouter = new JButton("Ajout");
 	private JButton btAnnuler = new JButton ("Annuler");
@@ -102,6 +102,11 @@ public class PanelProprietaire extends PanelPrincipal {
 	    this.setLayout(null);
 	    
 	    this.add(panelForm);
+	    
+	    this.remplirCBX();
+	    
+	    this.btAnnuler.addActionListener(this);
+	    this.btAjouter.addActionListener(this);
 
 	    this.setVisible(false);
     }
