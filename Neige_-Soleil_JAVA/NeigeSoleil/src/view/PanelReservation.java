@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 
 import controller.Appartement;
 import controller.C_Appartement;
+import controller.C_User;
+import controller.User;
 
 public class PanelReservation extends PanelPrincipal {
 
@@ -91,6 +93,14 @@ public class PanelReservation extends PanelPrincipal {
     	{
     		this.cbx_id_appart.addItem(unAppartement.getId_appart()+"-"+unAppartement.getIntitule_appart());
     	}
+    	this.cbx_id_user.removeAllItems();
+        //récupérer de la base de données tous les contrats
+        ArrayList<User> lesUsers= C_User.selectAllUser(); 
+        //parcourir les contrats et remplir le CBX 
+        for(User unUser : lesUsers)
+        {
+            this.cbx_id_user.addItem(unUser.getId_user()+"-"+unUser.getNom_user()+"-"+unUser.getPrenom_user());
+        }
     }
     
     public void viderChamps ()
