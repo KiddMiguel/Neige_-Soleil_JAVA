@@ -13,7 +13,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+
 
 import controller.Appartement;
 import controller.C_Appartement;
@@ -22,6 +25,7 @@ import controller.C_Proprietaire;
 import controller.Locataire;
 import controller.NeigeSoleil;
 import controller.Proprietaire;
+import controller.Tableau;
 
 public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
@@ -60,6 +64,10 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	private JButton btAjouter = new JButton("Ajouter");
 	private JButton btAnnuler = new JButton("Annuler");
 
+	
+	// Tableau
+	private JTable tableAppartement ; 
+	private Tableau unTableau ; 
 	
 	public PanelAppartement() {
         super();
@@ -128,11 +136,50 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	    this.add(panelForm);
 	    
 	    this.remplirCBX();
+	    
+	    // Construction un tableau
+	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie", "Nb pièces"}; 
+	    Object [][] donnees = this.getDonnees();
+	    
+		this.unTableau = new Tableau (donnees, entetes);
+		this.tableAppartement = new JTable(this.unTableau);
+		
+		JScrollPane uneScroll = new JScrollPane(this.tableAppartement); 
+		uneScroll.setBounds(20, 80, 900, 520);
+		this.add(uneScroll);
+		
+		
 	    //Rendre les bouttons cliquable
 	    this.btAjouter.addActionListener(this);
 	    this.btAnnuler.addActionListener(this);
 	    
+
+
+	    
 	    this.setVisible(false);
+	}
+	
+	public Object [][] getDonnees()
+	{
+		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
+		Object [][] matrice = new Object [lesAppartements.size()][10]; 
+		int i=0; 
+		for (Appartement unAppartement : lesAppartements)
+		{
+			matrice[i][0]  = unAppartement.getId_appart(); 
+			matrice[i][1]  = unAppartement.getIntitule_appart(); 
+			matrice[i][2]  = unAppartement.getStatut_appart(); 
+			matrice[i][3]  = unAppartement.getPrix_appart(); 
+			matrice[i][4]  = unAppartement.getVille_appart();
+			matrice[i][5]  = unAppartement.getCp_appart();
+			
+			matrice[i][6]  = unAppartement.getAdresse_appart();
+			matrice[i][7]  = unAppartement.getType_appart();
+			matrice[i][8]  = unAppartement.getSuperficie_appart();
+			matrice[i][9]  = unAppartement.getNb_piece();
+			i++;
+		}
+		return matrice;
 	}
 	
 	// remplire les combos Box
