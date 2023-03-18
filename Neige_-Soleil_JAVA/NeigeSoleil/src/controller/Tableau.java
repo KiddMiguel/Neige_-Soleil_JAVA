@@ -37,4 +37,16 @@ public class Tableau extends AbstractTableModel{
 	public String getColumnName(int colonne) {
 		return this.entetes[colonne];
 	}
+	
+	public void insertLigne(Object ligne[])
+	{
+		Object matrice [][] = new Object[this.donnees.length +1][this.entetes.length];
+		for(int i = 0; i<this.donnees.length; i++)
+		{
+			matrice[i] = this.donnees[i];
+		}
+		matrice [this.donnees.length] = ligne;
+		this.donnees = matrice ; //recopie de matrices.
+		this.fireTableDataChanged(); // mise à jour des données. 
+	}
 }

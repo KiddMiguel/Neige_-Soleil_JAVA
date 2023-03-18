@@ -6,17 +6,20 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
+import javax.swing.SwingUtilities;
 
 import controller.Appartement;
 import controller.C_Appartement;
@@ -68,6 +71,8 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	// Tableau
 	private JTable tableAppartement ; 
 	private Tableau unTableau ; 
+	
+
 	
 	public PanelAppartement() {
         super();
@@ -134,7 +139,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		
 		
 	    this.add(panelForm);
-	    
+
 	    this.remplirCBX();
 	    
 	    // Construction un tableau
@@ -148,19 +153,59 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		uneScroll.setBounds(20, 80, 900, 520);
 		this.add(uneScroll);
 		
+		this.tableAppartement.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int numLigne = tableAppartement.getSelectedRow();
+				int id_appart = Integer.parseInt(tableAppartement.getValueAt(numLigne, 0).toString());
+				
+				 if (e.getClickCount() >= 1) {
+			         
+			         JFrame frame = new JFrame("Détail appartement");
+			            JPanel PanelDetail_Appartement = new PanelDetail_Appartement();
+			            frame.getContentPane().add(PanelDetail_Appartement);
+			            frame.pack();
+			            frame.setVisible(true);
+			            frame.setBounds(935, 20, 300, 580);
+
+			        }
+			}
+		});
 		
 	    //Rendre les bouttons cliquable
 	    this.btAjouter.addActionListener(this);
 	    this.btAnnuler.addActionListener(this);
 	    
-
-
-	    
 	    this.setVisible(false);
 	}
 	
-	public Object [][] getDonnees()
-	{
+	public Object [][] getDonnees(){
 		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
 		Object [][] matrice = new Object [lesAppartements.size()][10]; 
 		int i=0; 
@@ -172,7 +217,6 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			matrice[i][3]  = unAppartement.getPrix_appart(); 
 			matrice[i][4]  = unAppartement.getVille_appart();
 			matrice[i][5]  = unAppartement.getCp_appart();
-			
 			matrice[i][6]  = unAppartement.getAdresse_appart();
 			matrice[i][7]  = unAppartement.getType_appart();
 			matrice[i][8]  = unAppartement.getSuperficie_appart();
@@ -265,7 +309,14 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 						,adresse_appart,type_appart,superficie_appart,nb_chambre,nb_cuisine,nb_salle_bain,nb_salon,nb_piece,id_proprietaire,id_locataire,prix_appart);
 				//on l'enregistre dans la base de données 
 				C_Appartement.insertAppartement(unAppartement);
-				
+			
+				//récupération de l'id à partir de la BDD 
+				unAppartement = C_Appartement.selectWhereAppartement(intitule_appart); 
+				//ajout du dans le Tableau 
+				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
+								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(), unAppartement.getNb_piece()};
+				this.unTableau.insertLigne(ligne);
+
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
 			    viderChamps ();
