@@ -26,8 +26,8 @@ public class modeleAdmin {
 	            {
 	                unAdmin  = new Admin  (
 	                		unResultat.getInt("id_admin"),
-	                		unResultat.getString("nom "),unResultat.getString("prenom "),
-	                		unResultat.getString("email "),unResultat.getString("mdp ")
+	                		unResultat.getString("nom"),unResultat.getString("prenom"),
+	                		unResultat.getString("email"),unResultat.getString("mdp"),unResultat.getString("adress")
 	                        );
 	            }
 	            unStat.close();
@@ -53,7 +53,7 @@ public class modeleAdmin {
 	                unAdmin  = new Admin  (
 	                		unResultat.getInt("id_admin"),
 	                		unResultat.getString("nom"),unResultat.getString("prenom"),
-	                		unResultat.getString("email"),unResultat.getString("mdp")
+	                		unResultat.getString("email"),unResultat.getString("mdp"),unResultat.getString("adress")
 	                        );
 	            }
 	            unStat.close();

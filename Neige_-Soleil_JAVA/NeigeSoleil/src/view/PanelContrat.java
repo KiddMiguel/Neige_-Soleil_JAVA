@@ -15,9 +15,11 @@ import controller.C_Appartement;
 import controller.C_Contrat;
 import controller.C_Locataire;
 import controller.C_Proprietaire;
+import controller.C_User;
 import controller.Contrat;
 import controller.Locataire;
 import controller.Proprietaire;
+import controller.User;
 
 public class PanelContrat extends PanelPrincipal {
 
@@ -62,7 +64,7 @@ public class PanelContrat extends PanelPrincipal {
         this.panelForm.add(new JLabel("Date signature"));
         this.panelForm.add(this.txt_date_sign_contrat);
 
-        this.panelForm.add(new JLabel("User"));
+        this.panelForm.add(new JLabel("Utilisateur"));
         this.panelForm.add(this.cbx_id_user);
 
         this.panelForm.add(new JLabel("Appartement"));
@@ -92,6 +94,15 @@ public class PanelContrat extends PanelPrincipal {
     	{
     		this.cbx_id_appart.addItem(unAppartement.getId_appart()+"-"+unAppartement.getIntitule_appart());
     	}
+    	
+        this.cbx_id_user.removeAllItems();
+        //récupérer de la base de données tous les contrats
+        ArrayList<User> lesUsers= C_User.selectAllUser(); 
+        //parcourir les contrats et remplir le CBX 
+        for(User unUser : lesUsers)
+        {
+            this.cbx_id_user.addItem(unUser.getId_user()+"-"+unUser.getNom_user()+"-"+unUser.getPrenom_user());
+        }
     }
 
     public void viderChamps ()

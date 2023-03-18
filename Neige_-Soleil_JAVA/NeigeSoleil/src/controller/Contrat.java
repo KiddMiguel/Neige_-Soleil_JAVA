@@ -5,8 +5,8 @@ public class Contrat {
 	private String statut_contrat,date_debut_contrat,date_fin_contrat,date_sign_contrat ;
 	public Contrat(int id_contrat, int id_appart, int id_user,  String statut_contrat, String date_debut_contrat, String date_fin_contrat, String date_sign_contrat) {
 	 	this.id_contrat = id_contrat;
-		this.id_contrat = id_appart;
-		this.id_contrat = id_user;
+		this.id_appart = id_appart;
+		this.id_user = id_user;
 		this.statut_contrat = statut_contrat;
 		this.date_debut_contrat = date_debut_contrat;
 		this.date_fin_contrat = date_fin_contrat;
@@ -23,8 +23,8 @@ public class Contrat {
 	}
 	public Contrat() {
 	 	this.id_contrat = 0;
-		this.id_contrat = 0;
-		this.id_contrat = 0;
+		this.id_appart = 0;
+		this.id_user = 0;
 		this.statut_contrat = "";
 		this.date_debut_contrat = "";
 		this.date_fin_contrat = "";

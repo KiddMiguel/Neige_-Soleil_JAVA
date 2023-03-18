@@ -145,7 +145,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		//parcourir lesClients et remplir le CBX 
 		for(Locataire unLocataire : lesLocataires)
 		{
-			this.cbx_id_locataire.addItem(unLocataire.getId_locataire()+"-"+unLocataire.getNom_locataire());
+			this.cbx_id_locataire.addItem(unLocataire.getId_locataire()+"-"+unLocataire.getNom_locataire()+"-"+unLocataire.getPrenom_locataire());
 		}
 		
 		//supprimer ou vider le CBX idProprietaire

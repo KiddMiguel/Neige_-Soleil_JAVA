@@ -14,6 +14,9 @@ create table admin(
 insert into admin values (null, 'Miguel', 'Kidd','miguel@gmail.com', 'admin');
 create table user (
     id_user int(5) NOT NULL auto_increment,
+    nom_user varchar(255),
+    prenom_user varchar(255),
+    email_user varchar(255),
     PRIMARY KEY (id_user)
 ); 
 CREATE table appartement (
@@ -93,7 +96,7 @@ CREATE Table materiel_proprio (
 
 CREATE table reservation (
     id_reservation int (5) not null AUTO_INCREMENT,
-    statut_reservation enum ("En cours réservation", "Réservé"),
+    statut_reservation enum ("En cours", "Réservé"),
     date_debut_reservation date,
     date_fin_reservation date,
     prix_reservation VARCHAR (50),
@@ -222,7 +225,7 @@ BEGIN
     DECLARE nb_ligne INT;
     SELECT COUNT(*) INTO nb_ligne FROM user WHERE id_user = NEW.id_user;
     IF nb_ligne = 0 THEN
-        INSERT INTO user (id_user) values (DEFAULT);
+        INSERT INTO user (nom_user, prenom_user, email_user) values (NEW.nom_locataire, NEW.prenom_locataire, NEW.email_locataire);
         SET NEW.id_user = LAST_INSERT_ID();
     END IF;
 END //
@@ -237,7 +240,7 @@ BEGIN
     DECLARE nb_ligne INT;
     SELECT COUNT(*) INTO nb_ligne FROM user WHERE id_user = NEW.id_user;
     IF nb_ligne = 0 THEN
-        INSERT INTO user (id_user) values (DEFAULT);
+        INSERT INTO user (nom_user, prenom_user, email_user) values (NEW.nom_proprio, NEW.prenom_proprio, NEW.email_proprio);
         SET NEW.id_user = LAST_INSERT_ID();
     END IF;
 END //
@@ -309,7 +312,7 @@ INSERT INTO reservation (statut_reservation, date_debut_reservation, date_fin_re
 VALUES 
 ('En cours', '2023-03-01', '2023-03-07', '600 euros', 2, 1, 2, 1),
 ('Réservé', '2023-04-15', '2023-04-22', '800 euros', 4, 3, 4, 2),
-('En cours réservation', '2023-05-01', '2023-05-15', '1200 euros', 3, 2, 1, 3),
+('En cours', '2023-05-01', '2023-05-15', '1200 euros', 3, 2, 1, 3),
 ('Réservé', '2023-06-10', '2023-06-15', '500 euros', 2, 4, 5, 4),
 ('Réservé', '2023-07-20', '2023-07-25', '400 euros', 2, 1, 2, 5);
 

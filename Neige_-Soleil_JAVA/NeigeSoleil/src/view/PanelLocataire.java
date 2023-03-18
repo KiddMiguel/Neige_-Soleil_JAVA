@@ -64,7 +64,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	        
 			this.panelForm.setBounds(935, 20, 300, 580);
 			this.panelForm.setBackground(new Color (142, 197, 243));
-			this.panelForm.setLayout(new GridLayout(28,1));
+			this.panelForm.setLayout(new GridLayout(27,1));
 			
 			//Affichage des inputs et des texts 
 		    this.panelForm.add(new JLabel("civilité"));
@@ -90,15 +90,15 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			
 		    this.panelForm.add(new JLabel("cp"));
 			this.panelForm.add(this.txt_cp_locataire); 
+			
+			this.panelForm.add(new JLabel("N� Reservations"));
+			this.panelForm.add(this.txt_nb_reservations); 
  
 			this.panelForm.add(new JLabel("Appartement"));
 			this.panelForm.add(this.cbx_id_appart);
 			this.panelForm.add(new JLabel("Proprietaire"));
 			this.panelForm.add(this.cbx_id_proprietaire);
-			this.panelForm.add(new JLabel("utilisateur"));
-			this.panelForm.add(this.cbx_id_user);
-			this.panelForm.add(new JLabel("N� Reservations"));
-			this.panelForm.add(this.txt_nb_reservations); 
+
 			
 			this.panelForm.add(new JLabel(""));
 	        this.btAnnuler.setBounds(935, 532, 300, 30);
