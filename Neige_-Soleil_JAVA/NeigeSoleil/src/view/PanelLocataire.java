@@ -12,14 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.Appartement;
 import controller.C_Appartement;
 import controller.C_Locataire;
 import controller.C_Proprietaire;
+import controller.C_Reservation;
 import controller.Locataire;
 import controller.Proprietaire;
+import controller.Reservation;
+import controller.Tableau;
 
 public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	
@@ -56,6 +61,10 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	//Bouttons
 	private JButton btAjouter = new JButton("Ajouter");
 	private JButton btAnnuler = new JButton("Annuler");
+	
+	// Tableau
+	 	private JTable tableLocataire ; 
+	 	private Tableau unTableau ; 
 
 	public PanelLocataire() {
 		 super();
@@ -115,8 +124,41 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.btAjouter.addActionListener(this);
 		    this.btAnnuler.addActionListener(this);
 		    
+		 // Construction un tableau
+		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation"}; 
+		    Object [][] donnees = this.getDonnees();
+		    
+			this.unTableau = new Tableau (donnees, entetes);
+			this.tableLocataire = new JTable(this.unTableau);
+			
+			JScrollPane uneScroll = new JScrollPane(this.tableLocataire); 
+			uneScroll.setBounds(20, 80, 900, 520);
+			this.add(uneScroll);
+		    
 		    this.setVisible(false);
 		}
+	
+	public Object [][] getDonnees()
+	{
+		ArrayList<Locataire> lesLocataires = C_Locataire.selectAllLocataire(); 
+		Object [][] matrice = new Object [lesLocataires.size()][9]; 
+		int i=0; 
+		for (Locataire unLocataire : lesLocataires)
+		{
+			matrice[i][0]  = unLocataire.getId_locataire(); 
+			matrice[i][1]  = unLocataire.getCivilite_locataire(); 
+			matrice[i][2]  = unLocataire.getNom_locataire(); 
+			matrice[i][3]  = unLocataire.getPrenom_locataire(); 
+			matrice[i][4]  = unLocataire.getEmail_locataire();
+			matrice[i][5]  = unLocataire.getTel_locataire();
+			matrice[i][6]  = unLocataire.getAdresse_locataire();
+			matrice[i][7]  = unLocataire.getCp_locataire();
+			matrice[i][8]  = unLocataire.getNb_reservations();
+			
+			i++;
+		}
+		return matrice;
+	}
 	
 	// remplire les combos Box
 	public void remplirCBX ()
