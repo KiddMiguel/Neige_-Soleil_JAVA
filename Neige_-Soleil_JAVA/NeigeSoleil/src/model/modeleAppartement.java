@@ -139,9 +139,9 @@ public class modeleAppartement {
         return unAppartement ; 
     }
     
-    public static Appartement selectWhereAppartement  (String statut)
+    public static Appartement selectWhereAppartement  (String intitule_appart)
     {
-        String requete =" select * from Appartement  where statut_appart= '"+statut+"';";
+        String requete =" select * from Appartement  where intitule_appart= '"+intitule_appart+"';";
         Appartement  unAppartement  = null; 
         try {
             uneBDD.seConnecter();

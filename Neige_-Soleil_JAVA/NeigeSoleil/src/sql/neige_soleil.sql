@@ -8,10 +8,11 @@ create table admin(
     prenom varchar(255) not null,
     email varchar(255),
     mdp varchar(255) not null,
+    adress VARCHAR(255), 
     primary key (id_admin)
 );
 
-insert into admin values (null, 'Miguel', 'Kidd','miguel@gmail.com', 'admin');
+insert into admin values (null, 'Miguel', 'Kidd','miguel@gmail.com', 'admin', '20 Rue Rosa Luxemburg St Pierre du perray');
 create table user (
     id_user int(5) NOT NULL auto_increment,
     nom_user varchar(255),
