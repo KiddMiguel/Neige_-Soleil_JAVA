@@ -105,7 +105,7 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.btProfil.setBorder(matteborder);
 	    
 	    this.btProfil.setBackground(new Color(42, 165, 246));
-	    this.btDeconnecter.setBackground(new Color(222, 28, 28));
+	    this.btDeconnecter.setBackground(new Color(233, 38, 15));
 	    this.btDeconnecter.setForeground(new Color(255, 255, 255)); //couleur de text White
 
 
