@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
+import controller.Admin;
 import controller.Appartement;
 import controller.C_Appartement;
 import controller.C_Locataire;
@@ -148,12 +148,15 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	    
 		this.unTableau = new Tableau (donnees, entetes);
 		this.tableAppartement = new JTable(this.unTableau);
+		this.tableAppartement.setBackground(new Color (142, 197, 243));
 		
 		JScrollPane uneScroll = new JScrollPane(this.tableAppartement); 
 		uneScroll.setBounds(20, 80, 900, 520);
 		this.add(uneScroll);
 		
 		this.tableAppartement.addMouseListener(new MouseListener() {
+			private Admin Admin;
+
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -185,16 +188,28 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				int numLigne = tableAppartement.getSelectedRow();
 				int id_appart = Integer.parseInt(tableAppartement.getValueAt(numLigne, 0).toString());
 				
-				 if (e.getClickCount() >= 1) {
-			         
-			         JFrame frame = new JFrame("Détail appartement");
-			            JPanel PanelDetail_Appartement = new PanelDetail_Appartement();
-			            frame.getContentPane().add(PanelDetail_Appartement);
-			            frame.pack();
-			            frame.setVisible(true);
-			            frame.setBounds(935, 20, 300, 580);
+				if(e.getClickCount()>=1) {
 
-			        }
+				    JPanel panel = new JPanel();
+			
+					panel.setBounds(935, 20, 300, 580);
+					panel.setBackground(new Color (142, 197, 243));
+					panel.setLayout(new GridLayout(2,20));	
+				    JFrame frame = new JFrame();
+				    frame.getContentPane().add(panel);
+				    frame.pack();
+				    frame.setLocationRelativeTo(null);
+			
+				    frame.setBounds(935, 20, 700, 650);	
+				    txt_intitule_appart.setText(tableAppartement.getValueAt(numLigne, 1).toString());
+				    panel.add(new JLabel(tableAppartement.getValueAt(numLigne, 1).toString()));
+				    panel.add(new JLabel("Panel affiché au clic"));
+				    
+				    
+				    frame.setVisible(true);	
+
+				    
+				}
 			}
 		});
 		
@@ -207,7 +222,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
 	public Object [][] getDonnees(){
 		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
-		Object [][] matrice = new Object [lesAppartements.size()][10]; 
+		Object [][] matrice = new Object [lesAppartements.size( )][10]; 
 		int i=0; 
 		for (Appartement unAppartement : lesAppartements)
 		{
@@ -326,6 +341,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		}
 	}
 	
+
 	
 	
 }

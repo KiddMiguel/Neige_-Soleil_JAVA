@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private JButton btDeconnecter = new JButton("Deconnecter    ", new ImageIcon("src/Images/logos/parametres.png"));
 	
 	private JLabel txtidentifiant = new JLabel();
+	private PanelDashboard unPanelDashboard = new PanelDashboard();	
 
 	private PanelProfil unPanelProfil = new PanelProfil();	
 	private PanelAppartement unPanelAppartement = new PanelAppartement();	
@@ -40,6 +42,7 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private PanelProprietaire unPanelProprietaire = new PanelProprietaire();	
 	private PanelLocataire unPanelLocataire = new PanelLocataire();	
 	private PanelReservation unPanelReservation = new PanelReservation();	
+
 	
 	//Profil 
 	private JLabel txt_nom_prenom = new JLabel("");
@@ -124,13 +127,14 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    	    	    
 	    this.add(this.panelMenu);
 
-	    
+	    this.add(this.unPanelDashboard);
 	    this.add(this.unPanelProfil);
 	    this.add(this.unPanelAppartement);
 	    this.add(this.unPanelContrat);
 	    this.add(this.unPanelProprietaire);
 	    this.add(this.unPanelLocataire);
 	    this.add(this.unPanelReservation);
+
 	    
 	    this.add(btProfil);
 	    
@@ -181,6 +185,7 @@ public class VueGenerale extends JFrame implements ActionListener{
 	}
 
 	public void affichePanel( int numero) {
+		this.unPanelDashboard.setVisible(false);
 		this.unPanelProfil.setVisible(false);
 		this.unPanelAppartement.setVisible(false);
 		this.unPanelContrat.setVisible(false);
@@ -207,6 +212,8 @@ public class VueGenerale extends JFrame implements ActionListener{
 		case 6:
 			this.unPanelReservation.setVisible(true);
 			break;
+		default : 
+			this.unPanelDashboard.setVisible(true);
 
 		}
 	}

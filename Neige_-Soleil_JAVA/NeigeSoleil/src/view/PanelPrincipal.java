@@ -16,6 +16,7 @@ public class PanelPrincipal extends JPanel {
 	protected JPanel panelForm = new JPanel();
 
 
+
 	public PanelPrincipal(){
 
 	    this.setBounds(50, 80, 550, 200);
