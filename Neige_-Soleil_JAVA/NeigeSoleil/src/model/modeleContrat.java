@@ -42,8 +42,8 @@ public class modeleContrat {
 	    public static void updateContrat(Contrat unContrat) {
 	        String requete = "update contrat set statut_contrat='"+ unContrat.getStatut_contrat()+"', date_debut_contrat='"
 	        		+ unContrat.getDate_debut_contrat()+"', date_fin_contrat='"
-	                + unContrat.getDate_fin_contrat()+"', date_sign_contrat='" + unContrat.getDate_sign_contrat()+"',"
-	                +"',id_user='" + unContrat.getId_user()+"','"+"',id_appart='" + unContrat.getId_appart()+
+	                + unContrat.getDate_fin_contrat()+"', date_sign_contrat='" + unContrat.getDate_sign_contrat()+"'"
+	                +",id_user='" + unContrat.getId_user()+"',id_appart='" + unContrat.getId_appart()+
 	                "' where id_contrat='"+unContrat.getId_contrat()+"';";
 	        try {
 	            uneBDD.seConnecter();

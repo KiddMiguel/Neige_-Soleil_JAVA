@@ -91,18 +91,20 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
         
         this.btAjouter.setBounds(935, 568, 300, 30);
         this.add(this.btAjouter);
+        this.btSupprimer.setBackground(new Color (176, 7, 7));
+        this.btSupprimer.setForeground(new Color(255, 255, 255));
 
         this.add(panelForm);
+        this.remplirCBX();
 	    //Rendre les bouttons cliquable
 	    this.btAjouter.addActionListener(this);
 	    this.btAnnuler.addActionListener(this);
 	    this.btModifier.addActionListener(this);
 	    this.btSupprimer.addActionListener(this);
 	    
-        this.btSupprimer.setBackground(new Color (176, 7, 7));
-        this.btSupprimer.setForeground(new Color(255, 255, 255));
+ 
         
-	    this.remplirCBX();
+	  
 	    
 	 // Construction un tableau
 	    String entetes [] = {"N° Contrat","Statut", "Date_debut", "Date_fin", "Date_sign", "N° utilisateur", "N° Appartement"}; 
@@ -119,83 +121,81 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
 		this.tableContrat.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				int numLigne = tableContrat.getSelectedRow();
-				int id_contrat = Integer.parseInt(tableContrat.getValueAt(numLigne, 0).toString());
 				
-				if(e.getClickCount()>=1) {
-					JPanel panel_contrat = new JPanel();
-				    JFrame frame_contrat = new JFrame();
-				    
-				    frame_contrat.getContentPane().add(panel_contrat);
-				    frame_contrat.pack();
-				    frame_contrat.setBackground(new Color (142, 197, 243));
-				    frame_contrat.setBounds(935, 20, 300, 500);	
-				    frame_contrat.setLocationRelativeTo(null);
-			
-				    panel_contrat.setLayout(new GridLayout(12,20));	
-					
-				    panel_contrat.add(new JLabel("Statut Contrat"));
-				    panel_contrat.add(new JButton(tableContrat.getValueAt(numLigne, 1).toString())).setBackground(Color.YELLOW);
-					 
-				    panel_contrat.add(new JLabel("Date debut contrat"));
-				    panel_contrat.add(new JButton(tableContrat.getValueAt(numLigne, 2).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-
-				    panel_contrat.add(new JLabel("Date fin Contrat"));
-				    panel_contrat.add(new JButton(tableContrat.getValueAt(numLigne, 3).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-				
-				    panel_contrat.add(new JLabel("Date Signature Contrat"));
-				    panel_contrat.add(new JButton(tableContrat.getValueAt(numLigne, 4).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-				
-				    panel_contrat.add(new JLabel("N° Utilisateur"));
-				    panel_contrat.add(new JButton(tableContrat.getValueAt(numLigne, 5).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-				    panel_contrat.add(new JLabel("N° Appartement"));
-					 panel_contrat.add(new JButton(tableContrat.getValueAt(numLigne, 6).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
- 
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 panel_contrat.add(new JLabel(" "));
-					 
-					 panel_contrat.add(btSupprimer);
-					 panel_contrat.add(btModifier);
-					 
-					 frame_contrat.setVisible(true);	
-
-				}
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int numLigne = tableContrat.getSelectedRow();
+				int id_contrat = Integer.parseInt(tableContrat.getValueAt(numLigne, 0).toString());
+				
+				if(e.getClickCount()>=1) {
+					JPanel panel = new JPanel();
+				    JFrame frame = new JFrame();
+				    
+				    frame.getContentPane().add(panel);
+				    frame.pack();
+				    frame.setBackground(new Color (142, 197, 243));
+				    frame.setBounds(935, 20, 300, 500);	
+				    frame.setLocationRelativeTo(null);
+			
+				    panel.setLayout(new GridLayout(12,20));	
+					
+				    panel.add(new JLabel("Statut Contrat"));
+				    panel.add(new JButton(tableContrat.getValueAt(numLigne, 1).toString())).setBackground(Color.YELLOW);
+					 
+				    panel.add(new JLabel("Date debut contrat"));
+				    panel.add(new JButton(tableContrat.getValueAt(numLigne, 2).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Date fin Contrat"));
+				    panel.add(new JButton(tableContrat.getValueAt(numLigne, 3).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				
+				    panel.add(new JLabel("Date Signature Contrat"));
+				    panel.add(new JButton(tableContrat.getValueAt(numLigne, 4).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				
+				    panel.add(new JLabel("N° Utilisateur"));
+				    panel.add(new JButton(tableContrat.getValueAt(numLigne, 5).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JLabel("N° Appartement"));
+				    panel.add(new JButton(tableContrat.getValueAt(numLigne, 6).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+ 
+				    panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 panel.add(new JLabel(" "));
+					 
+					 panel.add(btSupprimer);
+					 panel.add(btModifier);
+					 
+					 frame.setVisible(true);	
+				}
+			}
 		});
 		
 
@@ -325,18 +325,20 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    viderChamps ();
+	        	}
 	        }else if(e.getSource() == btModifier){	
-		        update(); 
+		        update();
 			}else if(e.getSource() == btSupprimer){	
 		        delete(); 
 			}
-		}
+		
 		
 		
 	}
 	public void update() {
 		int numLigne = tableContrat.getSelectedRow();
 		int id_contrat = Integer.parseInt(tableContrat.getValueAt(numLigne, 0).toString());
+		
 		cbx_statut_contrat.setSelectedItem(tableContrat.getValueAt(numLigne, 1).toString());
 		txt_date_debut_contrat.setText(tableContrat.getValueAt(numLigne, 2).toString());
 		txt_date_fin_contrat.setText(tableContrat.getValueAt(numLigne, 3).toString());

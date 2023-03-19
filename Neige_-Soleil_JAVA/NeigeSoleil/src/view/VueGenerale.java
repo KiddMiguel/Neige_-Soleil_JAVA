@@ -26,13 +26,15 @@ public class VueGenerale extends JFrame implements ActionListener{
 	private JPanel panelMenu = new JPanel();
 	private JButton btAppartement = new JButton("Appartements", new ImageIcon("src/Images/logos/dashboard.png"));
 	private JButton btContrat = new JButton("Contrats           ", new ImageIcon("src/Images/logos/contrat.png"));
-	private JButton btProrietaire = new JButton("Proprietaires     ",  new ImageIcon("src/Images/logos/prorietaire.png"));
-	private JButton btLocataire = new JButton("Locataires  ", new ImageIcon("src/Images/logos/locataire.png"));
+	private JButton btProrietaire = new JButton("Proprietaires   ",  new ImageIcon("src/Images/logos/proprietaire.png"));
+	private JButton btLocataire = new JButton("Locataires       ", new ImageIcon("src/Images/logos/locataire.png"));
 	private JButton btReservation = new JButton("Réservations   ", new ImageIcon("src/Images/logos/reservation.png"));
 	private JButton btProfil = new JButton("Profil");
 
 	private JButton btDeconnecter = new JButton("Deconnecter    ", new ImageIcon("src/Images/logos/parametres.png"));
 	
+	private JButton btDashboard = new JButton("", new ImageIcon("src/Images/logos/activité.png"));
+
 	private JLabel txtidentifiant = new JLabel();
 	private PanelDashboard unPanelDashboard = new PanelDashboard();	
 
@@ -117,6 +119,8 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.btReservation.addActionListener(this);
 	    this.btDeconnecter.addActionListener(this);
 	    this.btProfil.addActionListener(this);
+	    this.btDashboard.addActionListener(this);
+
 
 	   this.panelMenu.add(this.btAppartement);
        this.panelMenu.add(this.btContrat);
@@ -134,11 +138,15 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    this.add(this.unPanelProprietaire);
 	    this.add(this.unPanelLocataire);
 	    this.add(this.unPanelReservation);
+	    this.add(this.unPanelDashboard);
+
 
 	    
 	    this.add(btProfil);
 	    
-
+	    this.btDashboard.setBounds(10, 150, 50, 50);
+	    this.btDashboard.setBackground(new Color(255,255,255));
+	    this.add(btDashboard);
 	    
 	    this.setVisible(false);
 	}
@@ -181,6 +189,8 @@ public class VueGenerale extends JFrame implements ActionListener{
 	    	this.affichePanel(5);
 	    }else if (e.getSource() == this.btReservation) {
 	    	this.affichePanel(6);
+	    }else if (e.getSource() == this.btDashboard) {
+	    	this.affichePanel(7);
 	    }
 	}
 
@@ -192,6 +202,7 @@ public class VueGenerale extends JFrame implements ActionListener{
 		this.unPanelProprietaire.setVisible(false);
 		this.unPanelLocataire.setVisible(false);
 		this.unPanelReservation.setVisible(false);
+		this.unPanelDashboard.setVisible(false);
 		
 		switch (numero) {
 		case 1: 
@@ -212,9 +223,9 @@ public class VueGenerale extends JFrame implements ActionListener{
 		case 6:
 			this.unPanelReservation.setVisible(true);
 			break;
-		default : 
+		case 7 : 
 			this.unPanelDashboard.setVisible(true);
-
+			break;
 		}
 	}
 }
