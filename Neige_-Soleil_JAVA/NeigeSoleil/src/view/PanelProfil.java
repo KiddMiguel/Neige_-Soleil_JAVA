@@ -109,7 +109,7 @@ public class PanelProfil extends PanelPrincipal{
 
 
 	    
-	    this.panelForm.setVisible(false);
+	    this.setVisible(false);
 	    
 
 
