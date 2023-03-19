@@ -27,7 +27,7 @@ public class PanelProprietaire extends PanelPrincipal {
 	private JTextField Txt_code_adherent = new JTextField();
 	
 	
-	// Variable listes déroulant 
+	// Variable listes dï¿½roulant 
 	private JComboBox<String> id_user = new JComboBox<String>();
 	private JComboBox<String> id_contrat = new JComboBox<String>();
 	private JComboBox<String> id_appart = new JComboBox<String>();
@@ -43,7 +43,7 @@ public class PanelProprietaire extends PanelPrincipal {
         
         this.panelForm.setBounds(930, 20, 300, 580);
         this.panelForm.setBackground(new Color(142, 197, 243));
-        this.panelForm.setLayout(new GridLayout(32,500));
+        this.panelForm.setLayout(new GridLayout(31,1));
         
         this.panelForm.add(new JLabel ("Sexe"));
 		this.panelForm.add(this.civilite_proprio);
@@ -63,7 +63,7 @@ public class PanelProprietaire extends PanelPrincipal {
         this.panelForm.add(new JLabel ("Mot de passe"));
         this.panelForm.add(this.Txt_mdp_proprio);
         
-        this.panelForm.add(new JLabel ("Numero de téléphone"));
+        this.panelForm.add(new JLabel ("Numero de tï¿½lï¿½phone"));
         this.panelForm.add(this.Txt_tel_proprio);
         
         this.panelForm.add(new JLabel ("Adresse"));
@@ -82,8 +82,6 @@ public class PanelProprietaire extends PanelPrincipal {
         this.panelForm.add(this.Txt_code_adherent);
         
         
-        this.panelForm.add(new JLabel ("User"));
-        this.panelForm.add(this.id_user);
         this.panelForm.add(new JLabel ("Contrat"));
 		this.panelForm.add(this.id_contrat);
 		this.panelForm.add(new JLabel ("Appartement"));

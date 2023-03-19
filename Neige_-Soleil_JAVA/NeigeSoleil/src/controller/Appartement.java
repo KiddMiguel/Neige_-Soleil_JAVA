@@ -43,6 +43,7 @@ public class Appartement {
 		this.cp_appart = cp_appart;
 		this.adresse_appart = adresse_appart;
 		this.type_appart = type_appart;
+		this.superficie_appart = superficie_appart;
 	}
 	
 	

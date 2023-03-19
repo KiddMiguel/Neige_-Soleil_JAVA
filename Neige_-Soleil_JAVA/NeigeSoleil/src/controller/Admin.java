@@ -2,22 +2,24 @@ package controller;
 
 public class Admin {
 	private int id_admin;
-	private String nom, prenom, email, mdp;
+	private String nom, prenom, email, mdp, adresse;
 	
-	public Admin(int id_admin, String nom, String prenom, String email, String mdp) {
+	public Admin(int id_admin, String nom, String prenom, String email, String mdp, String adresse) {
 		this.id_admin = id_admin;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.mdp = mdp;
+		this.adresse = adresse;
 	}
 	
-	public Admin(String nom, String prenom, String email, String mdp) {
+	public Admin(String nom, String prenom, String email, String mdp, String adresse) {
 		this.id_admin = 0;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.mdp = mdp;
+		this.adresse = adresse;
 	}
 	public Admin() {
 		this.id_admin = 0;
@@ -25,6 +27,7 @@ public class Admin {
 		this.prenom = "";
 		this.email = "";
 		this.mdp = "";
+		this.adresse = "";
 	}
 
 	public int getId_admin() {
@@ -66,6 +69,15 @@ public class Admin {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	
 	
 	
 }

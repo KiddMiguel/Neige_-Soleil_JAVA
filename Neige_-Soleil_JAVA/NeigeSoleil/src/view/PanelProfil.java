@@ -22,23 +22,15 @@ public class PanelProfil extends PanelPrincipal{
 	String[] profesion = {"Professionel", "locataire", "Autres"};
 	
 	//variables
-	private JTextField txtNom = new JTextField(); 
-	private JTextField txtPrenom = new JTextField(); 
-	private JTextField txtEmail = new JTextField();
-	private JPasswordField txtMdp = new JPasswordField(); 
-	
-
 
 	private JTextArea txtInfos = new JTextArea(); 
-	private JTextField textField = new JTextField();
-	private JTextField textField_1 = new JTextField();
-	private JTextField textField_2 = new JTextField();
-	private JTextField textField_3 = new JTextField();
-	private JTextField textField_4 = new JTextField();
-	private JTextField textField_5 = new JTextField();
-	private JTextField textField_6 = new JTextField();
-	private JTextField textField_7 = new JTextField();
-	private JPasswordField passwordField = new JPasswordField();
+	private JTextField txt_nom = new JTextField();
+	private JTextField txt_prenom = new JTextField();
+	private JTextField txt_email = new JTextField();
+	private JPasswordField tx_tMdp = new JPasswordField(); 
+	private JTextField txt_adresse = new JTextField();
+
+	private Admin Admin;
 
 
 	public PanelProfil() {
@@ -54,45 +46,21 @@ public class PanelProfil extends PanelPrincipal{
 	    comboBox_1.setBounds(199, 116, 313, 36);
 	    add(comboBox_1);
 	    
-	    textField = new JTextField();
-	    textField.setBounds(199, 176, 213, 36);
-	    add(textField);
-	    textField.setColumns(10);
+	    txt_nom = new JTextField();
+	    txt_nom.setBounds(199, 176, 213, 36);
+	    add(txt_nom);
+	    txt_nom.setColumns(10);
 	    
-	    textField_1 = new JTextField();
-	    textField_1.setBounds(525, 176, 285, 36);
-	    add(textField_1);
-	    textField_1.setColumns(10);
+	    txt_prenom = new JTextField();
+	    txt_prenom.setBounds(525, 176, 285, 36);
+	    add(txt_prenom);
+	    txt_prenom.setColumns(10);
 	    
-	    textField_2 = new JTextField();
-	    textField_2.setBounds(199, 248, 611, 50);
-	    add(textField_2);
-	    textField_2.setColumns(10);
-	    
-	    textField_3 = new JTextField();
-	    textField_3.setBounds(199, 366, 96, 19);
-	    add(textField_3);
-	    textField_3.setColumns(10);
-	    
-	    textField_4 = new JTextField();
-	    textField_4.setBounds(199, 405, 96, 19);
-	    add(textField_4);
-	    textField_4.setColumns(10);
-	    
-	    textField_5 = new JTextField();
-	    textField_5.setBounds(392, 405, 96, 19);
-	    add(textField_5);
-	    textField_5.setColumns(10);
-	    
-	    JComboBox comboBox_2 = new JComboBox();
-	    comboBox_2.setBounds(382, 365, 91, 21);
-	    add(comboBox_2);
-	    
-	    textField_6 = new JTextField();
-	    textField_6.setBounds(199, 320, 611, 36);
-	    add(textField_6);
-	    textField_6.setColumns(10);
-	    
+	    txt_adresse = new JTextField();
+	    txt_adresse.setBounds(199, 248, 611, 36);
+	    add(txt_adresse);
+	    txt_adresse.setColumns(10);
+
 	    JButton btn_sauvegarder = new JButton("Sauvegarder");
 	    btn_sauvegarder.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
@@ -110,18 +78,18 @@ public class PanelProfil extends PanelPrincipal{
 	    lblNewLabel_1.setBounds(890, 122, 50, 24);
 	    add(lblNewLabel_1);
 	    
-	    textField_7 = new JTextField();
-	    textField_7.setBounds(890, 150, 207, 36);
-	    add(textField_7);
-	    textField_7.setColumns(10);
+	    txt_email = new JTextField();
+	    txt_email.setBounds(890, 150, 207, 36);
+	    add(txt_email);
+	    txt_email.setColumns(10);
 	    
 	    JLabel lblNewLabel_2 = new JLabel("Mot de Passe");
 	    lblNewLabel_2.setBounds(890, 218, 96, 27);
 	    add(lblNewLabel_2);
 	    
-	    passwordField = new JPasswordField();
-	    passwordField.setBounds(890, 255, 207, 35);
-	    add(passwordField);
+	    tx_tMdp = new JPasswordField();
+	    tx_tMdp.setBounds(890, 255, 207, 35);
+	    add(tx_tMdp);
 	    
 	    JButton btn_gerer = new JButton("Gérer");
 	    btn_gerer.setBackground(Color.ORANGE);
@@ -132,8 +100,16 @@ public class PanelProfil extends PanelPrincipal{
 	    btn_gerer.setBounds(1091, 46, 85, 21);
 	    add(btn_gerer);
 	    
+	    this.Admin = VueConnexion.getAdmin();
+	    this.txt_nom.setText(Admin.getNom());
+	    this.txt_prenom.setText(Admin.getPrenom());
+	    this.txt_email.setText(Admin.getEmail());
+	    this.tx_tMdp.setText(Admin.getMdp());
+	    this.txt_adresse.setText(Admin.getAdresse());
+
+
 	    
-	    this.panelForm.setVisible(false);
+	    this.setVisible(false);
 	    
 
 
