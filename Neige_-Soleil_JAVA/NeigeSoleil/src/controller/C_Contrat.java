@@ -28,8 +28,8 @@ public class C_Contrat {
 	{
 		return modeleContrat.selectWhereContrat(id_contrat);
 	}
-	public static Contrat selectWhereContrat(String statut)
+	public static Contrat selectWhereContrat(String statut, String date_fin_contrat)
 	{
-		return modeleContrat.selectWhereContrat(statut);
+		return modeleContrat.selectWhereContrat(statut, date_fin_contrat);
 	}
 }
