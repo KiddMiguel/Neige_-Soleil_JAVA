@@ -403,6 +403,16 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		txt_ville_appart.setText(tableAppartement.getValueAt(numLigne, 4).toString());
 		txt_cp_appart.setText(tableAppartement.getValueAt(numLigne, 5).toString());
 		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		cbx_type_appart.getSelectedItem().toString();
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_superficie_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_chambre.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_cuisine.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_salle_bain.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_salon.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+
 		
 		btAjouter.setText("Modifier");
 	}
