@@ -140,7 +140,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
         this.add(this.btAjouter);
         
         this.btSupprimer.setBackground(new Color (176, 7, 7));
-        this.btSupprimer.setBackground(new Color (176, 7, 7));
+        this.btSupprimer.setForeground(new Color(255, 255, 255));
 
 		
 	    this.add(panelForm);
@@ -348,7 +348,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			this.btAjouter.setText("Ajouter");
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 			
-		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String intitule_appart = this.txt_intitule_appart.getText();
 				
@@ -401,12 +401,10 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		        
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 			
-		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer la modification d'un appartement !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
-	        	String intitule_appart = this.txt_intitule_appart.getText();
-				
-				String statut_appart = this.cbx_statut_appart.getSelectedItem().toString();
-				
+	        	String intitule_appart = this.txt_intitule_appart.getText();				
+				String statut_appart = this.cbx_statut_appart.getSelectedItem().toString();				
 				float prix_appart = Float.parseFloat(this.txt_prix_appart.getText()); 
 				
 				String ville_appart = this.txt_ville_appart.getText();
