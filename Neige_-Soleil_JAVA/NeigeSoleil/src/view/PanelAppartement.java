@@ -66,6 +66,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	//Bouttons
 	private JButton btAjouter = new JButton("Ajouter");
 	private JButton btAnnuler = new JButton("Annuler");
+	private JButton btModifier = new JButton("Modifier");
 
 	
 	// Tableau
@@ -142,20 +143,25 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 
 	    this.remplirCBX();
 	    
+	    //Rendre les bouttons cliquable
+	    this.btAjouter.addActionListener(this);
+	    this.btAnnuler.addActionListener(this);
+	    this.btModifier.addActionListener(this);
+	    
 	    // Construction un tableau
-	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie", "Nb pièces"}; 
+	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces"}; 
 	    Object [][] donnees = this.getDonnees();
 	    
 		this.unTableau = new Tableau (donnees, entetes);
 		this.tableAppartement = new JTable(this.unTableau);
-		this.tableAppartement.setBackground(new Color (142, 197, 243));
 		
 		JScrollPane uneScroll = new JScrollPane(this.tableAppartement); 
 		uneScroll.setBounds(20, 80, 900, 520);
 		this.add(uneScroll);
 		
+		
+		
 		this.tableAppartement.addMouseListener(new MouseListener() {
-			private Admin Admin;
 
 			
 			@Override
@@ -191,38 +197,74 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				if(e.getClickCount()>=1) {
 
 				    JPanel panel = new JPanel();
-			
-					panel.setBounds(935, 20, 300, 580);
-					panel.setBackground(new Color (142, 197, 243));
-					panel.setLayout(new GridLayout(2,20));	
 				    JFrame frame = new JFrame();
 				    frame.getContentPane().add(panel);
 				    frame.pack();
+					frame.setBackground(new Color (142, 197, 243));
+				    frame.setBounds(935, 20, 300, 580);	
 				    frame.setLocationRelativeTo(null);
 			
-				    frame.setBounds(935, 20, 700, 650);	
-				    txt_intitule_appart.setText(tableAppartement.getValueAt(numLigne, 1).toString());
-				    panel.add(new JLabel(tableAppartement.getValueAt(numLigne, 1).toString()));
-				    panel.add(new JLabel("Panel affiché au clic"));
-				    
-				    
+					panel.setLayout(new GridLayout(15,20));		
+
+				    panel.add(new JLabel("Intitle"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 1).toString())).setBackground(Color.YELLOW);
+
+				    panel.add(new JLabel("Statut"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 2).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Prix"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 3).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Ville"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 4).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Code postal"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 5).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Adresse"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 6).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Type"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 7).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Superficie"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 8).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Nb Chambre"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Nb Cuisine"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Nb Salon"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Nb Salle Bain"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("Nb pièces"));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel(" "));
+				    panel.add(new JLabel(" "));
+	    
+				    panel.add(new JButton("Supprimer")).setBackground(new Color(176, 7, 7));
+				    panel.add(btModifier);
+				       
 				    frame.setVisible(true);	
 
-				    
 				}
 			}
 		});
 		
-	    //Rendre les bouttons cliquable
-	    this.btAjouter.addActionListener(this);
-	    this.btAnnuler.addActionListener(this);
-	    
+
+
 	    this.setVisible(false);
 	}
 	
 	public Object [][] getDonnees(){
 		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
-		Object [][] matrice = new Object [lesAppartements.size( )][10]; 
+		Object [][] matrice = new Object [lesAppartements.size( )][14]; 
 		int i=0; 
 		for (Appartement unAppartement : lesAppartements)
 		{
@@ -235,7 +277,13 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			matrice[i][6]  = unAppartement.getAdresse_appart();
 			matrice[i][7]  = unAppartement.getType_appart();
 			matrice[i][8]  = unAppartement.getSuperficie_appart();
-			matrice[i][9]  = unAppartement.getNb_piece();
+			
+			matrice[i][9]  = unAppartement.getNb_chambre();
+			matrice[i][10]  = unAppartement.getNb_cuisine();
+			matrice[i][11]  = unAppartement.getNb_salon();
+			matrice[i][12]  = unAppartement.getNb_salle_bain();
+
+			matrice[i][13]  = unAppartement.getNb_piece();
 			i++;
 		}
 		return matrice;
@@ -287,6 +335,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource() == btAnnuler) {
 			this.viderChamps ();
+			this.btAjouter.setText("Ajouter");
 		}else if(e.getSource() == btAjouter) {
 			
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
@@ -338,7 +387,34 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	        }
 			
 		        
+		}else if(e.getSource() == btModifier){
+			
+	        update(); 
 		}
+	}
+	
+	public void update() {
+		int numLigne = tableAppartement.getSelectedRow();
+		int id_appart = Integer.parseInt(tableAppartement.getValueAt(numLigne, 0).toString());
+		
+		txt_intitule_appart.setText(tableAppartement.getValueAt(numLigne, 0).toString());
+		cbx_statut_appart.getSelectedItem().toString();
+		txt_prix_appart.setText(tableAppartement.getValueAt(numLigne, 3).toString());
+		txt_ville_appart.setText(tableAppartement.getValueAt(numLigne, 4).toString());
+		txt_cp_appart.setText(tableAppartement.getValueAt(numLigne, 5).toString());
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		cbx_type_appart.getSelectedItem().toString();
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_superficie_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_chambre.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_cuisine.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_salle_bain.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_nb_salon.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+
+		
+		btAjouter.setText("Modifier");
 	}
 	
 
