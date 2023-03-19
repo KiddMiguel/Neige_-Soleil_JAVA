@@ -155,7 +155,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 
 	    
 	    // Construction un tableau
-	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces"}; 
+	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces","Locataire","Propriétaire"}; 
 	    Object [][] donnees = this.getDonnees();
 	    
 		this.unTableau = new Tableau (donnees, entetes);
@@ -204,6 +204,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 
 				    JPanel panel = new JPanel();
 				    JFrame frame = new JFrame();
+				    
 				    frame.getContentPane().add(panel);
 				    frame.pack();
 					frame.setBackground(new Color (142, 197, 243));
@@ -270,7 +271,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
 	public Object [][] getDonnees(){
 		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
-		Object [][] matrice = new Object [lesAppartements.size( )][14]; 
+		Object [][] matrice = new Object [lesAppartements.size( )][16]; 
 		int i=0; 
 		for (Appartement unAppartement : lesAppartements)
 		{
@@ -290,6 +291,9 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			matrice[i][12]  = unAppartement.getNb_salle_bain();
 
 			matrice[i][13]  = unAppartement.getNb_piece();
+			
+			matrice[i][14]  = unAppartement.getId_locataire();
+			matrice[i][15]  = unAppartement.getId_proprietaire();
 			i++;
 		}
 		return matrice;
@@ -386,7 +390,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				//ajout du dans le Tableau 
 				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
 								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(),unAppartement.getNb_chambre(), 
-								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece()};
+								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_locataire(),unAppartement.getId_proprietaire()};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
@@ -438,7 +442,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				//ajout du dans le Tableau 
 				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
 								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(),unAppartement.getNb_chambre(), 
-								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece()};
+								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_locataire(),unAppartement.getId_proprietaire()};
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");			    
 			    viderChamps ();
@@ -468,6 +472,9 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		txt_nb_salle_bain.setText(tableAppartement.getValueAt(numLigne, 11).toString());
 		txt_nb_salon.setText(tableAppartement.getValueAt(numLigne, 12).toString());
 		txt_nb_piece.setText(tableAppartement.getValueAt(numLigne, 13).toString());
+		cbx_id_locataire.setSelectedItem(tableAppartement.getValueAt(numLigne, 14).toString());
+		cbx_id_proprietaire.setSelectedItem(tableAppartement.getValueAt(numLigne, 15).toString());
+
 		btAjouter.setText("Modifier");
 	}
 	public void delete() {

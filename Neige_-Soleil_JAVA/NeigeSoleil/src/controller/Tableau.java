@@ -49,6 +49,7 @@ public class Tableau extends AbstractTableModel{
 		this.donnees = matrice ; //recopie de matrices.
 		this.fireTableDataChanged(); // mise à jour des données. 
 	}
+	
 	public void updateLigne(int numLigne, Object[] ligne)
     {
         Object matrice [][] = new Object[this.donnees.length][this.entetes.length];
@@ -62,6 +63,7 @@ public class Tableau extends AbstractTableModel{
         this.donnees = matrice ; //recopie de matrices.
         this.fireTableDataChanged(); // mise à jour des données. 
     }
+	
 	public void deleteLigne (int numLigne)
     {
     Object matrice [][] = new Object[this.donnees.length -1][this.entetes.length];
