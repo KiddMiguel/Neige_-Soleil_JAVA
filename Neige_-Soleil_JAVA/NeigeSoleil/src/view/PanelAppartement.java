@@ -67,6 +67,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	private JButton btAjouter = new JButton("Ajouter");
 	private JButton btAnnuler = new JButton("Annuler");
 	private JButton btModifier = new JButton("Modifier");
+	private JButton btSupprimer = new JButton("Supprimer");
 
 	
 	// Tableau
@@ -137,7 +138,10 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
         
         this.btAjouter.setBounds(935, 590, 300, 22);
         this.add(this.btAjouter);
-		
+        
+        this.btSupprimer.setBackground(new Color (176, 7, 7));
+        this.btSupprimer.setForeground(new Color(255, 255, 255));
+
 		
 	    this.add(panelForm);
 
@@ -147,9 +151,11 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	    this.btAjouter.addActionListener(this);
 	    this.btAnnuler.addActionListener(this);
 	    this.btModifier.addActionListener(this);
+	    this.btSupprimer.addActionListener(this);
+
 	    
 	    // Construction un tableau
-	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces"}; 
+	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces","Locataire","Propriétaire"}; 
 	    Object [][] donnees = this.getDonnees();
 	    
 		this.unTableau = new Tableau (donnees, entetes);
@@ -198,6 +204,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 
 				    JPanel panel = new JPanel();
 				    JFrame frame = new JFrame();
+				    
 				    frame.getContentPane().add(panel);
 				    frame.pack();
 					frame.setBackground(new Color (142, 197, 243));
@@ -213,7 +220,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 2).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Prix"));
-				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 3).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 3).toString()+" €")).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Ville"));
 				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 4).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -231,24 +238,24 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 8).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Nb Chambre"));
-				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString()+" Chambre(s)")).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Nb Cuisine"));
-				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString()+" Cuisine(s)")).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Nb Salon"));
-				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString()+" Salon(s)")).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Nb Salle Bain"));
-				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString()+" Salle de bain(s)")).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Nb pièces"));
-				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				    panel.add(new JButton(tableAppartement.getValueAt(numLigne, 9).toString()+" Pièce(s)")).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel(" "));
 				    panel.add(new JLabel(" "));
 	    
-				    panel.add(new JButton("Supprimer")).setBackground(new Color(176, 7, 7));
+				    panel.add(btSupprimer);
 				    panel.add(btModifier);
 				       
 				    frame.setVisible(true);	
@@ -264,7 +271,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
 	public Object [][] getDonnees(){
 		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
-		Object [][] matrice = new Object [lesAppartements.size( )][14]; 
+		Object [][] matrice = new Object [lesAppartements.size( )][16]; 
 		int i=0; 
 		for (Appartement unAppartement : lesAppartements)
 		{
@@ -284,6 +291,9 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			matrice[i][12]  = unAppartement.getNb_salle_bain();
 
 			matrice[i][13]  = unAppartement.getNb_piece();
+			
+			matrice[i][14]  = unAppartement.getId_locataire();
+			matrice[i][15]  = unAppartement.getId_proprietaire();
 			i++;
 		}
 		return matrice;
@@ -336,9 +346,9 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		if(e.getSource() == btAnnuler) {
 			this.viderChamps ();
 			this.btAjouter.setText("Ajouter");
-		}else if(e.getSource() == btAjouter) {
+		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 			
-		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String intitule_appart = this.txt_intitule_appart.getText();
 				
@@ -374,11 +384,13 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				//on l'enregistre dans la base de données 
 				C_Appartement.insertAppartement(unAppartement);
 			
+				
 				//récupération de l'id à partir de la BDD 
 				unAppartement = C_Appartement.selectWhereAppartement(intitule_appart); 
 				//ajout du dans le Tableau 
 				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
-								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(), unAppartement.getNb_piece()};
+								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(),unAppartement.getNb_chambre(), 
+								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_locataire(),unAppartement.getId_proprietaire()};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
@@ -387,9 +399,57 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	        }
 			
 		        
-		}else if(e.getSource() == btModifier){
+		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 			
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer la modification d'un appartement !", "Ajouter", JOptionPane.YES_NO_OPTION);
+	        if (retour == 0) {
+	        	String intitule_appart = this.txt_intitule_appart.getText();				
+				String statut_appart = this.cbx_statut_appart.getSelectedItem().toString();				
+				float prix_appart = Float.parseFloat(this.txt_prix_appart.getText()); 
+				
+				String ville_appart = this.txt_ville_appart.getText();
+				String cp_appart = this.txt_cp_appart.getText();
+				String adresse_appart = this.txt_adresse_appart.getText();
+				
+				String type_appart = this.cbx_type_appart.getSelectedItem().toString();
+				
+				String superficie_appart = this.txt_superficie_appart.getText();
+				int nb_chambre = Integer.parseInt(this.txt_nb_chambre.getText());
+				int nb_cuisine = Integer.parseInt(this.txt_nb_cuisine.getText());
+				int nb_salon = Integer.parseInt(this.txt_nb_salon.getText());
+				int nb_salle_bain = Integer.parseInt(this.txt_nb_salle_bain.getText());
+
+				int nb_piece = Integer.parseInt(this.txt_nb_piece.getText());
+				String chaine = this.cbx_id_locataire.getSelectedItem().toString();
+				String tab [] = chaine.split("-"); 
+				int id_locataire = Integer.parseInt(tab[0]);
+				int numLigne = this.tableAppartement.getSelectedRow();
+				
+				chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
+				tab = chaine.split("-");
+				int id_proprietaire = Integer.parseInt(tab[0]);
+				int id_appart = Integer.parseInt(this.tableAppartement.getValueAt(numLigne, 0).toString());
+				
+				//instancier  
+				Appartement unAppartement = new Appartement(id_appart,nb_chambre, nb_cuisine, nb_salle_bain, nb_salon
+						,nb_piece,id_proprietaire,id_locataire,prix_appart,statut_appart,intitule_appart,ville_appart,cp_appart,adresse_appart,type_appart,superficie_appart);
+				//on l'enregistre dans la base de données 
+				C_Appartement.updateAppartement(unAppartement);
+				//récupération de l'id à partir de la BDD 
+				unAppartement = C_Appartement.selectWhereAppartement(intitule_appart); 
+				//ajout du dans le Tableau 
+				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
+								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(),unAppartement.getNb_chambre(), 
+								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_locataire(),unAppartement.getId_proprietaire()};
+				this.unTableau.updateLigne(numLigne, ligne);
+			    JOptionPane.showMessageDialog(this, "Reussi !");			    
+			    viderChamps ();
+	        }		        
+		}
+		else if(e.getSource() == btModifier){	
 	        update(); 
+		}else if(e.getSource() == btSupprimer){	
+	        delete(); 
 		}
 	}
 	
@@ -397,26 +457,36 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		int numLigne = tableAppartement.getSelectedRow();
 		int id_appart = Integer.parseInt(tableAppartement.getValueAt(numLigne, 0).toString());
 		
-		txt_intitule_appart.setText(tableAppartement.getValueAt(numLigne, 0).toString());
-		cbx_statut_appart.getSelectedItem().toString();
+		txt_intitule_appart.setText(tableAppartement.getValueAt(numLigne, 1).toString());
+		cbx_statut_appart.setSelectedItem(tableAppartement.getValueAt(numLigne, 2).toString());
 		txt_prix_appart.setText(tableAppartement.getValueAt(numLigne, 3).toString());
 		txt_ville_appart.setText(tableAppartement.getValueAt(numLigne, 4).toString());
 		txt_cp_appart.setText(tableAppartement.getValueAt(numLigne, 5).toString());
 		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		cbx_type_appart.getSelectedItem().toString();
-		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_superficie_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_nb_chambre.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_nb_cuisine.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_nb_salle_bain.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_nb_salon.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
-		txt_adresse_appart.setText(tableAppartement.getValueAt(numLigne, 6).toString());
+		cbx_type_appart.setSelectedItem(tableAppartement.getValueAt(numLigne, 7).toString());
+		txt_superficie_appart.setText(tableAppartement.getValueAt(numLigne, 8).toString());
+		txt_nb_chambre.setText(tableAppartement.getValueAt(numLigne, 9).toString());
+		txt_nb_cuisine.setText(tableAppartement.getValueAt(numLigne, 10).toString());
+		txt_nb_salle_bain.setText(tableAppartement.getValueAt(numLigne, 11).toString());
+		txt_nb_salon.setText(tableAppartement.getValueAt(numLigne, 12).toString());
+		txt_nb_piece.setText(tableAppartement.getValueAt(numLigne, 13).toString());
+		cbx_id_locataire.setSelectedItem(tableAppartement.getValueAt(numLigne, 14).toString());
+		cbx_id_proprietaire.setSelectedItem(tableAppartement.getValueAt(numLigne, 15).toString());
 
-		
 		btAjouter.setText("Modifier");
 	}
+	public void delete() {
+		int numLigne = tableAppartement.getSelectedRow();
+		int id_appart = Integer.parseInt(tableAppartement.getValueAt(numLigne, 0).toString());
+		
+		int retour = JOptionPane.showConfirmDialog(null, "Confirmer la suppression de l'appartement", "Supprimer",JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
+		if(retour == 0) {
+			C_Appartement.deleteAppartement(id_appart);
+			unTableau.deleteLigne(numLigne);
+			JOptionPane.showMessageDialog(null, "Suppression réussi !");
+		}
 	
+	}
 
 	
 	

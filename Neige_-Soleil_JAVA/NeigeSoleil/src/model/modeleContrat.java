@@ -14,14 +14,15 @@ public class modeleContrat {
 	    public static void insertContrat(Contrat unContrat) {
 	        String requete = "insert into contrat values(null, '"
 	                + unContrat.getStatut_contrat()+"','" + unContrat.getDate_debut_contrat()+"','"
-	                + unContrat.getDate_fin_contrat()+"','" + unContrat.getDate_sign_contrat()+"',' "
-	                + unContrat.getId_appart()+"','" +unContrat.getId_user()+ "');";
+	                + unContrat.getDate_fin_contrat()+"','" + unContrat.getDate_sign_contrat()+"', "
+	                + unContrat.getId_appart()+"," +unContrat.getId_user()+ ");";
 	        try {
 	            uneBDD.seConnecter();
 	            Statement unStat = uneBDD.getMaConnexion().createStatement();
 	            unStat.execute(requete);
 	            unStat.close();
 	            uneBDD.seDeconnecter();
+	            System.out.println("execution: " + requete);
 	        }catch(SQLException exp) {
 	            System.out.println("Erreur d'execution" + requete);
 	        }
@@ -41,15 +42,16 @@ public class modeleContrat {
 	    public static void updateContrat(Contrat unContrat) {
 	        String requete = "update contrat set statut_contrat='"+ unContrat.getStatut_contrat()+"', date_debut_contrat='"
 	        		+ unContrat.getDate_debut_contrat()+"', date_fin_contrat='"
-	                + unContrat.getDate_fin_contrat()+"', date_sign_contrat='" + unContrat.getDate_sign_contrat()+"',"
-	                +"',id_user='" + unContrat.getId_user()+"','"+"',id_appart='" + unContrat.getId_appart()+
-	                "' where id_contrat='"+unContrat.getId_contrat()+"';";
+	                + unContrat.getDate_fin_contrat()+"', date_sign_contrat='" + unContrat.getDate_sign_contrat()+"'"
+	                +",id_user=" + unContrat.getId_user()+",id_appart=" + unContrat.getId_appart()+
+	                " where id_contrat="+unContrat.getId_contrat()+";";
 	        try {
 	            uneBDD.seConnecter();
 	            Statement unStat = uneBDD.getMaConnexion().createStatement();
 	            unStat.execute(requete);
 	            unStat.close();
 	            uneBDD.seDeconnecter();
+	            System.out.println("Erreur d'execution: " + requete);
 	        }catch(SQLException exp) {
 	            System.out.println("Erreur d'execution: " + requete);
 	            }
@@ -112,9 +114,9 @@ public class modeleContrat {
 	        }
 	        return unContrat; 
 	    }
-	    public static Contrat selectWhereContrat (String statut)
+	    public static Contrat selectWhereContrat (String statut, String date_fin_contrat)
 	    {
-	        String requete =" select * from contrat where statut_contrat= "+statut+";";
+	        String requete =" select * from contrat where statut_contrat= '"+statut+"' and date_fin_contrat = '"+date_fin_contrat+"' ;";
 	        Contrat unContrat = null; 
 	        try {
 	            uneBDD.seConnecter();

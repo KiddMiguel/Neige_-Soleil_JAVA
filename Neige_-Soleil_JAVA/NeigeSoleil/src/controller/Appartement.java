@@ -6,7 +6,7 @@ public class Appartement {
 	private float prix_appart;
 	
 	public Appartement(int id_appart, int nb_chambre, int nb_cuisine, int nb_salle_bain, int nb_salon, int nb_piece, int id_proprietaire, int id_locataire,
-			float prix_appart,  String statut_appart, String intitule_appart, String ville_appart, String cp_appart, String adresse_appart,String description_appart, String type_appart, String superficie_appart) {
+			float prix_appart,  String statut_appart, String intitule_appart, String ville_appart, String cp_appart, String adresse_appart, String type_appart, String superficie_appart) {
 	 	this.id_appart = id_appart;
 		this.nb_chambre = nb_chambre;
 	 	this.nb_cuisine = nb_cuisine;
@@ -21,7 +21,6 @@ public class Appartement {
 		this.ville_appart = ville_appart;	
 		this.cp_appart = cp_appart;
 		this.adresse_appart = adresse_appart;		
-		this.description_appart = description_appart;		
 		this.type_appart = type_appart;
 		this.superficie_appart = superficie_appart;
 	}
@@ -62,10 +61,10 @@ public class Appartement {
 		this.ville_appart = "";	
 		this.cp_appart = "";
 		this.adresse_appart = "";		
-		this.description_appart = "";		
 		this.type_appart = "";
 		this.superficie_appart = "";
 	}
+
 	public int getId_appart() {
 		return id_appart;
 	}

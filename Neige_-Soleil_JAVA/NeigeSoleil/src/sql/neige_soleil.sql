@@ -216,7 +216,7 @@ primary key (id_facture)
 );
 
 
-----TRIGGER QUI INSERT UN id_user automatiquement dans la table user et dans la table locataire
+/*TRIGGER QUI INSERT UN id_user automatiquement dans la table user et dans la table locataire*/
 DROP TRIGGER IF EXISTS insert_locataire;
 DELIMITER //
 CREATE TRIGGER insert_locataire
@@ -231,7 +231,7 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
-----TRIGGER QUI INSERT UN id_user automatiquement dans la table user et dans la table proprietaire
+/*TRIGGER QUI INSERT UN id_user automatiquement dans la table user et dans la table proprietaire*/
 DROP TRIGGER IF EXISTS insert_proprietaire;
 DELIMITER //
 CREATE TRIGGER insert_proprietaire
@@ -250,7 +250,7 @@ DELIMITER ;
 
 
 
-----TRIGGER QUI AJOUTER UNE DEMANDE après un insert dans appartement.
+/*TRIGGER QUI AJOUTER UNE DEMANDE après un insert dans appartement.*/
 Drop trigger if exists add_demande;
 delimiter //
 create trigger add_demande
@@ -263,9 +263,6 @@ FOR EACH row
 delimiter ;
 
 
-
-/*Insertion
-INSERT INTO user (id_user) VALUES (1), (2), (3);*/
 
 INSERT INTO locataire (civilite_locataire, nom_locataire, prenom_locataire, email_locataire, mdp_locataire, tel_locataire, adresse_locataire, cp_locataire, nb_reservations, id_appart )
 VALUES 
@@ -369,12 +366,4 @@ VALUES
     ("Quartier animé", 9),("Proximité des transports", 9),("Proche de la plage", 9);
     
     
-
-
-/* INSERT INTO statistique (id_locataire, id_appart, nb_reservations, prix_total_reservations, revenu_total_locataire)
-SELECT r.id_user, r.id_appart, COUNT(r.id_reservation), SUM(prix_reservation), SUM(prix_reservation * 0.8)
-FROM reservation r
-WHERE r.statut_reservation = "Réservé"
-GROUP BY r.id_user, r.id_appart; */
-
 

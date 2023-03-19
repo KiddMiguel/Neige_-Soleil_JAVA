@@ -47,13 +47,14 @@ public class modeleAppartement {
         		", nb_salle_bain = " + unAppartement.getNb_salle_bain() + 
         		", nb_piece = " + unAppartement.getNb_piece() + 
         		", id_locataire = " + unAppartement.getId_locataire() +
-        		", id_proprietaire = " + unAppartement.getId_proprietaire() + ";";
+        		", id_proprietaire = " + unAppartement.getId_proprietaire() + " where id_appart = "+unAppartement.getId_appart()+";";
         try {
             uneBDD.seConnecter();
             Statement unStat = uneBDD.getMaConnexion().createStatement();
             unStat.execute(requete);
             unStat.close();
             uneBDD.seDeconnecter();
+            System.out.println("execution " + requete);
         }catch(SQLException exp) {
             System.out.println("Erreur d'execution" + requete);
             }
@@ -66,6 +67,8 @@ public class modeleAppartement {
             unStat.execute(requete);
             unStat.close();
             uneBDD.seDeconnecter();
+
+
         }catch(SQLException exp) {
             System.out.println("Erreur d'execution" + requete);
             }
@@ -91,7 +94,7 @@ public class modeleAppartement {
                             desResultats.getFloat("prix_appart"),desResultats.getString("statut_appart"),
                             desResultats.getString("intitule_appart"),desResultats.getString("ville_appart"),
                             desResultats.getString("cp_appart"),desResultats.getString("adresse_appart"),
-                            desResultats.getString("description_appart"),desResultats.getString("type_appart"),
+                            desResultats.getString("type_appart"),
                             desResultats.getString("superficie_appart")
                             
                         );
@@ -126,7 +129,7 @@ public class modeleAppartement {
                 		unResultat.getFloat("prix_appart"),unResultat.getString("statut_appart"),
                         unResultat.getString("intitule_appart"),unResultat.getString("ville_appart"),
                         unResultat.getString("cp_appart"),unResultat.getString("adresse_appart"),
-                        unResultat.getString("description_appart"),unResultat.getString("type_appart"),
+                        unResultat.getString("type_appart"),
                         unResultat.getString("superficie_appart")
                         );
             }
@@ -159,7 +162,7 @@ public class modeleAppartement {
                 		unResultat.getFloat("prix_appart"),unResultat.getString("statut_appart"),
                         unResultat.getString("intitule_appart"),unResultat.getString("ville_appart"),
                         unResultat.getString("cp_appart"),unResultat.getString("adresse_appart"),
-                        unResultat.getString("description_appart"),unResultat.getString("type_appart"),
+                       unResultat.getString("type_appart"),
                         unResultat.getString("superficie_appart")
                         );
             }
