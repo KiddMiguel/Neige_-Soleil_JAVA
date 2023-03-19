@@ -43,14 +43,15 @@ public class modeleContrat {
 	        String requete = "update contrat set statut_contrat='"+ unContrat.getStatut_contrat()+"', date_debut_contrat='"
 	        		+ unContrat.getDate_debut_contrat()+"', date_fin_contrat='"
 	                + unContrat.getDate_fin_contrat()+"', date_sign_contrat='" + unContrat.getDate_sign_contrat()+"'"
-	                +",id_user='" + unContrat.getId_user()+"',id_appart='" + unContrat.getId_appart()+
-	                "' where id_contrat='"+unContrat.getId_contrat()+"';";
+	                +",id_user=" + unContrat.getId_user()+",id_appart=" + unContrat.getId_appart()+
+	                " where id_contrat="+unContrat.getId_contrat()+";";
 	        try {
 	            uneBDD.seConnecter();
 	            Statement unStat = uneBDD.getMaConnexion().createStatement();
 	            unStat.execute(requete);
 	            unStat.close();
 	            uneBDD.seDeconnecter();
+	            System.out.println("Erreur d'execution: " + requete);
 	        }catch(SQLException exp) {
 	            System.out.println("Erreur d'execution: " + requete);
 	            }
@@ -115,7 +116,7 @@ public class modeleContrat {
 	    }
 	    public static Contrat selectWhereContrat (String statut, String date_fin_contrat)
 	    {
-	        String requete =" select * from contrat where statut_contrat= '"+statut+"' and date_sign_contrat = '"+date_fin_contrat+"' ;";
+	        String requete =" select * from contrat where statut_contrat= '"+statut+"' and date_fin_contrat = '"+date_fin_contrat+"' ;";
 	        Contrat unContrat = null; 
 	        try {
 	            uneBDD.seConnecter();

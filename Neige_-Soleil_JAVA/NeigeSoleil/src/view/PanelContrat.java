@@ -316,8 +316,6 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
 				Contrat unContrat = new Contrat(id_contrat,id_user,id_appart,statut_contrat, date_debut_contrat, date_fin_contrat, date_sign_contrat);
 				//on l'enregistre dans la base de données 
 				C_Contrat.updateContrat(unContrat);
-			
-				
 				//récupération de l'id à partir de la BDD 
 				unContrat = C_Contrat.selectWhereContrat(statut_contrat, date_fin_contrat); 
 				//ajout du dans le Tableau 
