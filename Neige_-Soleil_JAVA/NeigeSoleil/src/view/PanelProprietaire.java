@@ -26,6 +26,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	
 	private JPanel panelForm = new JPanel();
 	
+	String[] choix = {"Mr", "Mme", "Autres"};
 	//variable
 	private JTextField Txt_nom_Proprio = new JTextField();
 	private JTextField Txt_prenom_proprio = new JTextField();
@@ -44,16 +45,20 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	private JComboBox<String> cbx_id_user = new JComboBox<String>();
 	private JComboBox<String> cbx_id_contrat = new JComboBox<String>();
 	private JComboBox<String> cbx_id_appart = new JComboBox<String>();
-	private JComboBox<String> cbx_civilite_proprio = new JComboBox<String>();
+	private JComboBox<String> cbx_civilite_proprio = new JComboBox<String>(choix);
 	
 	//button
 	private JButton btAjouter = new JButton("Ajouter");
 	private JButton btAnnuler = new JButton ("Annuler");
+	private JButton btModifier = new JButton("Modifier");
+	private JButton btSupprimer = new JButton("Supprimer");
 	
 	//Tableau
 	private JTable tableProprietaire ; 
 	private Tableau unTableau ; 
 	
+	//Message d'information
+	private	JLabel info = new JLabel("L'admin ne peux pas créer un compte client !");
     public PanelProprietaire ()
     {
         super();
@@ -63,7 +68,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
         this.panelForm.setBackground(new Color(142, 197, 243));
         this.panelForm.setLayout(new GridLayout(31,1));
         
-        this.panelForm.add(new JLabel ("Sexe"));
+        this.panelForm.add(new JLabel ("Civilité"));
 		this.panelForm.add(this.cbx_civilite_proprio);
        
         this.panelForm.add(new JLabel ("Nom"));
@@ -118,7 +123,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	    this.remplirCBX();
 	    
 	   // Construction un tableau
-	    String entetes [] = {"N� Proprietaire", "Contrat", "Appart", "Nom", "Prenom", "Statut","Email", "Tel�phone", "Adresse", "Ville"}; 
+	    String entetes [] = {"N° Proprietaire", "N° Contrat", "N° Appartement","Civilité", "Nom", "Prenom", "Statut","Email", "Tel�phone", "Adresse", "Ville","Pays"}; 
 	    Object [] [] donnees = this.getDonnees();
 	    
 	    this.unTableau = new Tableau (donnees, entetes);
@@ -136,7 +141,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     public Object [] [] getDonnees(){
     	
     	ArrayList<Proprietaire> lesProprietaire = C_Proprietaire.selectAllProprietaire();
-    	Object [] [] matrice = new Object [lesProprietaire.size()][10];
+    	Object [] [] matrice = new Object [lesProprietaire.size()][12];
     	int i=0;
     	for (Proprietaire unProprietaire : lesProprietaire)
     	{
@@ -144,13 +149,16 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     		matrice[i][0] = unProprietaire.getId_proprietaire();
     		matrice[i][1] = unProprietaire.getId_contrat();
     		matrice[i][2] = unProprietaire.getId_appart();
-    		matrice[i][3] = unProprietaire.getNom_proprio();
-    		matrice[i][4] = unProprietaire.getPrenom_proprio();
-    		matrice[i][5] = unProprietaire.getStatut_proprio();
-    		matrice[i][6] = unProprietaire.getEmail_proprio();
-    		matrice[i][7] = unProprietaire.getTel_proprio();
-    		matrice[i][8] = unProprietaire.getAdresse_proprio();
-    		matrice[i][9] = unProprietaire.getVille_proprio();
+    		matrice[i][3] = unProprietaire.getCivilite_proprio();
+    		matrice[i][4] = unProprietaire.getNom_proprio();
+    		matrice[i][5] = unProprietaire.getPrenom_proprio();
+    		matrice[i][6] = unProprietaire.getStatut_proprio();
+    		matrice[i][7] = unProprietaire.getEmail_proprio();
+    		matrice[i][8] = unProprietaire.getTel_proprio();
+    		matrice[i][9] = unProprietaire.getAdresse_proprio();
+    		matrice[i][10] = unProprietaire.getVille_proprio();
+    		matrice[i][11] = unProprietaire.getPays_proprio();
+
     		i++;
     	}
     	return matrice; 
@@ -196,7 +204,8 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     	this.Txt_cp_proprio.setText("");
     	this.Txt_pays_proprio.setText("");
     	this.Txt_code_adherent.setText("");
-    	
+    	this.Txt_pays_proprio.setText("");
+
     }
 
 	@Override
