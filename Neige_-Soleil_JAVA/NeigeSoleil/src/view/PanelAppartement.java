@@ -156,10 +156,10 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	    
 	    // Construction un tableau
 	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces","Locataire","Propriétaire"}; 
-	    Object [][] donnees = this.getDonnees(); 
+	    Object [][] donnees = this.getDonnees();
 	    
-		this.unTableau = new Tableau (donnees, entetes); 
-		this.tableAppartement = new JTable(this.unTableau); 
+		this.unTableau = new Tableau (donnees, entetes);
+		this.tableAppartement = new JTable(this.unTableau);
 		
 		JScrollPane uneScroll = new JScrollPane(this.tableAppartement); 
 		uneScroll.setBounds(20, 80, 900, 520);
@@ -200,7 +200,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				int numLigne = tableAppartement.getSelectedRow();
 				int id_appart = Integer.parseInt(tableAppartement.getValueAt(numLigne, 0).toString());
 				
-				if(e.getClickCount()>=2) {
+				if(e.getClickCount()>=1) {
 
 				    JPanel panel = new JPanel();
 				    JFrame frame = new JFrame();
@@ -350,8 +350,6 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
-	        	
-	        	
 	        	String intitule_appart = this.txt_intitule_appart.getText();
 				
 				String statut_appart = this.cbx_statut_appart.getSelectedItem().toString();

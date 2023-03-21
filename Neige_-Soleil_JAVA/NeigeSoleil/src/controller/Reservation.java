@@ -1,11 +1,9 @@
 package controller;
 
 public class Reservation {
-	private int id_reservation, id_user, id_appart, id_materiel_proprio;
-	int nb_personnes;
-	private String statut_reservation,date_debut_reservation,date_fin_reservation ;
-	float prix_reservation;
-	public Reservation(int id_reservation,  String statut_reservation, String date_debut_reservation, String date_fin_reservation, float prix_reservation, int nb_personnes, int id_user, int id_appart) {
+	private int id_reservation, nb_personnes, id_user, id_appart, id_materiel_proprio;
+	private String statut_reservation,date_debut_reservation,date_fin_reservation,prix_reservation ;
+	public Reservation(int id_reservation, int nb_personnes, int id_user, int id_appart,  String statut_reservation, String date_debut_reservation, String date_fin_reservation, String prix_reservation) {
 	 	this.id_reservation = id_reservation;
 		this.id_user = id_user;
 		this.id_appart = id_appart;
@@ -15,11 +13,11 @@ public class Reservation {
 		this.date_fin_reservation = date_fin_reservation;
 		this.prix_reservation = prix_reservation;
 	}
-	public Reservation(String statut_reservation, String date_debut_reservation, String date_fin_reservation, float prix_reservation,int nb_personnes, int id_appart, int id_user) {
+	public Reservation( String statut_reservation, String date_debut_reservation, String date_fin_reservation, String prix_reservation) {
 	 	this.id_reservation = 0;
-		this.id_user = id_user;
-		this.id_appart = id_appart;
-		this.nb_personnes = nb_personnes;
+		this.id_user = 0;
+		this.id_appart = 0;
+		this.nb_personnes = 0;
 		this.statut_reservation = statut_reservation;
 		this.date_debut_reservation = date_debut_reservation;
 		this.date_fin_reservation = date_fin_reservation;
@@ -33,7 +31,7 @@ public class Reservation {
 		this.statut_reservation = "";
 		this.date_debut_reservation = "";
 		this.date_fin_reservation = "";
-		this.prix_reservation = 0;
+		this.prix_reservation = "";
 	}
 	public int getId_reservation() {
 		return id_reservation;
@@ -41,7 +39,7 @@ public class Reservation {
 	public void setId_reservation(int id_reservation) {
 		this.id_reservation = id_reservation;
 	}
-	public float getNb_personnes() {
+	public int getNb_personnes() {
 		return nb_personnes;
 	}
 	public void setNb_personnes(int nb_personnes) {
@@ -83,10 +81,10 @@ public class Reservation {
 	public void setDate_fin_reservation(String date_fin_reservation) {
 		this.date_fin_reservation = date_fin_reservation;
 	}
-	public float getPrix_reservation() {
+	public String getPrix_reservation() {
 		return prix_reservation;
 	}
-	public void setPrix_reservation(float prix_reservation) {
+	public void setPrix_reservation(String prix_reservation) {
 		this.prix_reservation = prix_reservation;
 	}
 	
