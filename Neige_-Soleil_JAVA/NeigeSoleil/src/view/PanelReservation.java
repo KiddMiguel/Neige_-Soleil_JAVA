@@ -43,7 +43,8 @@ public class PanelReservation extends PanelPrincipal {
     // Bouttons
     private JButton btAjouter = new JButton("Ajouter");
     private JButton btAnnuler = new JButton("Annuler");
-    
+    private JButton btModifier = new JButton("Modifier");
+    private JButton btSupprimer = new JButton("Supprimer");
  // Tableau
   	private JTable tableReservation ; 
   	private Tableau unTableau ;
@@ -129,6 +130,7 @@ public class PanelReservation extends PanelPrincipal {
     	//récupérer de la base de données tous les reservations
     	ArrayList<Appartement> lesAppartements= C_Appartement.selectAllAppartements(); 
     	//parcourir les contrats et remplir le CBX 
+		this.cbx_id_appart.addItem("");
     	for(Appartement unAppartement : lesAppartements)
     	{
     		this.cbx_id_appart.addItem(unAppartement.getId_appart()+"-"+unAppartement.getIntitule_appart());
@@ -137,6 +139,7 @@ public class PanelReservation extends PanelPrincipal {
         //récupérer de la base de données tous les contrats
         ArrayList<User> lesUsers= C_User.selectAllUser(); 
         //parcourir les contrats et remplir le CBX 
+        this.cbx_id_user.addItem("");
         for(User unUser : lesUsers)
         {
             this.cbx_id_user.addItem(unUser.getId_user()+"-"+unUser.getNom_user()+"-"+unUser.getPrenom_user());

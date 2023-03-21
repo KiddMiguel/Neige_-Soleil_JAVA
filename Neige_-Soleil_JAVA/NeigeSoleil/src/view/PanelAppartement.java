@@ -307,6 +307,8 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		//récupérer de la base de données tous les locataire 
 		ArrayList<Locataire> lesLocataires = C_Locataire.selectAllLocataire(); 
 		//parcourir lesClients et remplir le CBX 
+		this.cbx_id_locataire.addItem("");
+
 		for(Locataire unLocataire : lesLocataires)
 		{
 			this.cbx_id_locataire.addItem(unLocataire.getId_locataire()+"-"+unLocataire.getNom_locataire()+"-"+unLocataire.getPrenom_locataire());
@@ -316,6 +318,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		this.cbx_id_proprietaire.removeAllItems();
 		//récupérer de la base de données tous les clients 
 		ArrayList<Proprietaire> lesProprietaires = C_Proprietaire.selectAllProprietaire(); 
+		this.cbx_id_proprietaire.addItem("");
 
 		for(Proprietaire unProprietaire : lesProprietaires)
 		{
@@ -348,10 +351,12 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			this.btAjouter.setText("Ajouter");
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 			
+			if((this.cbx_id_proprietaire.getSelectedItem().toString() == "") || (this.cbx_id_locataire.getSelectedItem().toString() == "")) {
+				JOptionPane.showMessageDialog(this, "Merci de choisir un proprietaire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
+			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String intitule_appart = this.txt_intitule_appart.getText();
-				
 				String statut_appart = this.cbx_statut_appart.getSelectedItem().toString();
 				
 				float prix_appart = Float.parseFloat(this.txt_prix_appart.getText()); 
@@ -397,11 +402,13 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			    
 			    viderChamps ();
 	        }
-			
+		}
 		        
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
-			
-		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer la modification d'un appartement !", "Ajouter", JOptionPane.YES_NO_OPTION);
+			if((this.cbx_id_proprietaire.getSelectedItem().toString() == "") || (this.cbx_id_locataire.getSelectedItem().toString() == "")) {
+				JOptionPane.showMessageDialog(this, "Merci de choisir un locataire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
+			}else {
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer la modification d'un appartement !", "Modification", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String intitule_appart = this.txt_intitule_appart.getText();				
 				String statut_appart = this.cbx_statut_appart.getSelectedItem().toString();				
@@ -444,6 +451,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");			    
 			    viderChamps ();
+	        }
 	        }		        
 		}
 		else if(e.getSource() == btModifier){	
@@ -472,7 +480,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		txt_nb_piece.setText(tableAppartement.getValueAt(numLigne, 13).toString());
 		cbx_id_locataire.setSelectedItem(tableAppartement.getValueAt(numLigne, 14).toString());
 		cbx_id_proprietaire.setSelectedItem(tableAppartement.getValueAt(numLigne, 15).toString());
-
+		
 		btAjouter.setText("Modifier");
 	}
 	public void delete() {
