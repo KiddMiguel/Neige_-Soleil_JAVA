@@ -118,7 +118,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	    this.remplirCBX();
 	    
 	   // Construction un tableau
-	    String entetes [] = {"N° Proprietaire", "Contrat", "Appart", "Nom", "Prenom", "Statut","Email", "Teléphone", "Adresse", "Ville"}; 
+	    String entetes [] = {"Nï¿½ Proprietaire", "Contrat", "Appart", "Nom", "Prenom", "Statut","Email", "Telï¿½phone", "Adresse", "Ville"}; 
 	    Object [] [] donnees = this.getDonnees();
 	    
 	    this.unTableau = new Tableau (donnees, entetes);
@@ -161,9 +161,10 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
    
     	//supprimer ou vider le CBX id_contrat
     	this.cbx_id_contrat.removeAllItems();
-    	//recupérer de la base de donnees tout les contrats
+    	//recupï¿½rer de la base de donnees tout les contrats
     	ArrayList<Contrat> lesContrats = C_Contrat.selectAllContrat(); 
     	//parcourir lesClients et remplir le CBX
+		this.cbx_id_contrat.addItem("");
     	for (Contrat unContrat : lesContrats)
     	{
     		this.cbx_id_contrat.addItem(unContrat.getId_contrat()+
@@ -173,9 +174,10 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     	}
     	//Supprimer ou vider le CBX id_Appartement
     	this.cbx_id_appart.removeAllItems();
-    	//recupérer de la base de donnees tous les appartement
+    	//recupï¿½rer de la base de donnees tous les appartement
     	ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements();
-    	
+		this.cbx_id_appart.addItem("");
+
     	for(Appartement unAppartement : lesAppartements)
     	{
     		this.cbx_id_appart.addItem(unAppartement.getNb_chambre()+"-"+

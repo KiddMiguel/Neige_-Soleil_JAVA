@@ -229,6 +229,7 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
     	//récupérer de la base de données tous les contrats
     	ArrayList<Appartement> lesAppartements= C_Appartement.selectAllAppartements(); 
     	//parcourir les contrats et remplir le CBX 
+		this.cbx_id_appart.addItem("");
     	for(Appartement unAppartement : lesAppartements)
     	{
     		this.cbx_id_appart.addItem(unAppartement.getId_appart()+"-"+unAppartement.getIntitule_appart());
@@ -238,6 +239,7 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
         //récupérer de la base de données tous les contrats
         ArrayList<User> lesUsers= C_User.selectAllUser(); 
         //parcourir les contrats et remplir le CBX 
+        this.cbx_id_user.addItem("");
         for(User unUser : lesUsers)
         {
             this.cbx_id_user.addItem(unUser.getId_user()+"-"+unUser.getNom_user()+"-"+unUser.getPrenom_user());
@@ -260,6 +262,9 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
 		}
 		else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 			
+			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_user.getSelectedItem().toString() == "")) {
+				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
+			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 				String statut_contrat = this.cbx_statut_contrat.getSelectedItem().toString();
@@ -290,10 +295,14 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    viderChamps ();
 	        }
+			}
     
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 			
-		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
+			if((this.cbx_id_user.getSelectedItem().toString() == "") || (this.cbx_id_appart.getSelectedItem().toString() == "")) {
+				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
+			}else {
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Modification", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 				String statut_contrat = this.cbx_statut_contrat.getSelectedItem().toString();
 	        	String date_debut_contrat = this.txt_date_debut_contrat.getText();
@@ -324,6 +333,7 @@ public class PanelContrat extends PanelPrincipal implements ActionListener{
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    viderChamps ();
 	        	}
+			}
 	        }else if(e.getSource() == btModifier){	
 		        update();
 			}else if(e.getSource() == btSupprimer){	
