@@ -58,10 +58,10 @@ public class modeleReservation {
             System.out.println("Erreur d'execution" + requete);
             }
         }
-    public static ArrayList<Reservation > selectAllReservation  ()
+    public static ArrayList<Reservation> selectAllReservation ()
     {
         String requete ="select * from reservation  ;";
-        ArrayList<Reservation > lesReservations = new ArrayList<Reservation >(); 
+        ArrayList<Reservation> lesReservations = new ArrayList<Reservation >(); 
         try {
             uneBDD.seConnecter();
             Statement unStat = uneBDD.getMaConnexion().createStatement();
@@ -72,10 +72,10 @@ public class modeleReservation {
             while (desResultats.next())
             {
                 Reservation  uneReservation  = new Reservation  (
-                            desResultats.getInt("id_reservation"),desResultats.getInt("id_user"),desResultats.getInt("id_appart"), 
-                            desResultats.getInt("nb_personnes"),desResultats.getString("statut_reservation"),
+                            desResultats.getInt("id_reservation")
+                            ,desResultats.getString("statut_reservation"),
                             desResultats.getString("date_debut_reservation"),desResultats.getString("date_fin_reservation"),
-                            desResultats.getString("prix_reservation")
+                            desResultats.getFloat("prix_reservation"),desResultats.getInt("nb_personnes"),desResultats.getInt("id_user"),desResultats.getInt("id_appart")
                             );
                 //on ajoute le Reservation  dans l'ArrayList
                 lesReservations.add(uneReservation );
@@ -101,10 +101,10 @@ public class modeleReservation {
             if (unResultat.next())
             {
                 uneReservation  = new Reservation  (
-                		unResultat.getInt("id_reservation"),unResultat.getInt("id_user"),unResultat.getInt("id_appart"), 
-                		unResultat.getInt("nb_personnes"),unResultat.getString("statut_reservation"),
-                		unResultat.getString("date_debut_reservation"),unResultat.getString("date_fin_reservation"),
-                		unResultat.getString("prix_reservation")
+                        unResultat.getInt("id_reservation")
+                        ,unResultat.getString("statut_reservation"),
+                        unResultat.getString("date_debut_reservation"),unResultat.getString("date_fin_reservation"),
+                        unResultat.getFloat("prix_reservation"),unResultat.getInt("nb_personnes"),unResultat.getInt("id_user"),unResultat.getInt("id_appart")
                         );
             }
             unStat.close();
@@ -116,9 +116,9 @@ public class modeleReservation {
         return uneReservation ; 
     }
     
-    public static Reservation selectWhereReservation  (String statut)
+    public static Reservation selectWhereReservation  (String statut_reservation)
     {
-        String requete =" select * from reservation  where id_reservation= "+statut+";";
+        String requete =" select * from reservation  where id_reservation= "+statut_reservation+";";
         Reservation  uneReservation  = null; 
         try {
             uneBDD.seConnecter();
@@ -129,10 +129,10 @@ public class modeleReservation {
             if (unResultat.next())
             {
                 uneReservation  = new Reservation  (
-                		unResultat.getInt("id_reservation"),unResultat.getInt("id_user"),unResultat.getInt("id_appart"), 
-                		unResultat.getInt("nb_personnes"),unResultat.getString("statut_reservation"),
-                		unResultat.getString("date_debut_reservation"),unResultat.getString("date_fin_reservation"),
-                		unResultat.getString("prix_reservation")
+                        unResultat.getInt("id_reservation")
+                        ,unResultat.getString("statut_reservation"),
+                        unResultat.getString("date_debut_reservation"),unResultat.getString("date_fin_reservation"),
+                        unResultat.getFloat("prix_reservation"),unResultat.getInt("nb_personnes"),unResultat.getInt("id_user"),unResultat.getInt("id_appart")
                         );
             }
             unStat.close();
