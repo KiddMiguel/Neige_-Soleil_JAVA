@@ -314,11 +314,11 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			this.btAjouter.setVisible(false);
 			this.info.setVisible(true);
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
-			
+			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_proprietaire.getSelectedItem().toString() == "")) {
+				JOptionPane.showMessageDialog(this, "Merci de choisir un proprietaire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
+			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
-	        	
-	        	
 	        	String civilite_locataire = this.choix_civilite_locataire.getSelectedItem().toString();
 	        	
 	        	String nom_locataire = this.txt_nom_locataire.getText();
@@ -359,7 +359,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
 			    viderChamps ();
-		
+	        }
 	        }
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 
