@@ -10,7 +10,7 @@ import controller.Proprietaire;
 
 
 public class modeleProprietaire {
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 
 	public static void insertProprietaire(Proprietaire unProprietaire) {
         String requete = "insert into proprietaire values(null, null,'"

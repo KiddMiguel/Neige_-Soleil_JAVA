@@ -1,7 +1,7 @@
 -- Active: 1676905549513@@127.0.0.1@3306@neige_soleil
-drop database if exists neige_soleil;
-create database neige_soleil;
-use neige_soleil;
+drop database if exists neige_soleil_j;
+create database neige_soleil_j;
+use neige_soleil_j;
 create table admin(
     id_admin int(11) not null AUTO_INCREMENT,
     nom varchar(255) not null,

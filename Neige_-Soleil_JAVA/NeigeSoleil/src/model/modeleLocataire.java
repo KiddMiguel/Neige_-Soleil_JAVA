@@ -11,7 +11,7 @@ import controller.Locataire;
 
 
 public class modeleLocataire {
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 
 	public static void insertLocataire(Locataire unLocataire) {
         String requete = "insert into locataire values(null, '"

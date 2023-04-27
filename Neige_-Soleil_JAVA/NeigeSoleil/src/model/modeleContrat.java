@@ -9,7 +9,7 @@ import controller.Contrat;
 
 
 public class modeleContrat {
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 	
 	    public static void insertContrat(Contrat unContrat) {
 	        String requete = "insert into contrat values(null, '"

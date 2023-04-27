@@ -9,7 +9,7 @@ import controller.Appartement;
 
 
 public class modeleAppartement {
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 	public static void insertAppartement(Appartement unAppartement) {
         String requete = "insert into appartement values(null, '"
                 + unAppartement.getStatut_appart()+"','" + unAppartement.getPrix_appart()+"','"
