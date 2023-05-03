@@ -10,7 +10,7 @@ import controller.Reservation;
 
 
 public class modeleReservation {
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 	public static void insertReservation(Reservation uneReservation) {
         String requete = "insert into reservation values(null, '"
                 + uneReservation.getStatut_reservation()+"','" + uneReservation.getDate_debut_reservation()+"','"

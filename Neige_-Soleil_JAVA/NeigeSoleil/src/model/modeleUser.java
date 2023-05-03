@@ -9,7 +9,7 @@ import controller.User;
 
 public class modeleUser {
 
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 	
 	 public static ArrayList<User> selectAllUser ()
 	    {

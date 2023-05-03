@@ -8,7 +8,7 @@ import controller.Admin;
 
 
 public class modeleAdmin {
-	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil","root", "");
+	private static Bdd uneBDD = new Bdd("localhost", "neige_soleil_j","root", "");
 	
 	//PRIVATE STATIC UPDATE
 
