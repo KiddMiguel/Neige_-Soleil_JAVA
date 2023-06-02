@@ -3,16 +3,17 @@ drop database if exists neige_soleil_j;
 create database neige_soleil_j;
 use neige_soleil_j;
 create table admin(
-    id_admin int(11) not null AUTO_INCREMENT,
+    id_admin int(11) not null auto_increment,
     nom varchar(255) not null,
     prenom varchar(255) not null,
     email varchar(255),
     mdp varchar(255) not null,
-    adress VARCHAR(255), 
+    adress varchar(255), 
     primary key (id_admin)
 );
 
-insert into admin values (null, 'Miguel', 'Kidd','miguel@gmail.com', 'admin', '20 Rue Rosa Luxemburg St Pierre du perray');
+insert into admin values (null, 'Miguel', 'Kidd','miguel@gmail.com', 'admin', '20 Rue Rosa Luxemburg St Pierre du perray'),
+                            (null, 'Benrais', 'Ryad','Ryad@gmail.com', 'admin', '2 rue bienfaisance');
 create table user (
     id_user int(5) NOT NULL auto_increment,
     nom_user varchar(255),
@@ -21,45 +22,43 @@ create table user (
     PRIMARY KEY (id_user)
 ); 
 CREATE table appartement (
-    id_appart int(5) not null AUTO_INCREMENT,
+    id_appart int(5) not nl auto_increment,
     statut_appart enum ("Disponible", "En location"),
-    prix_appart VARCHAR (100),
-    intitule_appart VARCHAR(100),
-    ville_appart VARCHAR (50),
-    cp_appart VARCHAR (50),
+    prix_appart varchar (100),
+    intitule_appart varchar(100),
+    ville_appart varchar (50),
+    cp_appart varchar (50),
     adresse_appart varchar (255),
-    description_appart VARCHAR(500),
-    type_appart VARCHAR (50),
-    superficie_appart VARCHAR (50),
-    image VARCHAR (50) NULL,
+    description_appart varchar(500),
+    type_appart varchar (50),
+    superficie_appart varchar (50),
+    image varchar (50) NULL,
     nb_chambre int (5),
     nb_cuisine int(5),
     nb_salon int(5),
     nb_salle_bain int(5),
     nb_piece int(5),
-    id_locataire INT(5),
-    id_proprietaire INT(5),
-    id_user INT(5),
-    FOREIGN key (id_locataire) REFERENCES locataire(id_locataire),
-    FOREIGN key (id_proprietaire) REFERENCES proprietaire(id_proprietaire),
+    id_locataire int(5),
+    id_proprietaire int(5),
+    id_user int(5),
     FOREIGN key (id_user) REFERENCES user(id_user),
     PRIMARY key (id_appart)
 );
 
 CREATE TABLE equipement_appart (
-    id_equip_appart int(5) not null AUTO_INCREMENT,
-    intitule_equip_appart VARCHAR(50),
-    nb_equi_appart INT(5),
+    id_equip_appart int(5) not null auto_increment,
+    intitule_equip_appart varchar(50),
+    nb_equi_appart int(5),
     prix_equip_appart int(50),
-    type_equip_appart VARCHAR(50),
-    statut_equip_appart VARCHAR(50),
+    type_equip_appart varchar(5ul0),
+    statut_equip_appart varchar(50),
     id_appart int(5),
     FOREIGN key (id_appart) REFERENCES appartement(id_appart),
     primary key(id_equip_appart)
     );
 
 CREATE table demande (
-    id_demande int (5) not null AUTO_INCREMENT,
+    id_demande int (5) not null auto_increment,
     statut_demande enum ("En cours", "Valider"),
     date_demande date,
     id_user int(5), 
@@ -81,35 +80,21 @@ create table contrat (
     primary key (id_contrat)
 ); 
 
-CREATE Table materiel_proprio (
-    id_materiel_proprio int(5) not null AUTO_INCREMENT,
-    intitule_materiel_proprio VARCHAR (50), 
-    nb_materiel_proprio INT(5),
-    prix_materiel_proprio VARCHAR(50),
-    type_materiel_proprio VARCHAR (50),
-    staut_materiel_proprio VARCHAR (50),
-    id_user int(5),
-    id_appart int(5),
-    FOREIGN key (id_appart) REFERENCES appartement(id_appart),
-    FOREIGN key (id_user) REFERENCES user(id_user),
-    primary key (id_materiel_proprio)
-); 
-
 CREATE table reservation (
-    id_reservation int (5) not null AUTO_INCREMENT,
+    id_reservation int (5) not null auto_increment,
     statut_reservation enum ("En cours", "Réservé"),
     date_debut_reservation date,
     date_fin_reservation date,
-    prix_reservation VARCHAR (50),
+    prix_reservation varchar (50),
     nb_personnes int(5),
     id_user int(5), 
     id_appart int(5),
     id_materiel_proprio int(5),
     FOREIGN key (id_user) REFERENCES user(id_user), 
-    FOREIGN key (id_materiel_proprio) REFERENCES materiel_proprio (id_materiel_proprio),
     FOREIGN key (id_appart) REFERENCES appartement(id_appart),
     primary key (id_reservation)
 );
+
 create table proprietaire (
     id_proprietaire int(5) not null auto_increment,
     id_user int(5), 
@@ -132,6 +117,7 @@ create table proprietaire (
     FOREIGN key (id_appart) REFERENCES appartement(id_appart),
     PRIMARY KEY (id_proprietaire)
 );
+
 create table locataire (
     id_locataire int(5) not null auto_increment,
     civilite_locataire enum ("Mr", "Mme", "Autre"),
@@ -146,29 +132,13 @@ create table locataire (
     id_appart int(5),
     id_proprietaire int(5), 
     id_user int(5), 
-    FOREIGN key (id_appart) REFERENCES appartement(id_appart),
-    FOREIGN key (id_proprietaire) REFERENCES proprietaire(id_proprietaire),
     FOREIGN key (id_user) REFERENCES user(id_user),
     PRIMARY KEY (id_locataire)
     
 );
 
-
-
-CREATE TABLE statistique (
-    id_statistique INT(5) NOT NULL AUTO_INCREMENT,
-    id_locataire INT(5),
-    id_appart INT(5),
-    nb_reservations INT(5),
-    prix_total_reservations INT(10),
-    revenu_total_locataire INT(10),
-    FOREIGN KEY (id_locataire) REFERENCES locataire(id_locataire),
-    FOREIGN KEY (id_appart) REFERENCES appartement(id_appart),
-    PRIMARY KEY (id_statistique)
-);
-
-Create table images (
-    id_img int(10) not null AUTO_INCREMENT,
+create table images (
+    id_img int(10) not null auto_increment,
     nom_img varchar(100) not null,
     type_img varchar(100) not null,
     id_appart int(10),
@@ -177,12 +147,40 @@ Create table images (
 );
 
 create table atouts(
-    id_atout int(10) not null AUTO_INCREMENT,
+    id_atout int(10) not null auto_increment,
     nom_atout varchar(100) not null, 
     id_appart int(5),
     Foreign Key (id_appart) REFERENCES appartement(id_appart),
     primary key (id_atout)
 );
+
+CREATE Table materiel_proprio (
+    id_materiel_proprio int(5) not null auto_increment,
+    intitule_materiel_proprio varchar (50), 
+    nb_materiel_proprio int(5),
+    prix_materiel_proprio varchar(50),
+    type_materiel_proprio varchar (50),
+    staut_materiel_proprio varchar (50),
+    id_user int(5),
+    id_appart int(5),
+    FOREIGN key (id_appart) REFERENCES appartement(id_appart),
+    FOREIGN key (id_user) REFERENCES user(id_user),
+    primary key (id_materiel_proprio)
+); 
+
+
+CREATE TABLE statistique (
+    id_statistique int(5) NOT NULL auto_increment,
+    id_locataire int(5),
+    id_appart int(5),
+    nb_reservations int(5),
+    prix_total_reservations int(10),
+    revenu_total_locataire int(10),
+    FOREIGN KEY (id_locataire) REFERENCES locataire(id_locataire),
+    FOREIGN KEY (id_appart) REFERENCES appartement(id_appart),
+    PRIMARY KEY (id_statistique)
+);
+
 
 CREATE table visite (
 id_visite int(5) not null auto_increment,
@@ -195,12 +193,11 @@ FOREIGN key (id_appart) REFERENCES appartement(id_appart),
 primary key (id_visite)
 );
 
-
-CREATE table reglement (
+create table reglement (
 id_reglement int(5) not null auto_increment,
 date_reglement date,
 type_reglement enum ("Espèce", "Chèque", "Virement bancaire", "Carte bancaire"),
-montant_reglement VARCHAR (50),
+montant_reglement varchar (50),
 id_contrat int(5),
 FOREIGN key (id_contrat) REFERENCES contrat(id_contrat),
 primary key (id_reglement)
@@ -209,7 +206,7 @@ primary key (id_reglement)
 CREATE table facture (
 id_facture int(5) not null auto_increment,
 date_facture date,
-montant_facture VARCHAR (50),
+montant_facture varchar (50),
 id_contrat int(5),
 FOREIGN key (id_contrat) REFERENCES contrat(id_contrat),
 primary key (id_facture)
@@ -223,10 +220,10 @@ CREATE TRIGGER insert_locataire
 BEFORE INSERT ON locataire
 FOR EACH ROW
 BEGIN
-    DECLARE nb_ligne INT;
-    SELECT COUNT(*) INTO nb_ligne FROM user WHERE id_user = NEW.id_user;
+    DECLARE nb_ligne int;
+    SELECT COUNT(*) intO nb_ligne FROM user WHERE id_user = NEW.id_user;
     IF nb_ligne = 0 THEN
-        INSERT INTO user (nom_user, prenom_user, email_user) values (NEW.nom_locataire, NEW.prenom_locataire, NEW.email_locataire);
+        INSERT intO user (nom_user, prenom_user, email_user) values (NEW.nom_locataire, NEW.prenom_locataire, NEW.email_locataire);
         SET NEW.id_user = LAST_INSERT_ID();
     END IF;
 END //
@@ -238,10 +235,10 @@ CREATE TRIGGER insert_proprietaire
 BEFORE INSERT ON proprietaire
 FOR EACH ROW
 BEGIN
-    DECLARE nb_ligne INT;
-    SELECT COUNT(*) INTO nb_ligne FROM user WHERE id_user = NEW.id_user;
+    DECLARE nb_ligne int;
+    SELECT COUNT(*) intO nb_ligne FROM user WHERE id_user = NEW.id_user;
     IF nb_ligne = 0 THEN
-        INSERT INTO user (nom_user, prenom_user, email_user) values (NEW.nom_proprio, NEW.prenom_proprio, NEW.email_proprio);
+        INSERT intO user (nom_user, prenom_user, email_user) values (NEW.nom_proprio, NEW.prenom_proprio, NEW.email_proprio);
         SET NEW.id_user = LAST_INSERT_ID();
     END IF;
 END //
@@ -264,7 +261,7 @@ delimiter ;
 
 
 
-INSERT INTO locataire (civilite_locataire, nom_locataire, prenom_locataire, email_locataire, mdp_locataire, tel_locataire, adresse_locataire, cp_locataire, nb_reservations, id_appart )
+INSERT intO locataire (civilite_locataire, nom_locataire, prenom_locataire, email_locataire, mdp_locataire, tel_locataire, adresse_locataire, cp_locataire, nb_reservations, id_appart )
 VALUES 
 ('Mr', 'Dupont', 'Pierre', 'pierre.dupont@gmail.com', 'motdepasse', '0123456789', '5 Rue des Lilas', '75020', 3, 1 ),
 ('Mme', 'Martin', 'Sophie', 'sophie.martin@gmail.com', 'motdepasse', '0123456789', '12 Rue de la Gare', '69002', 2, 2 ),
@@ -277,13 +274,13 @@ VALUES
 ('Mr', 'Fernandez', 'José', 'jose.fernandez@gmail.com', 'motdepasse', '0123456789', '3 Rue des Iris', '13005', 2, 4),
 ('Mme', 'Dubois', 'Elodie', 'elodie.dubois@gmail.com', 'motdepasse', '0123456789', '15 Rue des Azalées', '54000', 1, 5);
 
-INSERT INTO proprietaire ( civilite_proprio, nom_proprio, prenom_proprio, statut_proprio, email_proprio, mdp_proprio, tel_proprio, adresse_proprio, cp_proprio, ville_proprio, pays_proprio, code_adherent, id_contrat, id_appart)
+INSERT intO proprietaire ( civilite_proprio, nom_proprio, prenom_proprio, statut_proprio, email_proprio, mdp_proprio, tel_proprio, adresse_proprio, cp_proprio, ville_proprio, pays_proprio, code_adherent, id_contrat, id_appart)
 VALUES ( 'Mr', 'Durand', 'Jean', 'Particulier', 'jean.durand@email.com', 'motdepasse123', '01 23 45 67 89', '1 rue du Pont', '75001', 'Paris', 'France', '0123456789', 1, 1),
        ( 'Mme', 'Lefebvre', 'Marie', 'Professionnel', 'marie.lefebvre@email.com', 'password456', '01 34 56 78 90', '2 rue de la Gare', '69001', 'Lyon', 'France', '0123456789', 2, 2),
        ( 'Mr', 'Garcia', 'Luis', 'Particulier', 'luis.garcia@email.com', 'azerty123', '01 23 45 67 89', '3 rue de la Paix', '13001', 'Marseille', 'France', '0123456789', 3, 3),
        ( 'Mme', 'Chang', 'Li', 'Professionnel', 'li.chang@email.com', 'secret789', '01 34 56 78 90', '4 avenue des Fleurs', '69002', 'Lyon', 'France', '0123456789', 4, 4);
 
-INSERT INTO contrat (statut_contrat, date_debut_contrat, date_fin_contrat, date_sign_contrat, id_user, id_appart)
+INSERT intO contrat (statut_contrat, date_debut_contrat, date_fin_contrat, date_sign_contrat, id_user, id_appart)
 VALUES ('En cours', '2022-03-01', '2022-08-31', '2022-03-01', 1, 1),
        ('Résilié', '2022-04-01', '2022-08-31', '2022-04-01', 2, 2),
        ('En cours', '2022-02-01', '2022-07-31', '2022-02-01', 3, 3),
@@ -292,7 +289,7 @@ VALUES ('En cours', '2022-03-01', '2022-08-31', '2022-03-01', 1, 1),
 
 
 
-INSERT INTO materiel_proprio (intitule_materiel_proprio, nb_materiel_proprio, prix_materiel_proprio, type_materiel_proprio, staut_materiel_proprio, id_user, id_appart) 
+INSERT intO materiel_proprio (intitule_materiel_proprio, nb_materiel_proprio, prix_materiel_proprio, type_materiel_proprio, staut_materiel_proprio, id_user, id_appart) 
 VALUES 
     ('Télévision', 1, '100', 'Electronique', 'Disponible', 2, 1),
     ('Four', 1, '200', 'Electroménager', 'Disponible', 3, 1),
@@ -306,7 +303,7 @@ VALUES
     ('Bicyclette', 1, '100', 'Sport', 'Disponible', 11, 1);
 
 
-INSERT INTO reservation (statut_reservation, date_debut_reservation, date_fin_reservation, prix_reservation, nb_personnes, id_user, id_appart, id_materiel_proprio)
+INSERT intO reservation (statut_reservation, date_debut_reservation, date_fin_reservation, prix_reservation, nb_personnes, id_user, id_appart, id_materiel_proprio)
 VALUES 
 ('En cours', '2023-03-01', '2023-03-07', '600 euros', 2, 1, 2, 1),
 ('Réservé', '2023-04-15', '2023-04-22', '800 euros', 4, 3, 4, 2),
@@ -315,7 +312,7 @@ VALUES
 ('Réservé', '2023-07-20', '2023-07-25', '400 euros', 2, 1, 2, 5);
 
 
-INSERT INTO appartement (statut_appart, prix_appart, intitule_appart, ville_appart, cp_appart, adresse_appart, description_appart, type_appart, superficie_appart,image, nb_chambre, nb_cuisine, nb_salon, nb_salle_bain, nb_piece,id_locataire, id_proprietaire, id_user)
+INSERT intO appartement (statut_appart, prix_appart, intitule_appart, ville_appart, cp_appart, adresse_appart, description_appart, type_appart, superficie_appart,image, nb_chambre, nb_cuisine, nb_salon, nb_salle_bain, nb_piece,id_locataire, id_proprietaire, id_user)
 VALUES 
 ('Disponible', '150000', 'Bel appartement en centre-ville', 'Paris', '75001', '10 Rue de Rivoli', 'Bel appartement lumineux de 75m² situé en plein coeur de Paris', 'Appartement', '75m²','A-1.jpg', 2, 1, 1, 1, 6,1 ,4,1),
 ('En location', '220000', 'Grand appartement avec vue sur la mer', 'Marseille', '13008', '30 Avenue du Prado', 'Spacieux appartement de 100m² avec vue imprenable sur la mer Méditerranée', 'Appartement', '100m²','B-1.jpg', 3, 1, 1, 2, 7,3,6, 2),
@@ -326,7 +323,7 @@ VALUES
 ('Disponible', '90000', 'Appartement avec vue sur la montagne', 'Grenoble', '38000', '5 Rue de la République', 'Bel appartement de 60m² avec vue sur la montagne', 'Appartement', '60m²','J-1.jpg', 2, 1, 1, 1, 5,7,3, 5),
 ('En location', '150000', 'Appartement en rez-de-jardin', 'Nice', '06000', '10 Avenue des Fleurs', 'Appartement de 70m² en rez-de-jardin avec terrasse et accès direct à la piscine de la résidence', 'Appartement', '70m²','G-1.jpg', 2, 1, 1, 1, 5,10,2,16);
 
-INSERT INTO equipement_appart (intitule_equip_appart, nb_equi_appart, prix_equip_appart, type_equip_appart, statut_equip_appart, id_appart)
+INSERT intO equipement_appart (intitule_equip_appart, nb_equi_appart, prix_equip_appart, type_equip_appart, statut_equip_appart, id_appart)
 VALUES 
 ('Lave-linge', 1, 500, 'Electromenager', 'Disponible', 1),
 ('Lave-vaisselle', 1, 600, 'Electromenager', 'Disponible', 1),
@@ -344,7 +341,7 @@ VALUES
 ('Tapis de course', 1, 600, 'Sport', 'Disponible', 4),
 ('Set de golf', 1, 800, 'Sport', 'Disponible', 4);
 
-INSERT INTO images (nom_img, type_img, id_appart) VALUES 
+INSERT intO images (nom_img, type_img, id_appart) VALUES 
 ("A-1", "jpg", 1), ("A-2", "jpg", 1), ("A-3", "jpg", 1), ("A-4", "jpg", 1), ("A-5", "jpg", 1),
 ("B-1", "jpg", 2), ("B-2", "jpg", 2), ("B-3", "jpg", 2), ("B-4", "jpg", 2), ("B-5", "jpg", 2),
 ("C-1", "jpg", 3), ("C-2", "jpg", 3), ("C-3", "jpg", 3), ("C-4", "jpg", 3), ("C-5", "jpg", 3),
@@ -353,11 +350,11 @@ INSERT INTO images (nom_img, type_img, id_appart) VALUES
 ("F-1", "jpg", 6), ("F-2", "jpg", 6), ("F-3", "jpg", 6), ("F-4", "jpg", 6), ("F-5", "jpg", 6),
 ("G-1", "jpg", 7), ("G-2", "jpg", 7), ("G-3", "jpg", 7), ("G-4", "jpg", 7), ("G-5", "jpg", 7);
 
-INSERT INTO atouts (nom_atout, id_appart)
+INSERT intO atouts (nom_atout, id_appart)
 VALUES 
     ("Vue sur la mer", 1),  ("Piscine", 1),("Parking", 1),  
     ("Terrasse", 2),("Jardin", 2),("Ascenseur", 2), 
-    ("Internet haut débit", 3),("Cuisine équipée", 3),("Climatisation", 3),
+    ("internet haut débit", 3),("Cuisine équipée", 3),("Climatisation", 3),
     ("Jacuzzi", 4), ("Sauna", 4),("Salle de sport", 4),
     ("Vue panoramique", 5),("Proximité des commerces", 5),("Belle luminosité", 5),
     ("Cheminée", 6),("Accès handicapé", 6),("Animaux acceptés", 6),
