@@ -64,7 +64,6 @@ public class PanelDashboard extends PanelPrincipal implements ActionListener{
 	    lblNb_total_propritaire.setForeground(Color.BLACK);
 	    panel_Propritaire.add(lblNb_total_propritaire);
 	   
-	 
 	    
 	    JPanel panel_2_1 = new JPanel();
 	    panel_2_1.setLayout(null);

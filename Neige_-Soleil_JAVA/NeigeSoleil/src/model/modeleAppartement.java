@@ -18,8 +18,7 @@ public class modeleAppartement {
                 +unAppartement.getType_appart()+"','"+unAppartement.getSuperficie_appart()+"',null,'"
                 +unAppartement.getNb_chambre()+"','"+unAppartement.getNb_cuisine()+"','"
                 +unAppartement.getNb_salon()+"','"+ unAppartement.getNb_salle_bain()+"','"
-                +unAppartement.getNb_piece()+"','"+unAppartement.getId_locataire()+"','"
-                + unAppartement.getId_proprietaire()+"',null);";
+                +unAppartement.getNb_piece()+"','"+unAppartement.getId_user()+"');";
         
         try {
             uneBDD.seConnecter();
@@ -46,8 +45,7 @@ public class modeleAppartement {
         		", nb_salon = " + unAppartement.getNb_salon() + 
         		", nb_salle_bain = " + unAppartement.getNb_salle_bain() + 
         		", nb_piece = " + unAppartement.getNb_piece() + 
-        		", id_locataire = " + unAppartement.getId_locataire() +
-        		", id_proprietaire = " + unAppartement.getId_proprietaire() + " where id_appart = "+unAppartement.getId_appart()+";";
+        		", id_user = " + unAppartement.getId_user() +" where id_appart = "+unAppartement.getId_appart()+";";
         try {
             uneBDD.seConnecter();
             Statement unStat = uneBDD.getMaConnexion().createStatement();
@@ -89,8 +87,7 @@ public class modeleAppartement {
                 Appartement  unAppartement  = new Appartement  (
                             desResultats.getInt("id_appart"),desResultats.getInt("nb_chambre"),desResultats.getInt("nb_cuisine"),
                             desResultats.getInt("nb_salon"),desResultats.getInt("nb_salle_bain"),
-                            desResultats.getInt("nb_piece"),desResultats.getInt("id_locataire"),
-                            desResultats.getInt("id_proprietaire"),
+                            desResultats.getInt("nb_piece"),desResultats.getInt("id_user"),
                             desResultats.getFloat("prix_appart"),desResultats.getString("statut_appart"),
                             desResultats.getString("intitule_appart"),desResultats.getString("ville_appart"),
                             desResultats.getString("cp_appart"),desResultats.getString("adresse_appart"),
@@ -124,8 +121,7 @@ public class modeleAppartement {
                 unAppartement  = new Appartement  (
                 		unResultat.getInt("id_appart"),unResultat.getInt("nb_chambre"),unResultat.getInt("nb_cuisine"),
                 		unResultat.getInt("nb_salon"),unResultat.getInt("nb_salle_bain"),
-                		unResultat.getInt("nb_piece"),unResultat.getInt("id_locataire"),
-                		unResultat.getInt("id_proprietaire"),
+                		unResultat.getInt("nb_piece"),unResultat.getInt("id_user"),
                 		unResultat.getFloat("prix_appart"),unResultat.getString("statut_appart"),
                         unResultat.getString("intitule_appart"),unResultat.getString("ville_appart"),
                         unResultat.getString("cp_appart"),unResultat.getString("adresse_appart"),
@@ -157,8 +153,7 @@ public class modeleAppartement {
                 unAppartement  = new Appartement  (
                 		unResultat.getInt("id_appart"),unResultat.getInt("nb_chambre"),unResultat.getInt("nb_cuisine"),
                 		unResultat.getInt("nb_salon"),unResultat.getInt("nb_salle_bain"),
-                		unResultat.getInt("nb_piece"),unResultat.getInt("id_locataire"),
-                		unResultat.getInt("id_proprietaire"),
+                		unResultat.getInt("nb_piece"),unResultat.getInt("id_user"),
                 		unResultat.getFloat("prix_appart"),unResultat.getString("statut_appart"),
                         unResultat.getString("intitule_appart"),unResultat.getString("ville_appart"),
                         unResultat.getString("cp_appart"),unResultat.getString("adresse_appart"),

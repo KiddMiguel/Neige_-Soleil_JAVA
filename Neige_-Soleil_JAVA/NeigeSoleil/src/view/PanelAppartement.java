@@ -25,10 +25,12 @@ import controller.Appartement;
 import controller.C_Appartement;
 import controller.C_Locataire;
 import controller.C_Proprietaire;
+import controller.C_User;
 import controller.Locataire;
 import controller.NeigeSoleil;
 import controller.Proprietaire;
 import controller.Tableau;
+import controller.User;
 
 public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
@@ -59,8 +61,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
 	
 	// Variables Listes deroulantes
-	private JComboBox<String>cbx_id_locataire = new JComboBox<String>();
-	private JComboBox<String>cbx_id_proprietaire = new JComboBox<String>();
+
 	private JComboBox<String>cbx_id_user = new JComboBox<String>();
 	
 	//Bouttons
@@ -83,7 +84,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
         
 		this.panelForm.setBounds(935, 20, 300, 580);
 		this.panelForm.setBackground(new Color (142, 197, 243));
-		this.panelForm.setLayout(new GridLayout(32,20));
+		this.panelForm.setLayout(new GridLayout(31,19));
 		
 		//Affichage des inputs et des texts 
 	    this.panelForm.add(new JLabel("Statut"));
@@ -125,11 +126,8 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		this.panelForm.add(new JLabel("N� Pieces"));
 		this.panelForm.add(this.txt_nb_piece); 
 		
-		this.panelForm.add(new JLabel("Locataire"));
-		this.panelForm.add(this.cbx_id_locataire);
-		
-		this.panelForm.add(new JLabel("Propriétaire"));
-		this.panelForm.add(this.cbx_id_proprietaire);
+		this.panelForm.add(new JLabel("Utilisateurs"));
+		this.panelForm.add(this.cbx_id_user);
 		
 		
 
@@ -155,7 +153,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 
 	    
 	    // Construction un tableau
-	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces","Locataire","Propriétaire"}; 
+	    String entetes [] = {"N° Appart","Intitule", "Statut", "Prix", "Ville", "Code postal", "Adresse","Type", "Superficie","Nb Chamb","Nb cuisi", "Nb salon", "Nb salle b",  "Nb pièces","User"}; 
 	    Object [][] donnees = this.getDonnees();
 	    
 		this.unTableau = new Tableau (donnees, entetes);
@@ -271,7 +269,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	
 	public Object [][] getDonnees(){
 		ArrayList<Appartement> lesAppartements = C_Appartement.selectAllAppartements(); 
-		Object [][] matrice = new Object [lesAppartements.size( )][16]; 
+		Object [][] matrice = new Object [lesAppartements.size( )][15]; 
 		int i=0; 
 		for (Appartement unAppartement : lesAppartements)
 		{
@@ -292,8 +290,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 
 			matrice[i][13]  = unAppartement.getNb_piece();
 			
-			matrice[i][14]  = unAppartement.getId_locataire();
-			matrice[i][15]  = unAppartement.getId_proprietaire();
+			matrice[i][14]  = unAppartement.getId_user();
 			i++;
 		}
 		return matrice;
@@ -303,27 +300,17 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 	public void remplirCBX ()
 	{
 		//supprimer ou vider le CBX id_locataire 
-		this.cbx_id_locataire.removeAllItems();
+		this.cbx_id_user.removeAllItems();
 		//récupérer de la base de données tous les locataire 
-		ArrayList<Locataire> lesLocataires = C_Locataire.selectAllLocataire(); 
+		ArrayList<User> LesUsers = C_User.selectAllUser(); 
 		//parcourir lesClients et remplir le CBX 
-		this.cbx_id_locataire.addItem("");
+		this.cbx_id_user.addItem("");
 
-		for(Locataire unLocataire : lesLocataires)
+		for(User unUser : LesUsers)
 		{
-			this.cbx_id_locataire.addItem(unLocataire.getId_locataire()+"-"+unLocataire.getNom_locataire()+"-"+unLocataire.getPrenom_locataire());
+			this.cbx_id_user.addItem(unUser.getId_user()+"-"+unUser.getNom_user()+"-"+unUser.getPrenom_user());
 		}
 		
-		//supprimer ou vider le CBX idProprietaire
-		this.cbx_id_proprietaire.removeAllItems();
-		//récupérer de la base de données tous les clients 
-		ArrayList<Proprietaire> lesProprietaires = C_Proprietaire.selectAllProprietaire(); 
-		this.cbx_id_proprietaire.addItem("");
-
-		for(Proprietaire unProprietaire : lesProprietaires)
-		{
-			this.cbx_id_proprietaire.addItem(unProprietaire.getId_proprietaire()+"-"+unProprietaire.getNom_proprio()+"-"+unProprietaire.getPrenom_proprio());
-		}
 		
 	}
 	
@@ -351,7 +338,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 			this.btAjouter.setText("Ajouter");
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 			
-			if((this.cbx_id_proprietaire.getSelectedItem().toString() == "") || (this.cbx_id_locataire.getSelectedItem().toString() == "")) {
+			if((this.cbx_id_user.getSelectedItem().toString() == "")) {
 				JOptionPane.showMessageDialog(this, "Merci de choisir un proprietaire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
 			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
@@ -374,18 +361,16 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				int nb_salle_bain = Integer.parseInt(this.txt_nb_salle_bain.getText());
 
 				int nb_piece = Integer.parseInt(this.txt_nb_piece.getText());
-				String chaine = this.cbx_id_locataire.getSelectedItem().toString();
+				String chaine = this.cbx_id_user.getSelectedItem().toString();
 				String tab [] = chaine.split("-"); 
-				int id_locataire = Integer.parseInt(tab[0]);
+				int id_user = Integer.parseInt(tab[0]);
 				
 				
-				chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
 				tab = chaine.split("-");
-				int id_proprietaire = Integer.parseInt(tab[0]);
 				
 				//instancier  
 				Appartement unAppartement = new Appartement(statut_appart, intitule_appart, ville_appart, cp_appart
-						,adresse_appart,type_appart,superficie_appart,nb_chambre,nb_cuisine,nb_salle_bain,nb_salon,nb_piece,id_proprietaire,id_locataire,prix_appart);
+						,adresse_appart,type_appart,superficie_appart,nb_chambre,nb_cuisine,nb_salle_bain,nb_salon,nb_piece,id_user,prix_appart);
 				//on l'enregistre dans la base de données 
 				C_Appartement.insertAppartement(unAppartement);
 			
@@ -395,7 +380,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				//ajout du dans le Tableau 
 				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
 								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(),unAppartement.getNb_chambre(), 
-								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_locataire(),unAppartement.getId_proprietaire()};
+								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_user()};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
@@ -405,7 +390,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		}
 		        
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
-			if((this.cbx_id_proprietaire.getSelectedItem().toString() == "") || (this.cbx_id_locataire.getSelectedItem().toString() == "")) {
+			if((this.cbx_id_user.getSelectedItem().toString() == "")) {
 				JOptionPane.showMessageDialog(this, "Merci de choisir un locataire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
 			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer la modification d'un appartement !", "Modification", JOptionPane.YES_NO_OPTION);
@@ -427,19 +412,17 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				int nb_salle_bain = Integer.parseInt(this.txt_nb_salle_bain.getText());
 
 				int nb_piece = Integer.parseInt(this.txt_nb_piece.getText());
-				String chaine = this.cbx_id_locataire.getSelectedItem().toString();
+				String chaine = this.cbx_id_user.getSelectedItem().toString();
 				String tab [] = chaine.split("-"); 
-				int id_locataire = Integer.parseInt(tab[0]);
 				int numLigne = this.tableAppartement.getSelectedRow();
 				
-				chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
 				tab = chaine.split("-");
-				int id_proprietaire = Integer.parseInt(tab[0]);
+				int id_user = Integer.parseInt(tab[0]);
 				int id_appart = Integer.parseInt(this.tableAppartement.getValueAt(numLigne, 0).toString());
 				
 				//instancier  
 				Appartement unAppartement = new Appartement(id_appart,nb_chambre, nb_cuisine, nb_salle_bain, nb_salon
-						,nb_piece,id_proprietaire,id_locataire,prix_appart,statut_appart,intitule_appart,ville_appart,cp_appart,adresse_appart,type_appart,superficie_appart);
+						,nb_piece,id_user,prix_appart,statut_appart,intitule_appart,ville_appart,cp_appart,adresse_appart,type_appart,superficie_appart);
 				//on l'enregistre dans la base de données 
 				C_Appartement.updateAppartement(unAppartement);
 				//récupération de l'id à partir de la BDD 
@@ -447,7 +430,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 				//ajout du dans le Tableau 
 				Object ligne[] = {unAppartement.getId_appart(), unAppartement.getIntitule_appart(), unAppartement.getStatut_appart(), unAppartement.getPrix_appart(), unAppartement.getVille_appart()
 								 ,unAppartement.getCp_appart(), unAppartement.getAdresse_appart(), unAppartement.getType_appart(),unAppartement.getSuperficie_appart(),unAppartement.getNb_chambre(), 
-								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_locataire(),unAppartement.getId_proprietaire()};
+								 unAppartement.getNb_cuisine(),unAppartement.getNb_salon(),unAppartement.getNb_salle_bain(),unAppartement.getNb_piece(),unAppartement.getId_user()};
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");			    
 			    viderChamps ();
@@ -478,9 +461,7 @@ public class PanelAppartement extends PanelPrincipal implements ActionListener{
 		txt_nb_salle_bain.setText(tableAppartement.getValueAt(numLigne, 11).toString());
 		txt_nb_salon.setText(tableAppartement.getValueAt(numLigne, 12).toString());
 		txt_nb_piece.setText(tableAppartement.getValueAt(numLigne, 13).toString());
-		cbx_id_locataire.setSelectedItem(tableAppartement.getValueAt(numLigne, 14).toString());
-		cbx_id_proprietaire.setSelectedItem(tableAppartement.getValueAt(numLigne, 15).toString());
-		
+		cbx_id_user.setSelectedItem(tableAppartement.getValueAt(numLigne, 14).toString());		
 		btAjouter.setText("Modifier");
 	}
 	public void delete() {

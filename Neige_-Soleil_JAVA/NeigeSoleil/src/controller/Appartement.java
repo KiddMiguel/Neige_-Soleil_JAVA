@@ -1,11 +1,11 @@
 package controller;
 
 public class Appartement {
-	private int id_appart, nb_chambre, nb_cuisine, nb_salle_bain, nb_salon, nb_piece, id_locataire, id_proprietaire;
+	private int id_appart, nb_chambre, nb_cuisine, nb_salle_bain, nb_salon, nb_piece, id_user;
 	private String statut_appart,intitule_appart,ville_appart,cp_appart, adresse_appart, description_appart, type_appart, superficie_appart;
 	private float prix_appart;
 	
-	public Appartement(int id_appart, int nb_chambre, int nb_cuisine, int nb_salle_bain, int nb_salon, int nb_piece, int id_proprietaire, int id_locataire,
+	public Appartement(int id_appart, int nb_chambre, int nb_cuisine, int nb_salle_bain, int nb_salon, int nb_piece, int id_user,
 			float prix_appart,  String statut_appart, String intitule_appart, String ville_appart, String cp_appart, String adresse_appart, String type_appart, String superficie_appart) {
 	 	this.id_appart = id_appart;
 		this.nb_chambre = nb_chambre;
@@ -13,8 +13,7 @@ public class Appartement {
 	 	this.nb_salle_bain = nb_salle_bain;
 	 	this.nb_salon = nb_salon;
 	 	this.nb_piece = nb_piece;
-		this.id_locataire = id_locataire;
-		this.id_proprietaire = id_proprietaire;
+		this.id_user = id_user;
 		this.prix_appart = prix_appart;		
 		this.statut_appart = statut_appart;
 		this.intitule_appart = intitule_appart;
@@ -25,7 +24,7 @@ public class Appartement {
 		this.superficie_appart = superficie_appart;
 	}
 	public Appartement(String statut_appart, String intitule_appart, String ville_appart, String cp_appart, String adresse_appart, String type_appart, String superficie_appart,
-			int nb_chambre, int nb_cuisine, int nb_salle_bain, int nb_salon, int nb_piece, int id_proprietaire, int id_locataire,
+			int nb_chambre, int nb_cuisine, int nb_salle_bain, int nb_salon, int nb_piece, int id_user,
 			float prix_appart) {
 	 	this.id_appart = 0;
 		this.nb_chambre = nb_chambre;
@@ -33,8 +32,7 @@ public class Appartement {
 	 	this.nb_salle_bain = nb_salle_bain;
 	 	this.nb_salon = nb_salon;
 	 	this.nb_piece = nb_piece;
-		this.id_proprietaire = id_proprietaire;
-		this.id_locataire = id_locataire;
+		this.id_user = id_user;
 		this.prix_appart = prix_appart;		
 		this.statut_appart = statut_appart;
 		this.intitule_appart = intitule_appart;
@@ -53,8 +51,7 @@ public class Appartement {
 	 	this.nb_salle_bain = 0;
 	 	this.nb_salon = 0;
 	 	this.nb_piece = 0;
-		this.id_proprietaire = 0;
-		this.id_locataire = 0;
+		this.id_user = 0;
 		this.prix_appart = 0;		
 		this.statut_appart = "";
 		this.intitule_appart = "";
@@ -64,7 +61,6 @@ public class Appartement {
 		this.type_appart = "";
 		this.superficie_appart = "";
 	}
-
 	public int getId_appart() {
 		return id_appart;
 	}
@@ -101,19 +97,12 @@ public class Appartement {
 	public void setNb_piece(int nb_piece) {
 		this.nb_piece = nb_piece;
 	}
-	public int getId_locataire() {
-		return id_locataire;
+	public int getId_user() {
+		return id_user;
 	}
-	public void setId_locataire(int id_locataire) {
-		this.id_locataire = id_locataire;
+	public void setId_user(int id_user) {
+		this.id_user = id_user;
 	}
-	public int getId_proprietaire() {
-		return id_proprietaire;
-	}
-	public void setId_proprietaire(int id_proprietaire) {
-		this.id_proprietaire = id_proprietaire;
-	}
-
 	public String getStatut_appart() {
 		return statut_appart;
 	}
