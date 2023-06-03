@@ -312,8 +312,8 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btAnnuler) {
 			this.viderChamps ();
-			this.btAjouter.setVisible(false);
-			this.info.setVisible(true);
+			this.btAjouter.setVisible(true);
+			//this.info.setVisible(true);
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 	
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
@@ -347,12 +347,12 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 				
 				
 				//instancier  
-				Locataire unLocataire = new Locataire( nb_reservations,
-						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,mdp_locataire,tel_locataire,adresse_locataire,cp_locataire);
+				Locataire unLocataire = new Locataire( 
+						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,tel_locataire,adresse_locataire,cp_locataire,nb_reservations);
 				//on l'enregistre dans la base de données 
 				C_Locataire.insertLocataire(unLocataire);
 				Object ligne[] = {unLocataire.getCivilite_locataire()
-						 ,unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire(),unLocataire.getMdp_locataire(),unLocataire.getTel_locataire(), 
+						 ,unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire(),unLocataire.getTel_locataire(), 
 						 unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations(),};
 				this.unTableau.insertLigne(ligne);
 
@@ -413,7 +413,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			
 		
 		}else if(e.getSource() == btModifier){	
-		    this.info.setVisible(false);
+		    //this.info.setVisible(false);
 		    this.btAjouter.setVisible(true);
 	        update(); 
 		}else if(e.getSource() == btSupprimer){	

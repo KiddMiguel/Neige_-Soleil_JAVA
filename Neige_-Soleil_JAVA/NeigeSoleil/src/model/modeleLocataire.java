@@ -16,8 +16,8 @@ public class modeleLocataire {
 	public static void insertLocataire(Locataire unLocataire) {
         String requete = "insert into locataire values(null, '"
                 +unLocataire.getCivilite_locataire()+"','" + unLocataire.getNom_locataire()+"','"
-                +unLocataire.getPrenom_locataire()+"','" + unLocataire.getEmail_locataire()+"','"
-                +unLocataire.getMdp_locataire()+"','"+unLocataire.getTel_locataire()+"','"
+                +unLocataire.getPrenom_locataire()+"','" + unLocataire.getEmail_locataire()+"','AzrHksdf','"
+                +unLocataire.getTel_locataire()+"','"
                 +unLocataire.getAdresse_locataire()+"','"+unLocataire.getCp_locataire()+"','"
                 +unLocataire.getNb_reservations()+"',null);"
                 ;
@@ -84,7 +84,7 @@ public class modeleLocataire {
                             desResultats.getInt("id_locataire"),
                             desResultats.getString("civilite_locataire"),desResultats.getString("nom_locataire")
                             ,desResultats.getString("prenom_locataire"),
-                            desResultats.getString("email_locataire"),desResultats.getString("mdp_locataire"),
+                            desResultats.getString("email_locataire"),
                             desResultats.getString("tel_locataire"),
                             desResultats.getString("adresse_locataire"),desResultats.getString("cp_locataire"),
                             desResultats.getInt("nb_reservations"));
@@ -115,7 +115,7 @@ public class modeleLocataire {
                 		unResultat.getInt("id_locataire"),
                 		unResultat.getString("civilite_locataire"),unResultat.getString("nom_locataire")
                         ,unResultat.getString("prenom_locataire"),
-                        unResultat.getString("email_locataire"),unResultat.getString("mdp_locataire"),
+                        unResultat.getString("email_locataire"),
                         unResultat.getString("tel_locataire"),
                         unResultat.getString("adresse_locataire"),unResultat.getString("cp_locataire"),
                         unResultat.getInt("nb_reservations") );
@@ -145,7 +145,7 @@ public class modeleLocataire {
                 		unResultat.getInt("id_locataire"),
                 		unResultat.getString("civilite_locataire"),unResultat.getString("nom_locataire")
                         ,unResultat.getString("prenom_locataire"),
-                        unResultat.getString("email_locataire"),unResultat.getString("mdp_locataire"),
+                        unResultat.getString("email_locataire"),
                         unResultat.getString("tel_locataire"),
                         unResultat.getString("adresse_locataire"),unResultat.getString("cp_locataire"),
                         unResultat.getInt("nb_reservations") );
