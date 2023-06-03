@@ -19,8 +19,7 @@ public class modeleLocataire {
                 +unLocataire.getPrenom_locataire()+"','" + unLocataire.getEmail_locataire()+"','"
                 +unLocataire.getMdp_locataire()+"','"+unLocataire.getTel_locataire()+"','"
                 +unLocataire.getAdresse_locataire()+"','"+unLocataire.getCp_locataire()+"','"
-                +unLocataire.getNb_reservations()+"','"+unLocataire.getId_appart()+"','"
-                +unLocataire.getId_proprietaire()+"',null);"
+                +unLocataire.getNb_reservations()+"',null);"
                 ;
         
         try {
@@ -44,8 +43,6 @@ public class modeleLocataire {
 	        		"',adresse_locataire = '" + unLocataire.getAdresse_locataire() + 
 	        		"', cp_locataire = '" + unLocataire.getCp_locataire() +
 	        		"', nb_reservations = " + unLocataire.getNb_reservations() +
-	        		", id_appart = " + unLocataire.getId_appart() + 
-	        		", id_proprietaire = " + unLocataire.getId_proprietaire() + 
 	        		", id_user = " + unLocataire.getId_user()
 	        		 + " where id_locataire = "+unLocataire.getId_locataire()+";";
 	        try {
@@ -85,8 +82,8 @@ public class modeleLocataire {
             while (desResultats.next())
             {
                 Locataire unLocataire = new Locataire (
-                            desResultats.getInt("id_locataire"),desResultats.getInt("id_appart"),
-                            desResultats.getInt("nb_reservations"),desResultats.getInt("id_proprietaire"),
+                            desResultats.getInt("id_locataire"),
+                            desResultats.getInt("nb_reservations"),
                             desResultats.getInt("id_user"),desResultats.getString("civilite_locataire"),desResultats.getString("nom_locataire"),
                             desResultats.getString("prenom_locataire"),desResultats.getString("email_locataire"),
                             desResultats.getString("tel_locataire"),
@@ -116,8 +113,8 @@ public class modeleLocataire {
             if (unResultat.next())
             {
                 unLocataire = new Locataire (
-                		unResultat.getInt("id_locataire"),unResultat.getInt("id_appart"),
-                		unResultat.getInt("nb_reservations"),unResultat.getInt("id_proprietaire"),
+                		unResultat.getInt("id_locataire"),
+                		unResultat.getInt("nb_reservations"),
                 		unResultat.getInt("id_user"),unResultat.getString("civilite_locataire"),unResultat.getString("nom_locataire"),
                 		unResultat.getString("prenom_locataire"),unResultat.getString("email_locataire"),
                          unResultat.getString("tel_locataire"),
@@ -146,8 +143,8 @@ public class modeleLocataire {
             if (unResultat.next())
             {
                 unLocataire = new Locataire (
-                		unResultat.getInt("id_locataire"),unResultat.getInt("id_appart"),
-                		unResultat.getInt("nb_reservations"),unResultat.getInt("id_proprietaire"),
+                		unResultat.getInt("id_locataire"),
+                		unResultat.getInt("nb_reservations"),
                 		unResultat.getInt("id_user"),unResultat.getString("civilite_locataire"),unResultat.getString("nom_locataire"),
                 		unResultat.getString("prenom_locataire"),unResultat.getString("email_locataire"),
                          unResultat.getString("tel_locataire"),

@@ -1,4 +1,4 @@
-drop database if exists neige_soleil;
+drop database if exists neige_soleil_j;
 create database neige_soleil_j;
 use neige_soleil_j;
 SET GLOBAL event_scheduler = ON;
@@ -153,7 +153,6 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
-
 
 
 

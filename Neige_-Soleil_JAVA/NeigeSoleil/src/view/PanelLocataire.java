@@ -49,7 +49,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	private JTextField txt_nb_reservations = new JTextField();
 
 	// Variables Listes deroulantes
-	private JComboBox<String>cbx_id_appart = new JComboBox<String>();
+	
 	private JComboBox<String>cbx_id_proprietaire = new JComboBox<String>();
 	private JComboBox<String>cbx_id_user = new JComboBox<String>();
 	
@@ -104,10 +104,9 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			this.panelForm.add(new JLabel("N� Reservations"));
 			this.panelForm.add(this.txt_nb_reservations); 
  
-			this.panelForm.add(new JLabel("Appartement"));
-			this.panelForm.add(this.cbx_id_appart);
-			this.panelForm.add(new JLabel("Proprietaire"));
-			this.panelForm.add(this.cbx_id_proprietaire);
+
+			this.panelForm.add(new JLabel("utilisateur"));
+			this.panelForm.add(this.cbx_id_user);
 
 			
 			this.panelForm.add(new JLabel(""));
@@ -135,7 +134,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.btSupprimer.addActionListener(this);
 		    
 		 // Construction un tableau
-		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation","N° Appartement","N° Propriétaire" }; 
+		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation","N° utilisateur" }; 
 		    Object [][] donnees = this.getDonnees();
 		    
 			this.unTableau = new Tableau (donnees, entetes);
@@ -214,10 +213,8 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 					    panel.add(new JLabel("Nb Reservation"));
 					    panel.add(new JButton(tableLocataire.getValueAt(numLigne, 8).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
-					    panel.add(new JLabel("N° Appartement"));
-					    panel.add(new JButton(tableLocataire.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-
-					    panel.add(new JLabel("N° Proprietaire"));
+					   
+					    panel.add(new JLabel("N° utilisateur"));
 					    panel.add(new JButton(tableLocataire.getValueAt(numLigne, 10).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 					    panel.add(new JLabel(" "));
@@ -257,8 +254,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			matrice[i][6]  = unLocataire.getAdresse_locataire();
 			matrice[i][7]  = unLocataire.getCp_locataire();
 			matrice[i][8]  = unLocataire.getNb_reservations();
-			matrice[i][9]  = unLocataire.getId_appart();
-			matrice[i][10] = unLocataire.getId_proprietaire();
+			matrice[i][9] = unLocataire.getId_user();
 			i++;
 		}
 		return matrice;
