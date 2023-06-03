@@ -4,9 +4,9 @@ public class Locataire {
 	private int id_locataire, id_user, nb_reservations, id_appart, id_proprietaire;
 	private String civilite_locataire, nom_locataire,prenom_locataire,email_locataire,mdp_locataire, tel_locataire, adresse_locataire,cp_locataire ;
 	
-	public Locataire(int id_locataire, int nb_reservations,
+	public Locataire(int id_locataire,
 			String civilite_locataire, String nom_locataire, String prenom_locataire, String email_locataire,
-			String mdp_locataire, String tel_locataire, String adresse_locataire, String cp_locataire) {
+			String mdp_locataire, String tel_locataire, String adresse_locataire, String cp_locataire, int nb_reservations) {
 	 	this.id_locataire = id_locataire;
 		this.nb_reservations = nb_reservations;
 		this.nom_locataire = nom_locataire;

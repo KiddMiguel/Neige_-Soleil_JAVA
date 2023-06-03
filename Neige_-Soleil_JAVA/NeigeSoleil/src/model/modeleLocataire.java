@@ -82,11 +82,12 @@ public class modeleLocataire {
             {
                 Locataire unLocataire = new Locataire (
                             desResultats.getInt("id_locataire"),
-                            desResultats.getInt("nb_reservations"),desResultats.getString("civilite_locataire"),desResultats.getString("nom_locataire"),
-                            desResultats.getString("prenom_locataire"),desResultats.getString("email_locataire"),desResultats.getString("mdp_locataire"),
+                            desResultats.getString("civilite_locataire"),desResultats.getString("nom_locataire")
+                            ,desResultats.getString("prenom_locataire"),
+                            desResultats.getString("email_locataire"),desResultats.getString("mdp_locataire"),
                             desResultats.getString("tel_locataire"),
-                            desResultats.getString("adresse_locataire"),desResultats.getString("cp_locataire")
-                        );
+                            desResultats.getString("adresse_locataire"),desResultats.getString("cp_locataire"),
+                            desResultats.getInt("nb_reservations"));
                 //on ajoute le Locataire dans l'ArrayList
                 lesLocataires.add(unLocataire);
             }
@@ -112,12 +113,12 @@ public class modeleLocataire {
             {
                 unLocataire = new Locataire (
                 		unResultat.getInt("id_locataire"),
-                		unResultat.getInt("nb_reservations"),
-                		unResultat.getString("prenom_locataire"),unResultat.getString("email_locataire"),unResultat.getString("mdp_locataire"),
-                		unResultat.getString("prenom_locataire"),unResultat.getString("email_locataire"),
-                         unResultat.getString("tel_locataire"),
-                         unResultat.getString("adresse_locataire"),unResultat.getString("cp_locataire")
-                        );
+                		unResultat.getString("civilite_locataire"),unResultat.getString("nom_locataire")
+                        ,unResultat.getString("prenom_locataire"),
+                        unResultat.getString("email_locataire"),unResultat.getString("mdp_locataire"),
+                        unResultat.getString("tel_locataire"),
+                        unResultat.getString("adresse_locataire"),unResultat.getString("cp_locataire"),
+                        unResultat.getInt("nb_reservations") );
             }
             unStat.close();
             uneBDD.seDeconnecter();
@@ -142,12 +143,12 @@ public class modeleLocataire {
             {
                 unLocataire = new Locataire (
                 		unResultat.getInt("id_locataire"),
-                		unResultat.getInt("nb_reservations"),
-                		unResultat.getString("prenom_locataire"),unResultat.getString("email_locataire"),unResultat.getString("mdp_locataire"),
-                		unResultat.getString("prenom_locataire"),unResultat.getString("email_locataire"),
-                         unResultat.getString("tel_locataire"),
-                         unResultat.getString("adresse_locataire"),unResultat.getString("cp_locataire")
-                        );
+                		unResultat.getString("civilite_locataire"),unResultat.getString("nom_locataire")
+                        ,unResultat.getString("prenom_locataire"),
+                        unResultat.getString("email_locataire"),unResultat.getString("mdp_locataire"),
+                        unResultat.getString("tel_locataire"),
+                        unResultat.getString("adresse_locataire"),unResultat.getString("cp_locataire"),
+                        unResultat.getInt("nb_reservations") );
             }
             unStat.close();
             uneBDD.seDeconnecter();

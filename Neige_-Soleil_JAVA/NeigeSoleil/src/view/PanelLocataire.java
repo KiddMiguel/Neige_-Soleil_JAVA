@@ -135,7 +135,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.btSupprimer.addActionListener(this);
 		    
 		 // Construction un tableau
-		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Mot de passe", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation" }; 
+		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation" }; 
 		    Object [][] donnees = this.getDonnees();
 		    
 			this.unTableau = new Tableau (donnees, entetes);
@@ -246,7 +246,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	public Object [][] getDonnees()
 	{
 		ArrayList<Locataire> lesLocataires = C_Locataire.selectAllLocataire(); 
-		Object [][] matrice = new Object [lesLocataires.size()][10]; 
+		Object [][] matrice = new Object [lesLocataires.size()][9]; 
 		int i=0; 
 		for (Locataire unLocataire : lesLocataires)
 		{
@@ -351,9 +351,9 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,mdp_locataire,tel_locataire,adresse_locataire,cp_locataire);
 				//on l'enregistre dans la base de données 
 				C_Locataire.insertLocataire(unLocataire);
-				Object ligne[] = { unLocataire.getNb_reservations(), unLocataire.getCivilite_locataire()
+				Object ligne[] = {unLocataire.getCivilite_locataire()
 						 ,unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire(),unLocataire.getMdp_locataire(),unLocataire.getTel_locataire(), 
-						unLocataire.getMdp_locataire(), unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire()};
+						 unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations(),};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
@@ -403,7 +403,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 				
 				unLocataire = C_Locataire.selectWhereLocataire(email_locataire);
 				Object ligne[] = {unLocataire.getId_locataire(), unLocataire.getCivilite_locataire(), unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire()
-						,unLocataire.getMdp_locataire() , unLocataire.getTel_locataire(), unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations()};
+						, unLocataire.getTel_locataire(), unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations()};
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
@@ -432,8 +432,9 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		txt_email_locataire.setText(tableLocataire.getValueAt(numLigne, 4).toString());
 		txt_tel_locataire.setText(tableLocataire.getValueAt(numLigne, 5).toString());
 		txt_adresse_locataire.setText(tableLocataire.getValueAt(numLigne, 6).toString());
-		txt_nb_reservations.setText(tableLocataire.getValueAt(numLigne, 8).toString());
 		txt_cp_locataire.setText(tableLocataire.getValueAt(numLigne, 7).toString());
+		txt_nb_reservations.setText(tableLocataire.getValueAt(numLigne, 8).toString());
+
 		//cbx_id_appart.setSelectedItem(Integer.parseInt((tableLocataire.getValueAt(numLigne, 9).toString())));
 		//cbx_id_proprietaire.setSelectedItem(tableLocataire.getValueAt(numLigne, 10));
 		btAjouter.setText("Modifier");
