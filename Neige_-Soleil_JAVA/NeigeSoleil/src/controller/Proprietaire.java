@@ -2,9 +2,9 @@ package controller;
 
 public class Proprietaire {
 	private int id_proprietaire,id_user, id_contrat, id_appart;
-	private String civilite_proprio, nom_proprio,prenom_proprio,statut_proprio,email_proprio, mdp_proprio, tel_proprio, adresse_proprio, cp_proprio, ville_proprio, pays_proprio, code_adherent ;
+	private String civilite_proprio, nom_proprio,prenom_proprio,statut_proprio,email_proprio,tel_proprio, adresse_proprio, cp_proprio, ville_proprio, pays_proprio;
 	public Proprietaire(int id_proprietaire,int id_user, int id_contrat, int id_appart,String civilite_proprio, String  nom_proprio, String prenom_proprio, String statut_proprio, String email_proprio, String tel_proprio,
-			String adresse_proprio, String cp_proprio, String ville_proprio, String pays_proprio, String code_adherent) {
+			String adresse_proprio, String cp_proprio, String ville_proprio, String pays_proprio) {
 	 	this.id_proprietaire = id_proprietaire;
 		this.id_user = id_user;
 	 	this.id_appart = id_appart;
@@ -18,12 +18,9 @@ public class Proprietaire {
 		this.adresse_proprio = adresse_proprio;
 		this.cp_proprio = cp_proprio;
 		this.ville_proprio = ville_proprio;
-		this.pays_proprio = pays_proprio;
-
-		this.code_adherent = code_adherent;
-		
+		this.pays_proprio = pays_proprio;		
 	}
-	public Proprietaire(String civilite_proprio,String nom_proprio, String prenom_proprio, String statut_proprio, String email_proprio, String tel_proprio, String adresse_proprio, String cp_proprio, String ville_proprio, String pays_proprio, String code_adherent, int id_appart, int id_contrat) {
+	public Proprietaire(String civilite_proprio,String nom_proprio, String prenom_proprio, String statut_proprio, String email_proprio, String tel_proprio, String adresse_proprio, String cp_proprio, String ville_proprio, String pays_proprio, int id_appart, int id_contrat) {
 	 	this.id_proprietaire = 0;
 	 	this.id_appart = id_appart;
 	 	this.id_contrat = id_contrat;
@@ -37,7 +34,6 @@ public class Proprietaire {
 		this.cp_proprio = cp_proprio;
 		this.ville_proprio = ville_proprio;
 		this.pays_proprio = pays_proprio;
-		this.code_adherent = code_adherent;
 
 	}
 
@@ -56,8 +52,26 @@ public class Proprietaire {
 		this.cp_proprio = "";
 		this.ville_proprio = "";
 		this.pays_proprio = "";
-		this.code_adherent = "";
 		this.civilite_proprio = "";
+	}
+	public Proprietaire(String civilite_proprio, String nom_proprio, String prenom_proprio, String statut_proprio,
+			String email_proprio, String tel_proprio, String adresse_proprio, String cp_proprio,
+			String pays_proprio, String ville_proprio) {
+		// TODO Auto-generated constructor stub
+	 	this.id_proprietaire = 0;
+	 	this.id_appart = 0;
+	 	this.id_contrat = 0;
+		this.civilite_proprio = civilite_proprio;
+		this.nom_proprio = nom_proprio;
+		this.prenom_proprio = prenom_proprio;
+		this.statut_proprio = statut_proprio;
+		this.email_proprio = email_proprio;
+		this.tel_proprio = tel_proprio;
+		this.adresse_proprio = adresse_proprio;
+		this.cp_proprio = cp_proprio;
+		this.ville_proprio = ville_proprio;
+		this.pays_proprio = pays_proprio;
+		
 	}
 	public int getId_proprietaire() {
 		return id_proprietaire;
@@ -107,12 +121,6 @@ public class Proprietaire {
 	public void setEmail_proprio(String email_proprio) {
 		this.email_proprio = email_proprio;
 	}
-	public String getMdp_proprio() {
-		return mdp_proprio;
-	}
-	public void setMdp_proprio(String mdp_proprio) {
-		this.mdp_proprio = mdp_proprio;
-	}
 	public String getTel_proprio() {
 		return tel_proprio;
 	}
@@ -142,12 +150,6 @@ public class Proprietaire {
 	}
 	public void setPays_proprio(String pays_proprio) {
 		this.pays_proprio = pays_proprio;
-	}
-	public String getCode_adherent() {
-		return code_adherent;
-	}
-	public void setCode_adherent(String code_adherent) {
-		this.code_adherent = code_adherent;
 	}
 	public String getCivilite_proprio() {
 		return civilite_proprio;

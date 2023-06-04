@@ -351,7 +351,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,tel_locataire,adresse_locataire,cp_locataire,nb_reservations);
 				//on l'enregistre dans la base de données 
 				C_Locataire.insertLocataire(unLocataire);
-				Object ligne[] = {unLocataire.getCivilite_locataire()
+				Object ligne[] = {unLocataire.getId_locataire(),unLocataire.getCivilite_locataire()
 						 ,unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire(),unLocataire.getTel_locataire(), 
 						 unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations(),};
 				this.unTableau.insertLigne(ligne);
