@@ -89,8 +89,8 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.panelForm.add(new JLabel("email"));
 			this.panelForm.add(this.txt_email_locataire); 
 			
-		    this.panelForm.add(new JLabel("mdp"));
-			this.panelForm.add(this.txt_mdp_locataire); 	
+		    //this.panelForm.add(new JLabel("mdp"));
+			//this.panelForm.add(this.txt_mdp_locataire); 	
 			
 		    this.panelForm.add(new JLabel("tel"));
 			this.panelForm.add(this.txt_tel_locataire); 
@@ -318,8 +318,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
-	        	String civilite_locataire = this.choix_civilite_locataire.getSelectedItem().toString();
-	        	
+	        	String civilite_locataire = this.choix_civilite_locataire.getSelectedItem().toString();	
 	        	String nom_locataire = this.txt_nom_locataire.getText();
 	        	String prenom_locataire = this.txt_prenom_locataire.getText();
 	        	
@@ -329,8 +328,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	        	
 	        	int nb_reservations = Integer.parseInt(this.txt_nb_reservations.getText());
 	        	String tel_locataire = this.txt_tel_locataire.getText();
-	        	String adresse_locataire = this.txt_adresse_locataire.getText();
-	        	
+	        	String adresse_locataire = this.txt_adresse_locataire.getText();	        	
 	        	String cp_locataire = this.txt_cp_locataire.getText();
 				
 			

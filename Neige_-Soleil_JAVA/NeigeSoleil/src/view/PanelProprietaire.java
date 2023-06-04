@@ -90,8 +90,8 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
         this.panelForm.add(new JLabel ("Email"));
         this.panelForm.add(this.Txt_email_proprio);
         
-        this.panelForm.add(new JLabel ("Mot de passe"));
-        this.panelForm.add(this.Txt_mdp_proprio);
+      //  this.panelForm.add(new JLabel ("Mot de passe"));
+        //this.panelForm.add(this.Txt_mdp_proprio);
         
         this.panelForm.add(new JLabel ("Numero de t l phone"));
         this.panelForm.add(this.Txt_tel_proprio);
@@ -312,7 +312,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     	this.Txt_tel_proprio.setText("");
     	this.Txt_cp_proprio.setText("");
     	this.Txt_pays_proprio.setText("");
-    	this.Txt_code_adherent.setText("");
+    	this.Txt_ville_proprio.setText("");
     	this.Txt_pays_proprio.setText("");
     }
 
@@ -333,7 +333,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	        	String statut_proprio = this.Txt_statut_proprio.getText();
 	        	String email_proprio = this.Txt_email_proprio.getText();
 	        	//String mdp_proprio = new String(this.Txt_mdp_proprio.getPassword());
-				String tel_proprio = this.Txt_ville_proprio.getText();
+				String tel_proprio = this.Txt_tel_proprio.getText();
 				String adresse_proprio = this.Txt_adresse_proprio.getText();
 				String cp_proprio = this.Txt_cp_proprio.getText();
 				String pays_proprio = this.Txt_pays_proprio.getText();
@@ -370,6 +370,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 
 			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_contrat.getSelectedItem().toString() == "")) {
 				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un contrat", "Attention", JOptionPane.WARNING_MESSAGE);
+				
 			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Modifier", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
