@@ -134,7 +134,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	    this.btModifier.addActionListener(this);
 	    this.btSupprimer.addActionListener(this);
 	   // Construction un tableau
-	    String entetes [] = {"N° Proprietaire", "N° Contrat", "N° Appartement","Civilité", "Nom", "Prenom", "Statut","Email", "Tel phone", "Adresse", "Ville","Pays","Code Postal"}; 
+	    String entetes [] = {"N° Proprietaire", "N° Contrat", "N° Appartement","Civilité", "Nom", "Prenom", "Statut","Email", "Telephone", "Adresse","Code Postal", "Ville","Pays"}; 
 	    Object [] [] donnees = this.getDonnees();
 	    
 	    this.unTableau = new Tableau (donnees, entetes);
@@ -359,7 +359,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 				//ajout du dans le Tableau 
 				Object ligne[] = {unProprietaire.getId_proprietaire(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
 								 ,unProprietaire.getEmail_proprio(), unProprietaire.getTel_proprio(),unProprietaire.getAdresse_proprio(),unProprietaire.getCp_proprio(), 
-								 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio(),unProprietaire.getId_appart(),unProprietaire.getId_contrat()};
+								 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio()};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
@@ -370,7 +370,9 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 		        
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 
-
+			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_contrat.getSelectedItem().toString() == "")) {
+				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un contrat", "Attention", JOptionPane.WARNING_MESSAGE);
+			}else {
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Modifier", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String civilite_proprio = this.cbx_civilite_proprio.getSelectedItem().toString();
@@ -402,15 +404,16 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 						,tel_proprio,adresse_proprio,cp_proprio,pays_proprio,ville_proprio,id_appart, id_contrat);
 				//on l'enregistre dans la base de données 
 				C_Proprietaire.updateProprietaire(unProprietaire);
-				Object ligne[] = {unProprietaire.getId_proprietaire(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
+				Object ligne[] = {unProprietaire.getId_proprietaire(),unProprietaire.getId_contrat(),unProprietaire.getId_appart(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
 						 ,unProprietaire.getEmail_proprio(), unProprietaire.getTel_proprio(),unProprietaire.getAdresse_proprio(),unProprietaire.getCp_proprio(), 
-						 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio(),unProprietaire.getId_appart(),unProprietaire.getId_contrat()};
+						 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio()};
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
 			    viderChamps ();
 		
 	        }
+			}
 		}else if(e.getSource() == btModifier){	
 		    this.btAjouter.setVisible(true);
 	        update(); 

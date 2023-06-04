@@ -16,9 +16,9 @@ public class modeleProprietaire {
         String requete = "insert into proprietaire values(null, null,'"
                 +unProprietaire.getCivilite_proprio()+"','" + unProprietaire.getNom_proprio()+"','"
                 +unProprietaire.getPrenom_proprio()+"','" + unProprietaire.getStatut_proprio()+"','"
-                +unProprietaire.getEmail_proprio()+"', 'AjGHRy8P',  '"+unProprietaire.getTel_proprio()+"','"
+                +unProprietaire.getEmail_proprio()+"','AjGHRy8P','"+unProprietaire.getTel_proprio()+"','"
                 +unProprietaire.getAdresse_proprio()+"','"+unProprietaire.getCp_proprio()+"','"
-                +unProprietaire.getVille_proprio()+"','"+unProprietaire.getPays_proprio()+"', 'null', 'null','null'"
+                +unProprietaire.getVille_proprio()+"','"+unProprietaire.getPays_proprio()+"','null','null','null'"
                 //+unProprietaire.getId_contrat()+","
                // +unProprietaire.getId_appart()
                 +");";
