@@ -446,9 +446,9 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 		int numLigne = tableProprietaire.getSelectedRow();
 		int id_proprietaire = Integer.parseInt(tableProprietaire.getValueAt(numLigne, 0).toString());
 		
-		int retour = JOptionPane.showConfirmDialog(null, "Confirmer la suppression de l'appartement", "Supprimer",JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
+		int retour = JOptionPane.showConfirmDialog(null, "Confirmer la suppression du proprietaire", "Supprimer",JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
 		if(retour == 0) {
-			C_Locataire.deleteLocataire(id_proprietaire);
+			C_Proprietaire.deleteProprietaire(id_proprietaire);
 			unTableau.deleteLigne(numLigne);
 			JOptionPane.showMessageDialog(null, "Suppression réussi !");
 		}
