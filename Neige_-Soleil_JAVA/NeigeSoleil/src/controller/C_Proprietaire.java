@@ -30,8 +30,8 @@ public class C_Proprietaire {
 	{
 		return modeleProprietaire.selectWhereProprietaire(id_proprietaire);
 	}
-	public static Proprietaire selectWhereProprietaire(String email_Proprietaire)
+	public static Proprietaire selectWhereProprietaire(String email_proprio)
 	{
-		return modeleProprietaire.selectWhereProprietaire(email_Proprietaire);
+		return modeleProprietaire.selectWhereProprietaire(email_proprio);
 	}
 }

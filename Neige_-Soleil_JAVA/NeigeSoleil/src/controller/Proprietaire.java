@@ -3,10 +3,9 @@ package controller;
 public class Proprietaire {
 	private int id_proprietaire,id_user, id_contrat, id_appart;
 	private String civilite_proprio, nom_proprio,prenom_proprio,statut_proprio,email_proprio,tel_proprio, adresse_proprio, cp_proprio, ville_proprio, pays_proprio;
-	public Proprietaire(int id_proprietaire,int id_user, int id_contrat, int id_appart,String civilite_proprio, String  nom_proprio, String prenom_proprio, String statut_proprio, String email_proprio, String tel_proprio,
+	public Proprietaire(int id_proprietaire, int id_contrat, int id_appart,String civilite_proprio, String  nom_proprio, String prenom_proprio, String statut_proprio, String email_proprio, String tel_proprio,
 			String adresse_proprio, String cp_proprio, String ville_proprio, String pays_proprio) {
 	 	this.id_proprietaire = id_proprietaire;
-		this.id_user = id_user;
 	 	this.id_appart = id_appart;
 	 	this.id_contrat = id_contrat;
 		this.civilite_proprio = civilite_proprio;
@@ -56,7 +55,7 @@ public class Proprietaire {
 	}
 	public Proprietaire(String civilite_proprio, String nom_proprio, String prenom_proprio, String statut_proprio,
 			String email_proprio, String tel_proprio, String adresse_proprio, String cp_proprio,
-			String pays_proprio, String ville_proprio) {
+			String ville_proprio,String pays_proprio) {
 		// TODO Auto-generated constructor stub
 	 	this.id_proprietaire = 0;
 	 	this.id_appart = 0;
@@ -96,6 +95,12 @@ public class Proprietaire {
 	}
 	public void setId_appart(int id_appart) {
 		this.id_appart = id_appart;
+	}
+	public String getCivilite_proprio() {
+		return civilite_proprio;
+	}
+	public void setCivilite_proprio(String civilite_proprio) {
+		this.civilite_proprio = civilite_proprio;
 	}
 	public String getNom_proprio() {
 		return nom_proprio;
@@ -151,11 +156,6 @@ public class Proprietaire {
 	public void setPays_proprio(String pays_proprio) {
 		this.pays_proprio = pays_proprio;
 	}
-	public String getCivilite_proprio() {
-		return civilite_proprio;
-	}
-	public void setCivilite_proprio(String civilite_proprio) {
-		this.civilite_proprio = civilite_proprio;
-	}
+
 	
 }
