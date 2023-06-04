@@ -16,11 +16,12 @@ public class modeleProprietaire {
         String requete = "insert into proprietaire values(null, null,'"
                 +unProprietaire.getCivilite_proprio()+"','" + unProprietaire.getNom_proprio()+"','"
                 +unProprietaire.getPrenom_proprio()+"','" + unProprietaire.getStatut_proprio()+"','"
-                +unProprietaire.getEmail_proprio()+"','"+unProprietaire.getTel_proprio()+"','"
+                +unProprietaire.getEmail_proprio()+"','AjGHRy8P','"+unProprietaire.getTel_proprio()+"','"
                 +unProprietaire.getAdresse_proprio()+"','"+unProprietaire.getCp_proprio()+"','"
-                +unProprietaire.getVille_proprio()+"','"+unProprietaire.getPays_proprio()+"',"
-                +unProprietaire.getId_contrat()+","
-                +unProprietaire.getId_appart()+");";
+                +unProprietaire.getVille_proprio()+"','"+unProprietaire.getPays_proprio()+"','null',0,0 "
+                //+unProprietaire.getId_contrat()+","
+               // +unProprietaire.getId_appart()
+                +");";
         
         try {
             uneBDD.seConnecter();
@@ -39,11 +40,11 @@ public class modeleProprietaire {
 	        		"',prenom_proprio = '" + unProprietaire.getPrenom_proprio() +
 	        		"', statut_proprio = '" + unProprietaire.getStatut_proprio() +
 	        		"', email_proprio = '" + unProprietaire.getEmail_proprio() +
-	        		"',mdp_proprio = '" + unProprietaire.getMdp_proprio() + 
 	        		"',tel_proprio = '" + unProprietaire.getTel_proprio() + 
 	        		"', adresse_proprio = '" + unProprietaire.getAdresse_proprio() +
 	        		"', cp_proprio = '" + unProprietaire.getCp_proprio() +
 	        		"', ville_proprio = '" + unProprietaire.getVille_proprio() + 
+	        		"', pays_proprio = '" + unProprietaire.getPays_proprio() + 
 	        		"', id_contrat = " + unProprietaire.getId_contrat() + 
 	        		", id_appart = " + unProprietaire.getId_appart()
 	        		 + " where id_proprietaire = "+unProprietaire.getId_proprietaire()+";";
@@ -87,13 +88,12 @@ public class modeleProprietaire {
             {
                 Proprietaire  unProprietaire  = new Proprietaire  (
                 		
-                			desResultats.getInt("id_proprietaire"),desResultats.getInt("id_user"),desResultats.getInt("id_appart"),
+                			desResultats.getInt("id_proprietaire"),desResultats.getInt("id_appart"),
                             desResultats.getInt("id_contrat"), desResultats.getString("civilite_proprio"),desResultats.getString("nom_proprio"),
                             desResultats.getString("prenom_proprio"),desResultats.getString("statut_proprio"),
                             desResultats.getString("email_proprio"),desResultats.getString("tel_proprio"),
                             desResultats.getString("adresse_proprio"),desResultats.getString("cp_proprio"),
-                            desResultats.getString("ville_proprio"), desResultats.getString("pays_proprio"),
-                            desResultats.getString("code_adherent")
+                            desResultats.getString("ville_proprio"), desResultats.getString("pays_proprio")
                         );
       
                 //on ajoute le Proprietaire  dans l'ArrayList
@@ -120,13 +120,12 @@ public class modeleProprietaire {
             if (unResultat.next())
             {
                 unProprietaire  = new Proprietaire  (
-                		unResultat.getInt("id_proprietaire"),unResultat.getInt("id_user"),unResultat.getInt("id_appart"),
+                		unResultat.getInt("id_proprietaire"),unResultat.getInt("id_appart"),
                 		unResultat.getInt("id_contrat"),unResultat.getString("civilite_proprio"),unResultat.getString("nom_proprio"),
                            unResultat.getString("prenom_proprio"),unResultat.getString("statut_proprio"),
                            unResultat.getString("email_proprio "),unResultat.getString("tel_proprio"),
                            unResultat.getString("adresse_proprio "),unResultat.getString("cp_proprio"),
-                           unResultat.getString("ville_proprio"), unResultat.getString("pays_proprio"),
-                           unResultat.getString("code_adherent")
+                           unResultat.getString("ville_proprio"), unResultat.getString("pays_proprio")
                         );
             }
             unStat.close();
@@ -140,7 +139,7 @@ public class modeleProprietaire {
     
     public static Proprietaire  selectWhereProprietaire(String email_Proprietaire)
     {
-        String requete ="select * from proprietaire  where email_Proprietaire= '"+email_Proprietaire+"';";
+        String requete ="select * from proprietaire  where email_proprio= '"+email_Proprietaire+"';";
         Proprietaire  unProprietaire  = null; 
         try {
             uneBDD.seConnecter();
@@ -151,13 +150,12 @@ public class modeleProprietaire {
             if (unResultat.next())
             {
                 unProprietaire  = new Proprietaire  (
-                		unResultat.getInt("id_proprietaire"),unResultat.getInt("id_user"),unResultat.getInt("id_appart"),
+                		unResultat.getInt("id_proprietaire"),unResultat.getInt("id_appart"),
                 		unResultat.getInt("id_contrat"),unResultat.getString("civilite_proprio"),unResultat.getString("nom_proprio"),
                            unResultat.getString("prenom_proprio"),unResultat.getString("statut_proprio"),
                            unResultat.getString("email_proprio"),unResultat.getString("tel_proprio"),
                            unResultat.getString("adresse_proprio"),unResultat.getString("cp_proprio"),
-                           unResultat.getString("ville_proprio"), unResultat.getString("pays_proprio"),
-                           unResultat.getString("code_adherent")
+                           unResultat.getString("ville_proprio"), unResultat.getString("pays_proprio")
                         );
             }
             unStat.close();

@@ -90,8 +90,8 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
         this.panelForm.add(new JLabel ("Email"));
         this.panelForm.add(this.Txt_email_proprio);
         
-        this.panelForm.add(new JLabel ("Mot de passe"));
-        this.panelForm.add(this.Txt_mdp_proprio);
+      //  this.panelForm.add(new JLabel ("Mot de passe"));
+        //this.panelForm.add(this.Txt_mdp_proprio);
         
         this.panelForm.add(new JLabel ("Numero de t l phone"));
         this.panelForm.add(this.Txt_tel_proprio);
@@ -134,7 +134,7 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	    this.btModifier.addActionListener(this);
 	    this.btSupprimer.addActionListener(this);
 	   // Construction un tableau
-	    String entetes [] = {"N° Proprietaire", "N° Contrat", "N° Appartement","Civilité", "Nom", "Prenom", "Statut","Email", "Tel phone", "Adresse", "Ville","Pays","Code Postal"}; 
+	    String entetes [] = {"N° Proprietaire", "N° Contrat", "N° Appartement","Civilité", "Nom", "Prenom", "Statut","Email", "Telephone", "Adresse","Code Postal", "Ville","Pays"}; 
 	    Object [] [] donnees = this.getDonnees();
 	    
 	    this.unTableau = new Tableau (donnees, entetes);
@@ -190,6 +190,11 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 				    frame.setLocationRelativeTo(null);
 			
 					panel.setLayout(new GridLayout(15,20));		
+				    panel.add(new JLabel("N° Contrat"));
+				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 1).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+
+				    panel.add(new JLabel("N° Appartement"));
+				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 2).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 				    panel.add(new JLabel("Civilité"));
 				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne,3).toString())).setBackground(Color.YELLOW);
@@ -212,20 +217,17 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 				    panel.add(new JLabel("Adresse"));
 				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
-				    panel.add(new JLabel("Ville"));
+				    panel.add(new JLabel("Code Postale"));
 				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 10).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
-				    panel.add(new JLabel("Pays"));
+				    
+				    panel.add(new JLabel("Ville"));
 				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 11).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-				    panel.add(new JLabel("Code Postale"));
+
+				    panel.add(new JLabel("Pays"));
 				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 12).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-
-				    panel.add(new JLabel("N° Contrat"));
-				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 1).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-
-				    panel.add(new JLabel("N° Appartement"));
-				    panel.add(new JButton(tableProprietaire.getValueAt(numLigne, 2).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
-
+				
+			
 				    panel.add(new JLabel(""));
 				    panel.add(new JLabel(""));
 				    panel.add(new JLabel(""));
@@ -262,9 +264,9 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     		matrice[i][7] = unProprietaire.getEmail_proprio();
     		matrice[i][8] = unProprietaire.getTel_proprio();
     		matrice[i][9] = unProprietaire.getAdresse_proprio();
-    		matrice[i][10] = unProprietaire.getVille_proprio();
-    		matrice[i][11] = unProprietaire.getPays_proprio();
-    		matrice[i][12] = unProprietaire.getCp_proprio();
+    		matrice[i][10] = unProprietaire.getCp_proprio();
+    		matrice[i][11] = unProprietaire.getVille_proprio();
+    		matrice[i][12] = unProprietaire.getPays_proprio();
 
     		i++;
     	}
@@ -310,9 +312,8 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
     	this.Txt_tel_proprio.setText("");
     	this.Txt_cp_proprio.setText("");
     	this.Txt_pays_proprio.setText("");
-    	this.Txt_code_adherent.setText("");
+    	this.Txt_ville_proprio.setText("");
     	this.Txt_pays_proprio.setText("");
-
     }
 
 	@Override
@@ -323,57 +324,54 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 			this.btAjouter.setText("Ajouter");
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
 			
-			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_contrat.getSelectedItem().toString() == "")) {
-				JOptionPane.showMessageDialog(this, "Merci de choisir un proprietaire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
-			}else {
-		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un contrat !", "Ajouter", JOptionPane.YES_NO_OPTION);
+	
+		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer l'ajout d'un proprietaire !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String civilite_proprio = this.cbx_civilite_proprio.getSelectedItem().toString();
 	        	String nom_proprio = this.Txt_nom_Proprio.getText();
 	        	String prenom_proprio = this.Txt_prenom_proprio.getText();
 	        	String statut_proprio = this.Txt_statut_proprio.getText();
 	        	String email_proprio = this.Txt_email_proprio.getText();
-	        	String mdp_proprio = new String(this.Txt_mdp_proprio.getPassword());
-				String tel_proprio = this.Txt_ville_proprio.getText();
+	        	//String mdp_proprio = new String(this.Txt_mdp_proprio.getPassword());
+				String tel_proprio = this.Txt_tel_proprio.getText();
 				String adresse_proprio = this.Txt_adresse_proprio.getText();
 				String cp_proprio = this.Txt_cp_proprio.getText();
 				String pays_proprio = this.Txt_pays_proprio.getText();
 				String ville_proprio = this.Txt_ville_proprio.getText();
 
-				String chaine = this.cbx_id_appart.getSelectedItem().toString();
-				String tab [] = chaine.split("-"); 
-				int id_appart = Integer.parseInt(tab[0]);
+				//String chaine = this.cbx_id_appart.getSelectedItem().toString();
+				//String tab [] = chaine.split("-"); 
+				//int id_appart = Integer.parseInt(tab[0]);
 				
 				
-				chaine = this.cbx_id_contrat.getSelectedItem().toString();
-				tab = chaine.split("-");
-				int id_contrat = Integer.parseInt(tab[0]);
+				//chaine = this.cbx_id_contrat.getSelectedItem().toString();
+				//tab = chaine.split("-");
+				//int id_contrat = Integer.parseInt(tab[0]);
 				
 				//instancier  
 				Proprietaire unProprietaire = new Proprietaire(civilite_proprio, nom_proprio,prenom_proprio, statut_proprio, email_proprio
-						,mdp_proprio,tel_proprio,adresse_proprio,cp_proprio,pays_proprio,ville_proprio,id_appart, id_contrat);
+						,tel_proprio,adresse_proprio,cp_proprio,ville_proprio,pays_proprio);
 				//on l'enregistre dans la base de données 
 				C_Proprietaire.insertProprietaire(unProprietaire);
-				//récupération de l'id à partir de la BDD 
-				unProprietaire = C_Proprietaire.selectWhereProprietaire(email_proprio); 
+
 				//ajout du dans le Tableau 
-				Object ligne[] = {unProprietaire.getId_proprietaire(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
-								 ,unProprietaire.getEmail_proprio(), unProprietaire.getMdp_proprio(), unProprietaire.getTel_proprio(),unProprietaire.getAdresse_proprio(),unProprietaire.getCp_proprio(), 
-								 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio(),unProprietaire.getId_appart(),unProprietaire.getId_contrat()};
+				Object ligne[] = {unProprietaire.getId_proprietaire(),unProprietaire.getId_contrat(),unProprietaire.getId_appart(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
+								 ,unProprietaire.getEmail_proprio(), unProprietaire.getTel_proprio(),unProprietaire.getAdresse_proprio(),unProprietaire.getCp_proprio(), 
+								 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio()};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
 			    viderChamps ();
-	        }
+	        
 		}
 		        
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 
 			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_contrat.getSelectedItem().toString() == "")) {
-				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un proprietaire");
+				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un contrat", "Attention", JOptionPane.WARNING_MESSAGE);
+				
 			}else {
-
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Modifier", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
 	        	String civilite_proprio = this.cbx_civilite_proprio.getSelectedItem().toString();
@@ -381,8 +379,8 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 	        	String prenom_proprio = this.Txt_prenom_proprio.getText();
 	        	String statut_proprio = this.Txt_statut_proprio.getText();
 	        	String email_proprio = this.Txt_email_proprio.getText();
-	        	String mdp_proprio = new String(this.Txt_mdp_proprio.getPassword());
-				String tel_proprio = this.Txt_ville_proprio.getText();
+	        	//String mdp_proprio = new String(this.Txt_mdp_proprio.getPassword());
+				String tel_proprio = this.Txt_tel_proprio.getText();
 				String adresse_proprio = this.Txt_adresse_proprio.getText();
 				String cp_proprio = this.Txt_cp_proprio.getText();
 				String pays_proprio = this.Txt_pays_proprio.getText();
@@ -398,23 +396,24 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 				int id_contrat = Integer.parseInt(tab[0]);
 				
 				int numLigne = this.tableProprietaire.getSelectedRow();
-				int id_locataire = Integer.parseInt(this.tableProprietaire.getValueAt(numLigne, 0).toString());
+				int id_proprietaire = Integer.parseInt(this.tableProprietaire.getValueAt(numLigne, 0).toString());
 
 				//instancier  
-				Proprietaire unProprietaire = new Proprietaire(civilite_proprio, nom_proprio,prenom_proprio, statut_proprio, email_proprio
-						,mdp_proprio,tel_proprio,adresse_proprio,cp_proprio,pays_proprio,ville_proprio,id_appart, id_contrat);
+				Proprietaire unProprietaire = new Proprietaire(id_proprietaire,id_appart, id_contrat,civilite_proprio, nom_proprio,prenom_proprio, statut_proprio, email_proprio
+						,tel_proprio,adresse_proprio,cp_proprio,ville_proprio,pays_proprio);
 				//on l'enregistre dans la base de données 
 				C_Proprietaire.updateProprietaire(unProprietaire);
-				Object ligne[] = {unProprietaire.getId_proprietaire(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
-						 ,unProprietaire.getEmail_proprio(), unProprietaire.getMdp_proprio(), unProprietaire.getTel_proprio(),unProprietaire.getAdresse_proprio(),unProprietaire.getCp_proprio(), 
-						 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio(),unProprietaire.getId_appart(),unProprietaire.getId_contrat()};
+				//récupération de l'id à partir de la BDD 
+				unProprietaire = C_Proprietaire.selectWhereProprietaire(email_proprio); 
+				Object ligne[] = {unProprietaire.getId_proprietaire(),unProprietaire.getId_contrat(),unProprietaire.getId_appart(), unProprietaire.getCivilite_proprio(), unProprietaire.getNom_proprio(), unProprietaire.getPrenom_proprio(), unProprietaire.getStatut_proprio()
+						 ,unProprietaire.getEmail_proprio(), unProprietaire.getTel_proprio(),unProprietaire.getAdresse_proprio(),unProprietaire.getCp_proprio(), 
+						 unProprietaire.getVille_proprio(),unProprietaire.getPays_proprio()};
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
 			    viderChamps ();
 		
 	        }
-			
 			}
 		}else if(e.getSource() == btModifier){	
 		    this.btAjouter.setVisible(true);
@@ -437,9 +436,9 @@ public class PanelProprietaire extends PanelPrincipal implements ActionListener 
 		Txt_email_proprio.setText(tableProprietaire.getValueAt(numLigne, 7).toString());
 		Txt_tel_proprio.setText(tableProprietaire.getValueAt(numLigne, 8).toString());
 		Txt_adresse_proprio.setText(tableProprietaire.getValueAt(numLigne, 9).toString());
-		Txt_ville_proprio.setText(tableProprietaire.getValueAt(numLigne, 10).toString());
-		Txt_pays_proprio.setText(tableProprietaire.getValueAt(numLigne, 11).toString());
-		Txt_cp_proprio.setText(tableProprietaire.getValueAt(numLigne, 12).toString());
+		Txt_cp_proprio.setText(tableProprietaire.getValueAt(numLigne, 10).toString());
+		Txt_ville_proprio.setText(tableProprietaire.getValueAt(numLigne, 11).toString());
+		Txt_pays_proprio.setText(tableProprietaire.getValueAt(numLigne, 12).toString());
 
 		btAjouter.setText("Modifier");
 	}

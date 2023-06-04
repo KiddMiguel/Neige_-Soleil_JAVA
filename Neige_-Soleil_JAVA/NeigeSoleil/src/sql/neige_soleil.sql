@@ -156,7 +156,6 @@ DELIMITER ;
 
 
 
-
 /*TRIGGER QUI AJOUTER UNE DEMANDE après un insert dans appartement.*/
 /* Drop trigger if exists add_demande;
 delimiter //

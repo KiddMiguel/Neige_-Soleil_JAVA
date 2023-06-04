@@ -42,16 +42,16 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	private JTextField txt_nom_locataire = new JTextField();
 	private JTextField txt_prenom_locataire = new JTextField();
 	private JTextField txt_email_locataire = new JTextField();
-	private JPasswordField txt_mdp_locataire = new JPasswordField("");
+	private JPasswordField txt_mdp_locataire = new JPasswordField();
 	private JTextField txt_tel_locataire = new JTextField();
 	private JTextField txt_adresse_locataire = new JTextField();
 	private JTextField txt_cp_locataire = new JTextField(); 
 	private JTextField txt_nb_reservations = new JTextField();
 
 	// Variables Listes deroulantes
-	private JComboBox<String>cbx_id_appart = new JComboBox<String>();
-	private JComboBox<String>cbx_id_proprietaire = new JComboBox<String>();
-	private JComboBox<String>cbx_id_user = new JComboBox<String>();
+	//private JComboBox<String>cbx_id_appart = new JComboBox<String>();
+	//private JComboBox<String>cbx_id_proprietaire = new JComboBox<String>();
+	//private JComboBox<String>cbx_id_user = new JComboBox<String>();
 	
 	//Bouttons
 	private JButton btAjouter = new JButton("Ajouter");
@@ -89,8 +89,8 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.panelForm.add(new JLabel("email"));
 			this.panelForm.add(this.txt_email_locataire); 
 			
-		    this.panelForm.add(new JLabel("mdp"));
-			this.panelForm.add(this.txt_mdp_locataire); 	
+		    //this.panelForm.add(new JLabel("mdp"));
+			//this.panelForm.add(this.txt_mdp_locataire); 	
 			
 		    this.panelForm.add(new JLabel("tel"));
 			this.panelForm.add(this.txt_tel_locataire); 
@@ -104,10 +104,10 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			this.panelForm.add(new JLabel("N� Reservations"));
 			this.panelForm.add(this.txt_nb_reservations); 
  
-			this.panelForm.add(new JLabel("Appartement"));
-			this.panelForm.add(this.cbx_id_appart);
-			this.panelForm.add(new JLabel("Proprietaire"));
-			this.panelForm.add(this.cbx_id_proprietaire);
+			//this.panelForm.add(new JLabel("Appartement"));
+			//this.panelForm.add(this.cbx_id_appart);
+			//this.panelForm.add(new JLabel("Proprietaire"));
+			//this.panelForm.add(this.cbx_id_proprietaire);
 
 			
 			this.panelForm.add(new JLabel(""));
@@ -116,10 +116,10 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	        
 	        this.btAjouter.setBounds(935, 568, 300, 30);
 	        this.add(this.btAjouter);
-	        this.btAjouter.setVisible(false);
+	        this.btAjouter.setVisible(true);
 			this.info.setBounds(960, 568, 300, 30);
 	        this.info.setForeground(new Color(203, 21, 3));
-			this.add(this.info);
+			//this.add(this.info);
 			
 	        this.btSupprimer.setBackground(new Color (176, 7, 7));
 	        this.btSupprimer.setForeground(new Color(255, 255, 255));
@@ -127,7 +127,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.add(panelForm);
 		    
 		    
-		    this.remplirCBX();
+		    //this.remplirCBX();
 		    //Rendre les bouttons cliquable
 		    this.btAjouter.addActionListener(this);
 		    this.btAnnuler.addActionListener(this);
@@ -135,7 +135,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		    this.btSupprimer.addActionListener(this);
 		    
 		 // Construction un tableau
-		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation","N° Appartement","N° Propriétaire" }; 
+		    String entetes [] = {"N° Locataire","Civilité", "Nom_locataire", "Prenom_locataire", "Email_locataire", "Tel_locataire", "Adresse_locataire", "Cp_locataire", "Nb_reservation" }; 
 		    Object [][] donnees = this.getDonnees();
 		    
 			this.unTableau = new Tableau (donnees, entetes);
@@ -214,11 +214,13 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 					    panel.add(new JLabel("Nb Reservation"));
 					    panel.add(new JButton(tableLocataire.getValueAt(numLigne, 8).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
-					    panel.add(new JLabel("N° Appartement"));
-					    panel.add(new JButton(tableLocataire.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+				
+			
+					    // panel.add(new JLabel("N° Appartement"));
+					    // panel.add(new JButton(tableLocataire.getValueAt(numLigne, 9).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
-					    panel.add(new JLabel("N° Proprietaire"));
-					    panel.add(new JButton(tableLocataire.getValueAt(numLigne, 10).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
+					    // panel.add(new JLabel("N° Proprietaire"));
+					    // panel.add(new JButton(tableLocataire.getValueAt(numLigne, 10).toString())).setFont(new Font("Tahoma", Font.BOLD, 10));
 
 					    panel.add(new JLabel(" "));
 					    panel.add(new JLabel(" "));
@@ -244,7 +246,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	public Object [][] getDonnees()
 	{
 		ArrayList<Locataire> lesLocataires = C_Locataire.selectAllLocataire(); 
-		Object [][] matrice = new Object [lesLocataires.size()][11]; 
+		Object [][] matrice = new Object [lesLocataires.size()][9]; 
 		int i=0; 
 		for (Locataire unLocataire : lesLocataires)
 		{
@@ -257,15 +259,14 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 			matrice[i][6]  = unLocataire.getAdresse_locataire();
 			matrice[i][7]  = unLocataire.getCp_locataire();
 			matrice[i][8]  = unLocataire.getNb_reservations();
-			matrice[i][9]  = unLocataire.getId_appart();
-			matrice[i][10] = unLocataire.getId_proprietaire();
+			//matrice[i][10] = unLocataire.getId_proprietaire();
 			i++;
 		}
 		return matrice;
 	}
 	
 	// remplire les combos Box
-	public void remplirCBX ()
+	/*public void remplirCBX ()
 	{
 		//supprimer ou vider le CBX idProprietaire
 		this.cbx_id_proprietaire.removeAllItems();
@@ -290,7 +291,7 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 				}
 
 		
-	}
+	}*/
 	public void viderChamps ()
 	{
 		this.txt_nom_locataire.setText("");
@@ -311,61 +312,56 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btAnnuler) {
 			this.viderChamps ();
-			this.btAjouter.setVisible(false);
-			this.info.setVisible(true);
+			this.btAjouter.setVisible(true);
+			//this.info.setVisible(true);
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Ajouter")) {
-			if((this.cbx_id_appart.getSelectedItem().toString() == "") || (this.cbx_id_proprietaire.getSelectedItem().toString() == "")) {
-				JOptionPane.showMessageDialog(this, "Merci de choisir un proprietaire & un proprietaire", "Attention", JOptionPane.WARNING_MESSAGE);
-			}else {
+	
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Ajouter", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
-	        	String civilite_locataire = this.choix_civilite_locataire.getSelectedItem().toString();
-	        	
+	        	String civilite_locataire = this.choix_civilite_locataire.getSelectedItem().toString();	
 	        	String nom_locataire = this.txt_nom_locataire.getText();
 	        	String prenom_locataire = this.txt_prenom_locataire.getText();
 	        	
 	        	String email_locataire = this.txt_email_locataire.getText();
 	        	String mdp_locataire = new String(this.txt_mdp_locataire.getPassword());
-				
+
+	        	
 	        	int nb_reservations = Integer.parseInt(this.txt_nb_reservations.getText());
 	        	String tel_locataire = this.txt_tel_locataire.getText();
-	        	String adresse_locataire = this.txt_adresse_locataire.getText();
-	        	
+	        	String adresse_locataire = this.txt_adresse_locataire.getText();	        	
 	        	String cp_locataire = this.txt_cp_locataire.getText();
 				
 			
-				String chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
-				String tab [] = chaine.split("-"); 
+	        	//String chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
+	        	//String tab [] = chaine.split("-"); 
 				
 				
 				
-				chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
-				tab = chaine.split("-");
-				int id_proprietaire = Integer.parseInt(tab[0]);
-				int id_appart = Integer.parseInt(tab[0]);
-				int id_user = Integer.parseInt(tab[0]);
+	        	//chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
+	        	//tab = chaine.split("-");
+	        	//int id_proprietaire = Integer.parseInt(tab[0]);
+	        	//int id_appart = Integer.parseInt(tab[0]);
+				//int id_user = Integer.parseInt(tab[0]);
 				
 				
 				//instancier  
-				Locataire unLocataire = new Locataire(id_appart, nb_reservations, id_proprietaire, id_user,
-						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,mdp_locataire,tel_locataire,adresse_locataire,cp_locataire);
+				Locataire unLocataire = new Locataire( 
+						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,tel_locataire,adresse_locataire,cp_locataire,nb_reservations);
 				//on l'enregistre dans la base de données 
 				C_Locataire.insertLocataire(unLocataire);
-				Object ligne[] = {unLocataire.getId_appart(), unLocataire.getNb_reservations(), unLocataire.getId_proprietaire(), unLocataire.getId_user(), unLocataire.getCivilite_locataire()
-						 ,unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire(),unLocataire.getMdp_locataire(),unLocataire.getTel_locataire(), 
-						 unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire()};
+				Object ligne[] = {unLocataire.getId_locataire(),unLocataire.getCivilite_locataire()
+						 ,unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire(),unLocataire.getTel_locataire(), 
+						 unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations(),};
 				this.unTableau.insertLigne(ligne);
 
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
 			    viderChamps ();
 	        }
-	        }
+	        
 		}else if(e.getSource() == btAjouter && this.btAjouter.getText().equals("Modifier")) {
 
-			if((this.cbx_id_proprietaire.getSelectedItem().toString() == "") || (this.cbx_id_appart.getSelectedItem().toString() == "")) {
-				JOptionPane.showMessageDialog(this, "Merci de choisir l'appartement & un proprietaire");
-			}else {
+	
 
 		    int retour = JOptionPane.showConfirmDialog(this, "Confirmer !", "Modifier", JOptionPane.YES_NO_OPTION);
 	        if (retour == 0) {
@@ -378,34 +374,34 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 	        	
 	        	String email_locataire = this.txt_email_locataire.getText();
 	        	String mdp_locataire = new String(this.txt_mdp_locataire.getPassword());
-				
+
 	        	int nb_reservations = Integer.parseInt(this.txt_nb_reservations.getText());
 	        	String tel_locataire = this.txt_tel_locataire.getText();
 	        	String adresse_locataire = this.txt_adresse_locataire.getText();
 	        	
 	        	String cp_locataire = this.txt_cp_locataire.getText();
 
-				String chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
-				String tab [] = chaine.split("-"); 
+	        	//String chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
+	        	//String tab [] = chaine.split("-"); 
 				int numLigne = this.tableLocataire.getSelectedRow();
 				int id_locataire = Integer.parseInt(this.tableLocataire.getValueAt(numLigne, 0).toString());
 				
-				chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
-				tab = chaine.split("-");
-				int id_proprietaire = Integer.parseInt(tab[0]);
-				int id_appart = Integer.parseInt(tab[0]);
-				int id_user = Integer.parseInt(tab[0]);
+				//chaine = this.cbx_id_proprietaire.getSelectedItem().toString();
+				//tab = chaine.split("-");
+				//int id_proprietaire = Integer.parseInt(tab[0]);
+				//int id_appart = Integer.parseInt(tab[0]);
+				//int id_user = Integer.parseInt(tab[0]);
 				
 				
 				//instancier  
-				Locataire unLocataire = new Locataire(id_locataire,id_appart, nb_reservations, id_proprietaire, id_user,
-						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,tel_locataire,adresse_locataire,cp_locataire);
+				Locataire unLocataire = new Locataire(id_locataire,
+						civilite_locataire,nom_locataire,prenom_locataire,email_locataire,tel_locataire,adresse_locataire,cp_locataire, nb_reservations);
 				//on l'enregistre dans la base de données 
 				C_Locataire.updateLocataire(unLocataire);
+				
 				unLocataire = C_Locataire.selectWhereLocataire(email_locataire);
 				Object ligne[] = {unLocataire.getId_locataire(), unLocataire.getCivilite_locataire(), unLocataire.getNom_locataire(), unLocataire.getPrenom_locataire(), unLocataire.getEmail_locataire()
-						 , unLocataire.getTel_locataire(), unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations(), 
-						 unLocataire.getId_appart(),unLocataire.getId_proprietaire()};
+						, unLocataire.getTel_locataire(), unLocataire.getAdresse_locataire(),unLocataire.getCp_locataire(),unLocataire.getNb_reservations()};
 				this.unTableau.updateLigne(numLigne, ligne);
 			    JOptionPane.showMessageDialog(this, "Reussi !");
 			    
@@ -413,9 +409,9 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		
 	        }
 			
-			}
+		
 		}else if(e.getSource() == btModifier){	
-		    this.info.setVisible(false);
+		    //this.info.setVisible(false);
 		    this.btAjouter.setVisible(true);
 	        update(); 
 		}else if(e.getSource() == btSupprimer){	
@@ -436,8 +432,9 @@ public class PanelLocataire extends PanelPrincipal implements ActionListener{
 		txt_adresse_locataire.setText(tableLocataire.getValueAt(numLigne, 6).toString());
 		txt_cp_locataire.setText(tableLocataire.getValueAt(numLigne, 7).toString());
 		txt_nb_reservations.setText(tableLocataire.getValueAt(numLigne, 8).toString());
-		cbx_id_appart.setSelectedItem(Integer.parseInt((tableLocataire.getValueAt(numLigne, 9).toString())));
-		cbx_id_proprietaire.setSelectedItem(tableLocataire.getValueAt(numLigne, 10));
+
+		//cbx_id_appart.setSelectedItem(Integer.parseInt((tableLocataire.getValueAt(numLigne, 9).toString())));
+		//cbx_id_proprietaire.setSelectedItem(tableLocataire.getValueAt(numLigne, 10));
 		btAjouter.setText("Modifier");
 	}
 	public void delete() {
